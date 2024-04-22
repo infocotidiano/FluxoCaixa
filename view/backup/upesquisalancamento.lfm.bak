@@ -1,0 +1,26 @@
+object frmPesquisaLancamento: TfrmPesquisaLancamento
+  Left = 350
+  Height = 487
+  Top = 31
+  Width = 716
+  Caption = 'frmPesquisaLancamento'
+  ClientHeight = 487
+  ClientWidth = 716
+  object pnpTITULO: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 716
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'Pesquisa Lançamento'
+    Color = 13477943
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -24
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+  end
+end

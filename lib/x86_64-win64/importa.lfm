@@ -1,0 +1,555 @@
+object frmImporta: TfrmImporta
+  Left = 297
+  Height = 421
+  Top = 31
+  Width = 892
+  Caption = 'Importa Extrato Bancácio'
+  ClientHeight = 421
+  ClientWidth = 892
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poMainFormCenter
+  object pnpTITULO: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 892
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'Importa Extrato Bancário'
+    Color = 13477943
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -24
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object pnpImporta: TPanel
+    Left = 0
+    Height = 102
+    Top = 50
+    Width = 892
+    Align = alTop
+    ClientHeight = 102
+    ClientWidth = 892
+    TabOrder = 1
+    object edtARQUIVO: TEdit
+      Left = 13
+      Height = 23
+      Top = 22
+      Width = 523
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 13
+      Height = 15
+      Top = 4
+      Width = 241
+      Caption = 'Caminho e nome do arquivo a ser importado:'
+      ParentColor = False
+    end
+    object btnLerArquivo: TSpeedButton
+      Left = 592
+      Height = 30
+      Top = 15
+      Width = 112
+      Caption = 'Ler Arquivo OFX'
+      OnClick = btnLerArquivoClick
+    end
+    object Label2: TLabel
+      Left = 14
+      Height = 15
+      Top = 56
+      Width = 126
+      Caption = '[F4 - PESQUISA PLANO]'
+      ParentColor = False
+    end
+    object btnImporta: TSpeedButton
+      Left = 712
+      Height = 30
+      Top = 15
+      Width = 112
+      Caption = 'Importar'
+      OnClick = btnImportaClick
+    end
+    object btnAbrirArquivo: TSpeedButton
+      Left = 543
+      Height = 28
+      Top = 20
+      Width = 25
+      Caption = '...'
+      OnClick = btnAbrirArquivoClick
+    end
+    object edtFiltro: TEdit
+      Left = 84
+      Height = 23
+      Top = 75
+      Width = 242
+      TabOrder = 1
+    end
+    object Label7: TLabel
+      Left = 48
+      Height = 15
+      Top = 78
+      Width = 27
+      Caption = 'Filtro'
+      ParentColor = False
+    end
+    object btnFiltro: TButton
+      Left = 334
+      Height = 25
+      Top = 73
+      Width = 75
+      Caption = 'Filtro'
+      OnClick = btnFiltroClick
+      TabOrder = 2
+    end
+  end
+  object RxDBGrid1: TRxDBGrid
+    Left = 0
+    Height = 219
+    Top = 152
+    Width = 892
+    ColumnDefValues.BlobText = '(blob)'
+    TitleButtons = False
+    AutoSort = True
+    Columns = <    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Data'
+        Width = 70
+        FieldName = 'Data'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Descricao'
+        Width = 250
+        FieldName = 'Descricao'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Valor'
+        FieldName = 'Valor'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'Documento'
+        Width = 100
+        FieldName = 'Documento'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'IDbanco'
+        Width = 60
+        FieldName = 'IDbanco'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'CodPlano'
+        Width = 60
+        FieldName = 'CodPlano'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'DescPlano'
+        Width = 120
+        FieldName = 'DescPlano'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'D/C'
+        Width = 30
+        FieldName = 'TipoMovimento'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Orientation = toHorizontal
+        Title.Caption = 'SEL'
+        FieldName = 'Selecionado'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Empty)'
+        Filter.NotEmptyValue = '(Not empty)'
+        Filter.AllValue = '(All values)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        Footers = <>
+      end>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
+    FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
+    OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+    Align = alClient
+    Color = clWindow
+    DrawFullLine = False
+    FocusColor = clRed
+    SelectedColor = clHighlight
+    DataSource = DsTMP
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 2
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 371
+    Width = 892
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 892
+    TabOrder = 3
+    object Label3: TLabel
+      Left = 11
+      Height = 15
+      Top = 4
+      Width = 74
+      Caption = 'Código Conta'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 112
+      Height = 15
+      Top = 5
+      Width = 43
+      Caption = 'Agência'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 216
+      Height = 15
+      Top = 5
+      Width = 52
+      Caption = 'NroConta'
+      ParentColor = False
+    end
+    object edtCodConta: TEdit
+      Left = 9
+      Height = 23
+      Top = 21
+      Width = 80
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object edtAgencia: TEdit
+      Left = 112
+      Height = 23
+      Top = 21
+      Width = 80
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object edtNumConta: TEdit
+      Left = 216
+      Height = 23
+      Top = 21
+      Width = 80
+      ReadOnly = True
+      TabOrder = 2
+    end
+    object edtNumBanco: TEdit
+      Left = 312
+      Height = 23
+      Top = 21
+      Width = 176
+      ReadOnly = True
+      TabOrder = 3
+    end
+    object Label6: TLabel
+      Left = 312
+      Height = 15
+      Top = 4
+      Width = 33
+      Caption = 'Banco'
+      ParentColor = False
+    end
+  end
+  object qrTMP: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'Data'
+        DataType = ftDate
+        Precision = -1
+      end    
+      item
+        Name = 'Descricao'
+        DataType = ftString
+        Precision = -1
+        Size = 120
+      end    
+      item
+        Name = 'Valor'
+        DataType = ftCurrency
+        Precision = 15
+      end    
+      item
+        Name = 'Documento'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'IDbanco'
+        DataType = ftString
+        Precision = -1
+        Size = 36
+      end    
+      item
+        Name = 'CodPlano'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'DescPlano'
+        DataType = ftString
+        Precision = -1
+        Size = 80
+      end    
+      item
+        Name = 'TipoMovimento'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'Selecionado'
+        DataType = ftBoolean
+        Precision = -1
+      end>
+    PacketRecords = 0
+    Left = 720
+    Top = 264
+    object qrTMPData: TDateField
+      FieldKind = fkData
+      FieldName = 'Data'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrTMPDescricao: TStringField
+      FieldKind = fkData
+      FieldName = 'Descricao'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qrTMPValor: TCurrencyField
+      FieldKind = fkData
+      FieldName = 'Valor'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrTMPDocumento: TStringField
+      FieldKind = fkData
+      FieldName = 'Documento'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object qrTMPIDbanco: TStringField
+      FieldKind = fkData
+      FieldName = 'IDbanco'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 36
+    end
+    object qrTMPCodPlano: TLongintField
+      FieldKind = fkData
+      FieldName = 'CodPlano'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrTMPDescPlano: TStringField
+      FieldKind = fkData
+      FieldName = 'DescPlano'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qrTMPTipoMovimento: TStringField
+      FieldKind = fkData
+      FieldName = 'TipoMovimento'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+    object qrTMPSelcionado: TBooleanField
+      FieldKind = fkData
+      FieldName = 'Selecionado'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+  end
+  object DsTMP: TDataSource
+    DataSet = qrTMP
+    Left = 647
+    Top = 155
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 808
+    Top = 184
+  end
+  object ACBrEnterTab1: TACBrEnterTab
+    EnterAsTab = True
+    Left = 450
+    Top = 249
+  end
+end

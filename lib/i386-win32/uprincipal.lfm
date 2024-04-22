@@ -1,0 +1,82 @@
+object frmprincipal: Tfrmprincipal
+  Left = 100
+  Height = 600
+  Top = 250
+  Width = 800
+  Caption = 'Sistema Fluxo de Caixa'
+  ClientHeight = 600
+  ClientWidth = 800
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poDefaultPosOnly
+  object pnpEsquerda: TPanel
+    Left = 0
+    Height = 600
+    Top = 0
+    Width = 170
+    Align = alLeft
+    BevelOuter = bvNone
+    ClientHeight = 600
+    ClientWidth = 170
+    Color = 13477943
+    ParentColor = False
+    TabOrder = 0
+    object btnCONTAS: TSpeedButton
+      Left = 16
+      Height = 46
+      Top = 72
+      Width = 132
+      Caption = 'Contas'
+      OnClick = btnCONTASClick
+    end
+    object btnPLANOS: TSpeedButton
+      Left = 16
+      Height = 46
+      Top = 128
+      Width = 132
+      Caption = 'Planos'
+      OnClick = btnPLANOSClick
+    end
+    object btnLCTO: TSpeedButton
+      Left = 16
+      Height = 46
+      Top = 184
+      Width = 132
+      Caption = 'Lançamentos'
+      OnClick = btnLCTOClick
+    end
+    object btnSAIR: TSpeedButton
+      Left = 16
+      Height = 46
+      Top = 544
+      Width = 132
+      Caption = 'Sair'
+      OnClick = btnSAIRClick
+    end
+    object btnCFG: TSpeedButton
+      Left = 16
+      Height = 46
+      Top = 496
+      Width = 132
+      Caption = 'Configura'
+      OnClick = btnCFGClick
+    end
+  end
+  object Label1: TLabel
+    Left = 181
+    Height = 32
+    Top = 9
+    Width = 179
+    Caption = 'Fluxo de Caixa'
+    Font.Height = -27
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Shape1: TShape
+    Left = 183
+    Height = 2
+    Top = 44
+    Width = 690
+  end
+end

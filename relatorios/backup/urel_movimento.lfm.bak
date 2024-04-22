@@ -1,0 +1,328 @@
+object frmrel_movimento: Tfrmrel_movimento
+  Left = 316
+  Height = 405
+  Top = 250
+  Width = 815
+  Caption = 'Relatório Movimento'
+  ClientHeight = 405
+  ClientWidth = 815
+  object RLReport1: TRLReport
+    Left = 0
+    Height = 1123
+    Top = 0
+    Width = 794
+    DataSource = frmmovimento.dsMvto
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    object RLBand1: TRLBand
+      Left = 38
+      Height = 120
+      Top = 38
+      Width = 718
+      BandType = btHeader
+      object RLDraw1: TRLDraw
+        Left = 1
+        Height = 118
+        Top = 1
+        Width = 715
+      end
+      object RLLabel1: TRLLabel
+        Left = 15
+        Height = 29
+        Top = 11
+        Width = 275
+        Caption = 'Sistema Fluxo de Caixa'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -24
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lPeriodo: TRLLabel
+        Left = 16
+        Height = 16
+        Top = 40
+        Width = 213
+        Caption = 'Período de 01/01/2022 a 30/01/2023'
+      end
+      object lCONTA: TRLLabel
+        Left = 16
+        Height = 16
+        Top = 59
+        Width = 38
+        Caption = 'Conta'
+      end
+      object RLDBText7: TRLDBText
+        Left = 10
+        Height = 13
+        Top = 104
+        Width = 58
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'DATA'
+      end
+      object RLDBText8: TRLDBText
+        Left = 82
+        Height = 13
+        Top = 104
+        Width = 58
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'NRO LCTO'
+      end
+      object RLDBText9: TRLDBText
+        Left = 146
+        Height = 13
+        Top = 104
+        Width = 184
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'DESCRIÇÃO DO PLANO'
+      end
+      object RLDBText10: TRLDBText
+        Left = 336
+        Height = 13
+        Top = 102
+        Width = 208
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'DESCRIÇÃO MOVIMENTO'
+      end
+      object RLDBText11: TRLDBText
+        Left = 552
+        Height = 13
+        Top = 104
+        Width = 72
+        Alignment = taRightJustify
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'VALOR'
+      end
+      object RLDBText12: TRLDBText
+        Left = 632
+        Height = 13
+        Top = 104
+        Width = 80
+        Alignment = taRightJustify
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        Text = 'SALDO ATUAL'
+      end
+      object RLDraw2: TRLDraw
+        Left = 1
+        Height = 1
+        Top = 100
+        Width = 716
+      end
+      object lSaldoAnterior: TRLLabel
+        Left = 353
+        Height = 22
+        Top = 72
+        Width = 354
+        Alignment = taRightJustify
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -19
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lEmissao: TRLLabel
+        Left = 16
+        Height = 16
+        Top = 77
+        Width = 58
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Height = 16
+      Top = 158
+      Width = 718
+      object RLDBText1: TRLDBText
+        Left = 82
+        Height = 13
+        Top = 2
+        Width = 58
+        AutoSize = False
+        DataField = 'id_lcto'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object RLDBText2: TRLDBText
+        Left = 146
+        Height = 13
+        Top = 2
+        Width = 184
+        AutoSize = False
+        DataField = 'plano'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object RLDBText3: TRLDBText
+        Left = 336
+        Height = 13
+        Top = 0
+        Width = 208
+        AutoSize = False
+        DataField = 'descricao'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object RLDBText4: TRLDBText
+        Left = 10
+        Height = 13
+        Top = 2
+        Width = 58
+        AutoSize = False
+        DataField = 'data_mvto'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object RLDBText5: TRLDBText
+        Left = 552
+        Height = 13
+        Top = 2
+        Width = 72
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'valor'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+      object RLDBText6: TRLDBText
+        Left = 632
+        Height = 13
+        Top = 2
+        Width = 80
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'saldoatual'
+        DataSource = frmmovimento.dsMvto
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Height = 88
+      Top = 174
+      Width = 718
+      BandType = btSummary
+      object RLDraw3: TRLDraw
+        Left = 1
+        Height = 48
+        Top = 3
+        Width = 716
+      end
+      object lSaldoAtual: TRLLabel
+        Left = 353
+        Height = 22
+        Top = 8
+        Width = 354
+        Alignment = taRightJustify
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -19
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel2: TRLLabel
+        Left = 4
+        Height = 16
+        Top = 52
+        Width = 150
+        Caption = 'Copyright(c) Infocotidiano'
+      end
+      object RLLabel3: TRLLabel
+        Left = 15
+        Height = 16
+        Top = 9
+        Width = 182
+        Caption = '**** FINAL DE RELATÓRIO ***'
+      end
+    end
+  end
+end

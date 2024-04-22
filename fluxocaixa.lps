@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Release"/>
+    <Units>
+      <Unit>
+        <Filename Value="fluxocaixa.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="107" Y="10"/>
+        <UsageCount Value="231"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmprincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <TopLine Value="181"/>
+        <CursorPos Y="203"/>
+        <UsageCount Value="231"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmconfigurabanco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="92"/>
+        <CursorPos X="3" Y="58"/>
+        <UsageCount Value="231"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="conexao/utabela.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TabGlobal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="32"/>
+        <CursorPos Y="54"/>
+        <UsageCount Value="228"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_padrao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_padrao"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="96"/>
+        <CursorPos X="47" Y="123"/>
+        <UsageCount Value="222"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_plano.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="91"/>
+        <UsageCount Value="216"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_conta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="5" Y="14"/>
+        <UsageCount Value="211"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_lancamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="94"/>
+        <CursorPos X="5" Y="14"/>
+        <UsageCount Value="207"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_planoconta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_planoconta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="74"/>
+        <CursorPos Y="76"/>
+        <UsageCount Value="207"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_conta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_conta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="122"/>
+        <CursorPos X="3" Y="158"/>
+        <UsageCount Value="206"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_lcto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_lcto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="46"/>
+        <CursorPos X="3" Y="17"/>
+        <UsageCount Value="205"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/umovimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmmovimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="87"/>
+        <CursorPos X="3" Y="113"/>
+        <UsageCount Value="200"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/upesquisa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPesquisa"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6"/>
+        <UsageCount Value="203"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uestatistica_despesa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEstatistica_Despesa"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uEstatistica_Despesa"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="59"/>
+        <CursorPos X="51" Y="73"/>
+        <UsageCount Value="204"/>
+      </Unit>
+      <Unit>
+        <Filename Value="relatorios/urel_movimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmrel_movimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="200"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/upesquisa_lcto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Frmpesquisa_lcto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="64"/>
+        <CursorPos X="26" Y="161"/>
+        <UsageCount Value="245"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/importa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImporta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="29" Y="112"/>
+        <UsageCount Value="167"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_entidade.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_entidade"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="61"/>
+        <CursorPos X="3" Y="108"/>
+        <UsageCount Value="130"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_registrofinanceiro.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="24"/>
+        <CursorPos X="38" Y="26"/>
+        <UsageCount Value="78"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_contareceber.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="118"/>
+        <CursorPos X="34" Y="123"/>
+        <UsageCount Value="76"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/classe_entidade.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="75"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe/uenumerator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="75"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="52"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_receber.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_receber"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="51"/>
+        <CursorPos X="3" Y="72"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../ACBr/Fontes/ACBrComum/ACBrUtil.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="123"/>
+        <CursorPos X="22" Y="152"/>
+        <UsageCount Value="19"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus/fpc/3.2.2/source/packages/fcl-db/src/base/db.pas"/>
+        <UnitName Value="DB"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2426"/>
+        <CursorPos X="69" Y="2239"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus/fpc/3.2.2/source/packages/fcl-db/src/base/dataset.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1690"/>
+        <CursorPos X="3" Y="1321"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../AppData/Local/lazarus/onlinepackagemanager/packages/Rx/rxdb/rxmemds.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="3" Y="52"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../AppData/Local/lazarus/onlinepackagemanager/packages/zeosdbo/src/component/ZDataset.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="55"/>
+        <CursorPos X="3" Y="82"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/importa.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_conta.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_entidade.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_lcto.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_padrao.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/ucad_planoconta.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uconfigurabanco.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uestatistica_despesa.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/umovimento.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/upesquisa.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/upesquisa_lcto.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view/uprincipal.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="conexao/backup/utabela.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23" Y="44"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus/components/datetimectrls/datetimepicker.pas"/>
+        <UnitName Value="DateTimePicker"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus30/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1559"/>
+        <CursorPos X="26" Y="1569"/>
+        <UsageCount Value="12"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus30/components/datetimectrls/datetimepicker.pas"/>
+        <UnitName Value="DateTimePicker"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="20" Y="38"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../lazarus30/is/onlinepackagemanager/packages/Rx/rxcontrols/rxcurredit.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6" Y="32"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="227" Column="19" TopLine="221"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="80" Column="84" TopLine="74"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="72" Column="3" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_registrofinanceiro.pas"/>
+        <Caret Line="32" Column="25" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_registrofinanceiro.pas"/>
+        <Caret Line="140" Column="3" TopLine="111"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_registrofinanceiro.pas"/>
+        <Caret Line="31" Column="22" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao/utabela.pas"/>
+        <Caret Line="41" Column="46" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao/utabela.pas"/>
+        <Caret Line="46" Column="40" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="40" Column="60" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="46" Column="26" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao/utabela.pas"/>
+        <Caret Line="49" Column="89" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao/utabela.pas"/>
+        <Caret Line="48" Column="54" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="100" Column="31" TopLine="65"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="102" Column="31" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="159" Column="55" TopLine="105"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="45" Column="44" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="47" Column="39" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="103" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="109" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="65" Column="10" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="41" Column="16" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="102" Column="5" TopLine="79"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="41" Column="16" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="64" Column="3" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="41" Column="16" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="119" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="67" Column="16" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao/utabela.pas"/>
+        <Caret Line="50" Column="32" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uconfigurabanco.pas"/>
+        <Caret Line="69" Column="36" TopLine="56"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <Watches>
+      <Item>
+        <Expression Value="qrAI.FieldByName(&apos;codigo&apos;).Value"/>
+      </Item>
+      <Item>
+        <Expression Value="result"/>
+      </Item>
+      <Item>
+        <Expression Value="retornaAI"/>
+      </Item>
+      <Item>
+        <Expression Value="cSQL"/>
+      </Item>
+      <Item>
+        <Expression Value="qrINC.ParamByName(&apos;Id_Registro&apos;).AsInteger"/>
+      </Item>
+    </Watches>
+  </Debugging>
+</CONFIG>

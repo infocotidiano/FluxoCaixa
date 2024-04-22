@@ -1,0 +1,406 @@
+inherited frmcad_receber: Tfrmcad_receber
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  inherited pnpTITULO: TPanel
+    Caption = 'Cadastro Receber'
+  end
+  inherited PageControl1: TPageControl
+    inherited tsPESQUISA: TTabSheet
+      inherited Panel1: TPanel
+        inherited btnPESQUISA: TSpeedButton
+          OnClick = btnPESQUISAClick
+        end
+      end
+      object DBGrid1: TDBGrid[1]
+        Left = 0
+        Height = 276
+        Top = 50
+        Width = 601
+        Align = alClient
+        AlternateColor = 16574413
+        Color = clWhite
+        Columns = <        
+          item
+            Title.Caption = 'ID'
+            Width = 28
+            FieldName = 'id_receber'
+          end        
+          item
+            Title.Caption = 'Descricao'
+            Width = 69
+            FieldName = 'descricao'
+          end        
+          item
+            Title.Caption = 'Dt.Lcto'
+            Width = 56
+            FieldName = 'dtlancamento'
+          end        
+          item
+            Title.Caption = 'Valor'
+            Width = 44
+            FieldName = 'valor'
+          end        
+          item
+            Title.Caption = 'Vencimento'
+            Width = 83
+            FieldName = 'dtvencimento'
+          end        
+          item
+            Title.Caption = 'Valor Recebido'
+            Width = 99
+            FieldName = 'valorrecebido'
+          end        
+          item
+            Title.Caption = 'Situacao'
+            Width = 62
+            FieldName = 'situacao'
+          end        
+          item
+            Title.Caption = 'Plano'
+            Width = 45
+            FieldName = 'plano'
+          end>
+        DataSource = dsPESQ
+        FixedColor = clBlack
+        FixedCols = 0
+        FixedHotColor = clInactiveBorder
+        Flat = True
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        Options = [dgTitles, dgColumnResize, dgColumnMove, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns, dgDisableDelete, dgDisableInsert]
+        ParentFont = False
+        TabOrder = 1
+        TitleFont.CharSet = ANSI_CHARSET
+        TitleFont.Color = clWhite
+        TitleFont.Pitch = fpVariable
+        TitleFont.Quality = fqDraft
+        TitleFont.Style = [fsBold]
+        OnDblClick = DBGrid1DblClick
+      end
+    end
+    inherited tsCADASTRO: TTabSheet
+      inherited pnpRODAPE: TPanel
+        inherited btnINCLUI: TSpeedButton
+          OnClick = btnINCLUIClick
+        end
+        inherited btnALTERA: TSpeedButton
+          OnClick = btnALTERAClick
+        end
+        inherited btnAPAGA: TSpeedButton
+          OnClick = btnAPAGAClick
+        end
+        inherited btNCANCELA: TSpeedButton
+          OnClick = btNCANCELAClick
+        end
+        inherited btnSALVA: TSpeedButton
+          OnClick = btnSALVAClick
+        end
+      end
+      object Label1: TLabel[1]
+        Left = 17
+        Height = 15
+        Top = 8
+        Width = 35
+        Caption = 'id_lcto'
+        ParentColor = False
+      end
+      object edtIdLcto: TEdit[2]
+        Tag = 99
+        Left = 16
+        Height = 23
+        Top = 24
+        Width = 80
+        Enabled = False
+        NumbersOnly = True
+        TabOrder = 1
+      end
+      object Label7: TLabel[3]
+        Left = 108
+        Height = 15
+        Top = 8
+        Width = 51
+        Caption = 'Descrição'
+        ParentColor = False
+      end
+      object edtDesc: TEdit[4]
+        Left = 108
+        Height = 23
+        Top = 24
+        Width = 248
+        Enabled = False
+        TabOrder = 2
+      end
+      object Label2: TLabel[5]
+        Left = 17
+        Height = 15
+        Top = 56
+        Width = 24
+        Caption = 'Data'
+        ParentColor = False
+      end
+      object edtDataLcto: TDateTimePicker[6]
+        Left = 18
+        Height = 23
+        Top = 73
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 3
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 44801
+        Time = 0.363530983799137
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+      end
+      object Label3: TLabel[7]
+        Left = 115
+        Height = 15
+        Top = 56
+        Width = 30
+        Caption = 'Plano'
+        ParentColor = False
+      end
+      object edtCodPlano: TEdit[8]
+        Left = 114
+        Height = 23
+        Top = 73
+        Width = 57
+        NumbersOnly = True
+        TabOrder = 4
+        OnExit = edtCodPlanoExit
+        OnKeyDown = edtCodPlanoKeyDown
+      end
+      object Label4: TLabel[9]
+        Left = 180
+        Height = 15
+        Top = 56
+        Width = 84
+        Caption = 'Descrição Plano'
+        ParentColor = False
+      end
+      object edtDescPlano: TEdit[10]
+        Left = 178
+        Height = 23
+        Top = 73
+        Width = 216
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 5
+      end
+      object Label8: TLabel[11]
+        Left = 402
+        Height = 15
+        Top = 56
+        Width = 23
+        Caption = 'Tipo'
+        ParentColor = False
+      end
+      object edtTipo: TEdit[12]
+        Left = 400
+        Height = 23
+        Top = 73
+        Width = 25
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 6
+      end
+      object edtValor: TCurrencyEdit[13]
+        Left = 17
+        Height = 23
+        Top = 120
+        Width = 112
+        Alignment = taRightJustify
+        TabOrder = 7
+      end
+      object Label6: TLabel[14]
+        Left = 17
+        Height = 15
+        Top = 104
+        Width = 26
+        Caption = 'Valor'
+        ParentColor = False
+      end
+      object edtDataVencimento: TDateTimePicker[15]
+        Left = 137
+        Height = 23
+        Top = 120
+        Width = 83
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 8
+        TrailingSeparator = False
+        TextForNullDate = 'NULL'
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        Date = 44801
+        Time = 0.363530983799137
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+      end
+      object Label5: TLabel[16]
+        Left = 136
+        Height = 15
+        Top = 103
+        Width = 90
+        Caption = 'Data Vencimento'
+        ParentColor = False
+      end
+      object edtValorRecebido: TCurrencyEdit[17]
+        Tag = 99
+        Left = 18
+        Height = 23
+        Top = 207
+        Width = 112
+        Alignment = taRightJustify
+        ReadOnly = True
+        TabOrder = 9
+      end
+      object Label9: TLabel[18]
+        Left = 18
+        Height = 15
+        Top = 191
+        Width = 78
+        Caption = 'Valor Recebido'
+        ParentColor = False
+      end
+      object edtSituacao: TEdit[19]
+        Tag = 99
+        Left = 178
+        Height = 23
+        Top = 207
+        Width = 25
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 10
+      end
+      object Label10: TLabel[20]
+        Left = 171
+        Height = 15
+        Top = 191
+        Width = 45
+        Caption = 'Situação'
+        ParentColor = False
+      end
+      object edtDATATESTE: TEdit[21]
+        Left = 263
+        Height = 23
+        Top = 198
+        Width = 80
+        TabOrder = 11
+      end
+    end
+  end
+  object ACBrEnterTab1: TACBrEnterTab[2]
+    EnterAsTab = True
+    Left = 336
+    Top = 200
+  end
+  object qrPESQ: TZQuery[3]
+    Connection = TabGlobal.conexao
+    SQL.Strings = (
+      'select * from receber'
+      'order by descricao limit 30'
+    )
+    Params = <>
+    Left = 520
+    Top = 232
+    object qrPESQid_receber: TLongintField
+      FieldKind = fkData
+      FieldName = 'id_receber'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qrPESQdescricao: TStringField
+      FieldKind = fkData
+      FieldName = 'descricao'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object qrPESQdtlancamento: TDateField
+      FieldKind = fkData
+      FieldName = 'dtlancamento'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrPESQvalor: TFloatField
+      FieldKind = fkData
+      FieldName = 'valor'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 12
+    end
+    object qrPESQdtvencimento: TDateField
+      FieldKind = fkData
+      FieldName = 'dtvencimento'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrPESQvalorrecebido: TFloatField
+      FieldKind = fkData
+      FieldName = 'valorrecebido'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 12
+    end
+    object qrPESQsituacao: TStringField
+      FieldKind = fkData
+      FieldName = 'situacao'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+    object qrPESQplano: TLongintField
+      FieldKind = fkData
+      FieldName = 'plano'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsPESQ: TDataSource[4]
+    DataSet = qrPESQ
+    Left = 448
+    Top = 200
+  end
+end

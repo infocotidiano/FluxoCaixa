@@ -1,0 +1,7 @@
+cuidado ao restaurar fluxo_caixa.sql que vc vai perder os dados
+que ja tem cadastrado no seu banco e sobrescrever o meu banco
+de testes.
+Se desejar restaurar minha base basta criar um novo banco (schema)
+exemplo:
+create database fluxo_caixa01
+mysql -uroot -p fluxo_caixa01 < fluxo.caixa.sql

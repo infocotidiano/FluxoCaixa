@@ -1,0 +1,26 @@
+object TabGlobal: TTabGlobal
+  OldCreateOrder = False
+  Height = 251
+  HorizontalOffset = 2021
+  VerticalOffset = 356
+  Width = 316
+  PPI = 120
+  object conexao: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF8'
+    )
+    BeforeConnect = conexaoBeforeConnect
+    HostName = 'localhost'
+    Port = 3306
+    Database = 'fluxo_caixa'
+    User = 'suporte'
+    Password = 'Info@1234'
+    Protocol = 'MariaDB-10'
+    LibraryLocation = 'C:\Projetos_Lazarus\fluxocaixa\libmariadb.dll'
+    Left = 83
+    Top = 83
+  end
+end
