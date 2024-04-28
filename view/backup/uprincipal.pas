@@ -44,7 +44,7 @@ type
 var
   frmprincipal: Tfrmprincipal;
   cfg_arqINI, cfg_pathApp: string;
-  cfg_banco, cfg_servidor, cfg_usuario, cfg_senha, cfg_odbc, cfg_pathDLLMariaDB:string;
+  cfg_banco, cfg_servidor, cfg_usuario, cfg_senha, cfg_odbc:string;
   cfg_porta : integer;
 
 implementation
@@ -145,7 +145,14 @@ end;
 
 procedure Tfrmprincipal.FormCreate(Sender: TObject);
 begin
-   {$IFDEF LINUX}
+  {$ifdef cpu32}
+    Caption := Caption + ' (v32bit)';
+  {$endif}
+  {$ifdef cpu64}
+    Caption := Caption + ' (v64bit)';
+  {$endif}
+
+  {$IFDEF LINUX}
      // Formatação de moeda
       CurrencyString := 'R$';
       CurrencyFormat := 2;

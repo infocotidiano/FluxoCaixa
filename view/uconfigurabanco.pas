@@ -15,6 +15,7 @@ type
   Tfrmconfigurabanco = class(TForm)
     btnCANCEL: TSpeedButton;
     edtBANCO: TEdit;
+    edtDLLMariaDB: TEdit;
     edtUSER: TEdit;
     edtServer: TEdit;
     edtPORTA: TEdit;
@@ -27,6 +28,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     Shape1: TShape;
     btnSALVA: TSpeedButton;
     procedure btnCANCELClick(Sender: TObject);
@@ -77,6 +79,7 @@ begin
     ArqINI.WriteString('ConexaoDB','User',edtUSER.Text);
     ArqINI.WriteString('ConexaoDB','Senha',edtSenha.Text);
     ArqINI.WriteString('ConexaoDB','ODBC',edtODBC.Text);
+    ArqINI.WriteString('ConexaoDB','DLL',edtDLLMariaDB.Text);
   finally
     ArqINI.Free;
   end;
@@ -96,6 +99,7 @@ begin
       edtUSER.Text   := ArqIni.ReadString('ConexaoDB','User','suporte');
       edtSenha.Text  := ArqIni.ReadString('ConexaoDB','Senha','Info@1234');
       edtODBC.Text  := ArqIni.ReadString('ConexaoDB','ODBC','mariadb ODBC 3.1 Driver');
+      edtDLLMariaDB.Text  := ArqIni.ReadString('ConexaoDB','DLL','libmariadb.dll');
     finally
       ArqINI.Free;
     end;

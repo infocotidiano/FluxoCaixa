@@ -33,7 +33,7 @@ implementation
 procedure TTabGlobal.conexaoBeforeConnect(Sender: TObject);
 begin
   //padrao para linux e windows
-  conexao.Protocol  :='MariaDB-10';
+  conexao.Protocol  :='mariadb';
   conexao.Database  :=cfg_banco;
   conexao.HostName  :=cfg_servidor;
   conexao.User      :=cfg_usuario;
@@ -42,12 +42,8 @@ begin
   conexao.AutoCommit:=true;
   {$IFDEF WINDOWS}
      // para quem usa windows informar
-     if cfg_pathDLLMariaDB <> EmptyStr then
-        if FileExists(cfg_pathDLLMariaDB) then
-           conexao.LibraryLocation := cfg_pathDLLMariaDB
-        else
-           ShowMessage('Arquivo dll mariaDB não existe'+sLineBreak+
-           cfg_pathDLLMariaDB)
+     if cfg_odbc = EmptyStr then
+        conexao.LibraryLocation := cfg_pathApp+'libmariadb.dll' //dll 32bits
      else
         begin
           conexao.Protocol:='ado'; // para banco 64bits

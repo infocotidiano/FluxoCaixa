@@ -1,10 +1,10 @@
 object frmconfigurabanco: Tfrmconfigurabanco
   Left = 2170
-  Height = 397
+  Height = 291
   Top = 250
   Width = 513
   Caption = 'Configura Banco'
-  ClientHeight = 397
+  ClientHeight = 291
   ClientWidth = 513
   OnShow = FormShow
   Position = poMainFormCenter
@@ -28,7 +28,7 @@ object frmconfigurabanco: Tfrmconfigurabanco
   object btnSALVA: TSpeedButton
     Left = 240
     Height = 38
-    Top = 344
+    Top = 240
     Width = 120
     Caption = 'Salva'
     OnClick = btnSALVAClick
@@ -36,7 +36,7 @@ object frmconfigurabanco: Tfrmconfigurabanco
   object btnCANCEL: TSpeedButton
     Left = 368
     Height = 38
-    Top = 344
+    Top = 240
     Width = 120
     Caption = 'Cancela'
     OnClick = btnCANCELClick
@@ -120,33 +120,18 @@ object frmconfigurabanco: Tfrmconfigurabanco
     ParentColor = False
   end
   object edtODBC: TEdit
-    Left = 16
+    Left = 264
     Height = 23
-    Top = 244
-    Width = 482
+    Top = 188
+    Width = 232
     TabOrder = 5
   end
   object Label7: TLabel
-    Left = 17
+    Left = 265
     Height = 15
-    Top = 224
+    Top = 168
     Width = 66
     Caption = 'Driver ODBC'
-    ParentColor = False
-  end
-  object edtPathDLLMAriadb: TEdit
-    Left = 14
-    Height = 23
-    Top = 292
-    Width = 482
-    TabOrder = 6
-  end
-  object Label8: TLabel
-    Left = 17
-    Height = 15
-    Top = 272
-    Width = 88
-    Caption = 'Path dll MariaDB'
     ParentColor = False
   end
 end
