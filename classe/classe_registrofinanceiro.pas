@@ -20,7 +20,10 @@ type
     FSituacao: string;
     FValor: Real;
     FValorPago: Real;
-    TDtVencimento: TDate;
+    FDtVencimento: TDate;
+    FDtPagamento: TDate;
+    FCodConta : integer;
+
     procedure SetDescricao(AValue: string);
     procedure SetSituacao(AValue: string);
     procedure SetValor(AValue: Real);
@@ -28,9 +31,16 @@ type
     procedure setPlano(AValue : integer); overload;
     procedure setPlano(AValue : string); overload;
     function getPlano:integer;
+
     procedure setDtLancamento(AValue: TDate); overload;
     procedure setDtLancamento(AValue: string); overload;
     function getDtLancamento:TDate;
+
+    procedure setDtPagamento(AValue: TDate); overload;
+    procedure setDtPagamento(AValue: string); overload;
+    function getDtpagamento:TDate;
+
+
   public
     function incluir:Boolean; virtual;
     function localiza(codigo:Integer):Boolean;  virtual;
@@ -43,10 +53,12 @@ type
     property Descricao: string read FDescricao write SetDescricao;
     property DtLancamento : TDate read getDtLancamento write setDtLancamento;
     property Valor : Real read FValor write SetValor;
-    property DtVencimento : TDate read TDtVencimento write TDtVencimento;
+    property DtVencimento : TDate read FDtVencimento write FDtVencimento;
     property ValorPago : Real read FValorPago write SetValorPago;
     property Situacao : string read FSituacao write SetSituacao;
     property Plano : integer read GetPlano write SetPlano;
+    property DtPagamento: TDate read getDtpagamento write setDtPagamento;
+    property CodConta: integer read FCodConta write FCodConta;
   end;
 
 implementation
@@ -147,6 +159,25 @@ end;
 function TRegistroFinanceiro.getDtLancamento: TDate;
 begin
   result := FDtLancamento;
+end;
+
+procedure TRegistroFinanceiro.setDtPagamento(AValue: TDate);
+begin
+ FDtPagamento:=AValue;
+end;
+
+procedure TRegistroFinanceiro.setDtPagamento(AValue: string);
+begin
+  try
+    FDtPagamento:=StrToDate(AValue);
+  except
+    ShowMessage('Data inválida');
+  end;
+end;
+
+function TRegistroFinanceiro.getDtpagamento: TDate;
+begin
+  result := FDtPagamento;
 end;
 
 end.

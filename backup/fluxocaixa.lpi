@@ -54,7 +54,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="fluxocaixa_dbg"/>
+            <Filename Value="fluxocaixa32"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>

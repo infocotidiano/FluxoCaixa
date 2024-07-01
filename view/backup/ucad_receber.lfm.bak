@@ -298,13 +298,6 @@ inherited frmcad_receber: Tfrmcad_receber
         Caption = 'Situação'
         ParentColor = False
       end
-      object edtDATATESTE: TEdit[21]
-        Left = 263
-        Height = 23
-        Top = 198
-        Width = 80
-        TabOrder = 11
-      end
     end
   end
   object ACBrEnterTab1: TACBrEnterTab[2]

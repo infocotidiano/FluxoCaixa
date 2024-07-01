@@ -136,8 +136,6 @@ begin
   qrALT.ParamByName('ValorPago').AsFloat     := ValorPago;
   qrALT.ParamByName('Situacao').AsString     := Situacao;
   qrALT.ParamByName('Plano').AsInteger       := Plano;
-
-
   try
     qrALT.ExecSQL;
     Result := true;

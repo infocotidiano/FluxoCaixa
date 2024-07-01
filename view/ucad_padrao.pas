@@ -120,13 +120,24 @@ begin
            begin
              if (Components[nX] as TEdit).Tag <> 99 then
                 (Components[nX] as TEdit).Enabled:=lFLAG;
-           end ;
-        if Components[nX] is TComboBox then
+           end
+        else if Components[nX] is TDateTimePicker then
+           begin
+             if (Components[nX] as TDateTimePicker).Tag <> 99 then
+                (Components[nX] as TDateTimePicker).Enabled:=lFLAG;
+           end
+        else if Components[nX] is TCurrencyEdit then
+           begin
+             if (Components[nX] as TCurrencyEdit).Tag <> 99 then
+                (Components[nX] as TCurrencyEdit).Enabled:=lFLAG;
+           end
+        else if Components[nX] is TButton then
+           begin
+             if (Components[nX] as TButton).Tag <> 99 then
+                (Components[nX] as TButton).Enabled:=lFLAG;
+           end
+        else if Components[nX] is TComboBox then
            (Components[nX] as TComboBox).Enabled:=lFLAG;
-        if Components[nX] is TCurrencyEdit then
-           (Components[nX] as TCurrencyEdit).Enabled:=lFLAG;
-        if Components[nX] is TDateTimePicker then
-           (Components[nX] as TDateTimePicker).Enabled:=lFLAG;
 
      end;
 end;

@@ -120,7 +120,7 @@ begin
            begin
              if (Components[nX] as TEdit).Tag <> 99 then
                 (Components[nX] as TEdit).Enabled:=lFLAG;
-           end
+           end ;
         if Components[nX] is TComboBox then
            (Components[nX] as TComboBox).Enabled:=lFLAG;
         if Components[nX] is TCurrencyEdit then

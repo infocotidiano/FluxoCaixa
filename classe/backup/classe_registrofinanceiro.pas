@@ -5,7 +5,7 @@ unit classe_registrofinanceiro;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, Messages, Dialogs;
 
 type
 

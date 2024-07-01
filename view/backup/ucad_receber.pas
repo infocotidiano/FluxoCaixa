@@ -15,7 +15,6 @@ type
 
   Tfrmcad_receber = class(Tfrmcad_padrao)
     ACBrEnterTab1: TACBrEnterTab;
-    edtDATATESTE: TEdit;
     edtCodPlano: TEdit;
     edtDataVencimento: TDateTimePicker;
     edtIdLcto: TEdit;
@@ -105,8 +104,7 @@ begin
   oContaReceber.Id_Registro  := StrToIntDef(edtIdLcto.Text,0);
   oContaReceber.Descricao    := edtDesc.Text;
   oContaReceber.Plano        := edtCodPlano.Text;
-  oContaReceber.DtLancamento := edtDATATESTE.Text;
-  //oContaReceber.DtLancamento := edtDataLcto.Date;
+  oContaReceber.DtLancamento := edtDataLcto.Date;
   oContaReceber.Valor        := edtValor.Value;
   oContaReceber.DtVencimento := edtDataVencimento.Date;
   if cliqueBotao = cbAlterar then
@@ -225,6 +223,9 @@ begin
  inherited;
  if not qrPESQ.Active then
     qrPESQ.Open;
+ edtDataLcto.Date:=now;
+ edtDataVencimento.Date:=now;
+
 end;
 
 procedure Tfrmcad_receber.btnINCLUIClick(Sender: TObject);
