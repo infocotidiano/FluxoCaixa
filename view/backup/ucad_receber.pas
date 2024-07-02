@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
   DateTimePicker, ACBrEnterTab, rxtooledit, rxcurredit, DB, ZDataset,
-ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit,upesquisa ;
+  ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit, ExtCtrls,
+  upesquisa ;
 
 type
 
@@ -15,7 +16,11 @@ type
 
   Tfrmcad_receber = class(Tfrmcad_padrao)
     ACBrEnterTab1: TACBrEnterTab;
+    btnRECEBER: TButton;
+    btnRecOK: TButton;
+    btnRecCancel: TButton;
     edtCodPlano: TEdit;
+    edtDataRecebimento: TDateTimePicker;
     edtDataVencimento: TDateTimePicker;
     edtIdLcto: TEdit;
     edtDataLcto: TDateTimePicker;
@@ -25,12 +30,14 @@ type
     edtRecebido: TEdit;
     DBGrid1: TDBGrid;
     dsPESQ: TDataSource;
-    edtTipo: TEdit;
     edtSituacao: TEdit;
+    edtTipo: TEdit;
     edtValor: TCurrencyEdit;
     edtValorRecebido: TCurrencyEdit;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -39,6 +46,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    pnpRECEBER: TPanel;
+    Panel3: TPanel;
     qrPESQ: TZQuery;
     qrPESQdescricao: TStringField;
     qrPESQdtlancamento: TDateField;
@@ -53,7 +62,11 @@ type
     procedure btNCANCELAClick(Sender: TObject);
     procedure btnINCLUIClick(Sender: TObject);
     procedure btnPESQUISAClick(Sender: TObject);
+    procedure btnRecCancelClick(Sender: TObject);
+    procedure btnRECEBERClick(Sender: TObject);
+    procedure btnRecOKClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
+    procedure buttom1(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure edtCodPlanoExit(Sender: TObject);
     procedure edtCodPlanoKeyDown(Sender: TObject; var Key: Word;
@@ -62,7 +75,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-
+    procedure ExibePainelReceber(lFlag : Boolean);
   public
 
   end;
@@ -98,6 +111,27 @@ begin
   cliqueBotao := cbNone;
 end;
 
+procedure Tfrmcad_receber.btnRecCancelClick(Sender: TObject);
+begin
+  ExibePainelReceber(false);
+end;
+
+procedure Tfrmcad_receber.btnRECEBERClick(Sender: TObject);
+begin
+  if oContaReceber.Situacao = 'P' then
+  begin
+     ShowMessage('pendente') ;
+     ExibePainelReceber(true);
+  end
+  else
+     ShowMessage('recebido');
+end;
+
+procedure Tfrmcad_receber.btnRecOKClick(Sender: TObject);
+begin
+  ExibePainelReceber(false);
+end;
+
 procedure Tfrmcad_receber.btnSALVAClick(Sender: TObject);
 begin
   inherited;
@@ -119,6 +153,11 @@ begin
   if qrPESQ.Active then
      qrPESQ.Refresh;
   PageControl1.PageIndex:=0;
+end;
+
+procedure Tfrmcad_receber.buttom1(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrmcad_receber.DBGrid1DblClick(Sender: TObject);
@@ -216,6 +255,7 @@ procedure Tfrmcad_receber.FormCreate(Sender: TObject);
 begin
   oContaReceber := TContaReceber.Create;
   oPlano := Tplano.Create;
+  ExibePainelReceber(false);
 end;
 
 procedure Tfrmcad_receber.FormShow(Sender: TObject);
@@ -223,14 +263,20 @@ begin
  inherited;
  if not qrPESQ.Active then
     qrPESQ.Open;
- edtDataLcto.Date:=now;
- edtDataVencimento.Date:=now;
 
+
+end;
+
+procedure Tfrmcad_receber.ExibePainelReceber(lFlag: Boolean);
+begin
+  pnpRECEBER.Visible:= lFlag;
 end;
 
 procedure Tfrmcad_receber.btnINCLUIClick(Sender: TObject);
 begin
   inherited;
+  edtDataLcto.Date:=now;
+  edtDataVencimento.Date:=now;
 end;
 
 procedure Tfrmcad_receber.btnALTERAClick(Sender: TObject);

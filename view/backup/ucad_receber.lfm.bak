@@ -158,8 +158,8 @@ inherited frmcad_receber: Tfrmcad_receber
         TimeFormat = tf24
         TimeDisplay = tdHMS
         DateMode = dmComboBox
-        Date = 44801
-        Time = 0.363530983799137
+        Date = 1.7E308
+        Time = 1.7E308
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -248,8 +248,8 @@ inherited frmcad_receber: Tfrmcad_receber
         TimeFormat = tf24
         TimeDisplay = tdHMS
         DateMode = dmComboBox
-        Date = 44801
-        Time = 0.363530983799137
+        Date = 1.7E308
+        Time = 1.7E308
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
@@ -262,48 +262,152 @@ inherited frmcad_receber: Tfrmcad_receber
         Caption = 'Data Vencimento'
         ParentColor = False
       end
-      object edtValorRecebido: TCurrencyEdit[17]
-        Tag = 99
-        Left = 18
-        Height = 23
-        Top = 207
-        Width = 112
-        Alignment = taRightJustify
-        ReadOnly = True
+      object GroupBox1: TGroupBox[17]
+        Left = 261
+        Height = 116
+        Top = 116
+        Width = 323
+        Caption = 'Recebimento'
+        ClientHeight = 96
+        ClientWidth = 319
         TabOrder = 9
+        object edtDataRecebimento: TDateTimePicker
+          Tag = 99
+          Left = 120
+          Height = 23
+          Top = 5
+          Width = 83
+          CenturyFrom = 1941
+          MaxDate = 2958465
+          MinDate = -53780
+          TabOrder = 0
+          Enabled = False
+          TrailingSeparator = False
+          TextForNullDate = 'NULL'
+          LeadingZeros = True
+          Kind = dtkDate
+          TimeFormat = tf24
+          TimeDisplay = tdHMS
+          DateMode = dmComboBox
+          Date = 1.7E308
+          Time = 1.7E308
+          UseDefaultSeparators = True
+          HideDateTimeParts = []
+          MonthNames = 'Long'
+        end
+        object Label11: TLabel
+          Left = 8
+          Height = 15
+          Top = 8
+          Width = 100
+          Caption = 'Data Recebemento'
+          ParentColor = False
+        end
+        object edtValorRecebido: TCurrencyEdit
+          Tag = 99
+          Left = 120
+          Height = 23
+          Top = 32
+          Width = 112
+          Alignment = taRightJustify
+          Enabled = False
+          ReadOnly = True
+          TabOrder = 1
+        end
+        object Label9: TLabel
+          Left = 8
+          Height = 15
+          Top = 40
+          Width = 78
+          Caption = 'Valor Recebido'
+          ParentColor = False
+        end
+        object edtSituacao: TEdit
+          Tag = 99
+          Left = 280
+          Height = 23
+          Top = 5
+          Width = 25
+          Enabled = False
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object Label10: TLabel
+          Left = 216
+          Height = 15
+          Top = 8
+          Width = 45
+          Caption = 'Situação'
+          ParentColor = False
+        end
+        object btnRECEBER: TButton
+          Tag = 99
+          Left = 216
+          Height = 25
+          Top = 64
+          Width = 75
+          Caption = 'Receber'
+          Enabled = False
+          TabOrder = 3
+          OnClick = btnRECEBERClick
+        end
       end
-      object Label9: TLabel[18]
-        Left = 18
-        Height = 15
-        Top = 191
-        Width = 78
-        Caption = 'Valor Recebido'
+      object pnpRECEBER: TPanel[18]
+        Left = 0
+        Height = 167
+        Top = 96
+        Width = 595
+        BevelOuter = bvNone
+        ClientHeight = 167
+        ClientWidth = 595
+        Color = 16379334
+        ParentBackground = False
         ParentColor = False
-      end
-      object edtSituacao: TEdit[19]
-        Tag = 99
-        Left = 178
-        Height = 23
-        Top = 207
-        Width = 25
-        Enabled = False
-        ReadOnly = True
         TabOrder = 10
-      end
-      object Label10: TLabel[20]
-        Left = 171
-        Height = 15
-        Top = 191
-        Width = 45
-        Caption = 'Situação'
-        ParentColor = False
+        object Panel3: TPanel
+          Left = 0
+          Height = 26
+          Top = 0
+          Width = 595
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'RECEBER CONTA'
+          Color = 10485760
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 0
+        end
+        object btnRecOK: TButton
+          Left = 424
+          Height = 25
+          Top = 135
+          Width = 75
+          Caption = 'Ok'
+          TabOrder = 1
+          OnClick = btnRecOKClick
+        end
+        object btnRecCancel: TButton
+          Left = 512
+          Height = 25
+          Top = 135
+          Width = 75
+          Caption = 'Cancela'
+          TabOrder = 2
+          OnClick = btnRecCancelClick
+        end
       end
     end
   end
   object ACBrEnterTab1: TACBrEnterTab[2]
     EnterAsTab = True
-    Left = 336
-    Top = 200
+    Left = 408
+    Top = 72
   end
   object qrPESQ: TZQuery[3]
     Connection = TabGlobal.conexao
@@ -312,8 +416,8 @@ inherited frmcad_receber: Tfrmcad_receber
       'order by descricao limit 30'
     )
     Params = <>
-    Left = 520
-    Top = 232
+    Left = 536
+    Top = 88
     object qrPESQid_receber: TLongintField
       FieldKind = fkData
       FieldName = 'id_receber'
@@ -393,7 +497,7 @@ inherited frmcad_receber: Tfrmcad_receber
   end
   object dsPESQ: TDataSource[4]
     DataSet = qrPESQ
-    Left = 448
-    Top = 200
+    Left = 480
+    Top = 64
   end
 end

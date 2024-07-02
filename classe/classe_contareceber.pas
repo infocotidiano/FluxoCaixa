@@ -50,7 +50,7 @@ begin
               'DtVencimento, ValorRecebido, Situacao, Plano, dtrecebimento, CodConta) '+
           'VALUES '+
           '  (:Id_Registro, :Descricao, :DtLancamento, :Valor, '+
-             ':DtVencimento, :ValorPago, :Situacao, :Plano, :DtPagamento, CodConta)';
+             ':DtVencimento, :ValorPago, :Situacao, :Plano, :DtPagamento, :CodConta)';
   qrINC := TZQuery.Create(nil);
   qrINC.Connection := TabGlobal.conexao;
   qrINC.sql.Text:=cSQL;
@@ -125,9 +125,9 @@ begin
           'dtvencimento=:dtvencimento, '+
           'valorrecebido=:ValorPago, '+
           'situacao=:situacao, '+
-          'plano=:plano '+
+          'plano=:plano, '+
           'dtrecebimento=:DtPagamento, '+
-          'CodConta=:CodConta, '+
+          'CodConta=:CodConta '+
           'WHERE '+
           'id_receber = :Id_registro';
 

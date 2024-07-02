@@ -60,7 +60,7 @@ CREATE TABLE `lancamentos` (
   `id_lcto` int(11) NOT NULL,
   `data_mvto` date NOT NULL,
   `plano` int(11) NOT NULL,
-  `descricao` varchar(80) DEFAULT NULL,
+  `descricao` varchar(180) DEFAULT NULL,
   `valor` decimal(15,2) DEFAULT NULL,
   `idbanco` varchar(36) DEFAULT NULL,
   PRIMARY KEY (`conta`,`data_mvto`,`id_lcto`),
@@ -124,10 +124,39 @@ CREATE TABLE `receber` (
   `valorrecebido` decimal(10,2) DEFAULT NULL,
   `situacao` char(1) DEFAULT NULL,
   `plano` int(11) DEFAULT NULL,
+  `dtrecebimento` date DEFAULT NULL,
+  `codconta` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_receber`),
   KEY `plano` (`plano`),
   CONSTRAINT `receber_ibfk_1` FOREIGN KEY (`plano`) REFERENCES `planos` (`id_plano`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `teste`
+--
+
+DROP TABLE IF EXISTS `teste`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `teste` (
+  `col1` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(50) DEFAULT NULL,
+  `senha` varbinary(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -139,4 +168,4 @@ CREATE TABLE `receber` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-11 23:48:41
+-- Dump completed on 2024-07-02  8:32:44
