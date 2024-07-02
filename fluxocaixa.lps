@@ -17,10 +17,11 @@
         <ComponentName Value="frmprincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
         <TopLine Value="77"/>
         <CursorPos X="3" Y="97"/>
         <UsageCount Value="231"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="view/uconfigurabanco.pas"/>
@@ -188,18 +189,21 @@
       <Unit>
         <Filename Value="classe/classe_registrofinanceiro.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="14" Y="52"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="28"/>
+        <CursorPos X="14" Y="54"/>
         <UsageCount Value="104"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="classe/classe_contareceber.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="42"/>
         <CursorPos X="76" Y="53"/>
         <UsageCount Value="102"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="classe/classe_entidade.pas"/>
@@ -230,11 +234,12 @@
         <ComponentName Value="frmcad_receber"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="126"/>
-        <CursorPos X="3" Y="85"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="115"/>
+        <CursorPos X="3" Y="17"/>
         <UsageCount Value="76"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../ACBr/Fontes/ACBrComum/ACBrUtil.pas"/>
@@ -407,7 +412,20 @@
         <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="2">
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="97" Column="3" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="84" Column="3" TopLine="71"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="17" Column="3" TopLine="115"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
