@@ -188,18 +188,34 @@
       <Unit>
         <Filename Value="classe/classe_registrofinanceiro.pas"/>
         <IsPartOfProject Value="True"/>
+<<<<<<< HEAD
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="14" Y="52"/>
         <UsageCount Value="104"/>
+=======
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="3" Y="14"/>
+        <UsageCount Value="99"/>
+        <Loaded Value="True"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="classe/classe_contareceber.pas"/>
         <IsPartOfProject Value="True"/>
+<<<<<<< HEAD
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="76" Y="53"/>
         <UsageCount Value="102"/>
+=======
+        <EditorIndex Value="3"/>
+        <TopLine Value="10"/>
+        <CursorPos X="81" Y="106"/>
+        <UsageCount Value="97"/>
+        <Loaded Value="True"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="classe/classe_entidade.pas"/>
@@ -230,11 +246,20 @@
         <ComponentName Value="frmcad_receber"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+<<<<<<< HEAD
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="3" Y="85"/>
         <UsageCount Value="76"/>
+=======
+        <EditorIndex Value="1"/>
+        <TopLine Value="109"/>
+        <CursorPos X="80" Y="129"/>
+        <UsageCount Value="71"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="../../ACBr/Fontes/ACBrComum/ACBrUtil.pas"/>
@@ -407,7 +432,131 @@
         <UsageCount Value="9"/>
       </Unit>
     </Units>
+<<<<<<< HEAD
     <JumpHistory HistoryIndex="-1"/>
+=======
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="110" Column="33" TopLine="105"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="109" Column="33" TopLine="104"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="110" Column="61" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="133" Column="3" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="50" Column="21" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="20" Column="40"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="20" Column="40"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="131" Column="25" TopLine="120"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="249" Column="3" TopLine="232"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="131" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="view/uprincipal.pas"/>
+        <Caret Line="193" Column="14" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="19" Column="52"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="20" Column="23"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="21" Column="23"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="20" Column="23"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="227" Column="3" TopLine="225"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="238" TopLine="225"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="136" Column="3" TopLine="107"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="236" TopLine="231"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="250" Column="33" TopLine="237"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="109" Column="3" TopLine="86"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="248" Column="3" TopLine="239"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="112" Column="27" TopLine="104"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="117" Column="3" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="view/ucad_receber.pas"/>
+        <Caret Line="78" Column="3" TopLine="76"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_contareceber.pas"/>
+        <Caret Line="14" Column="44" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_contareceber.pas"/>
+        <Caret Line="130" Column="30" TopLine="171"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_registrofinanceiro.pas"/>
+        <Caret Line="61" Column="54" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="classe/classe_contareceber.pas"/>
+        <Caret Line="106" Column="81" TopLine="10"/>
+      </Position>
+    </JumpHistory>
+>>>>>>> Desenvolvimento
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

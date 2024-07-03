@@ -173,7 +173,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="29" Y="112"/>
+<<<<<<< HEAD
         <UsageCount Value="193"/>
+=======
+        <UsageCount Value="194"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="view/ucad_entidade.pas"/>
@@ -184,7 +188,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="3" Y="108"/>
+<<<<<<< HEAD
         <UsageCount Value="156"/>
+=======
+        <UsageCount Value="157"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="classe/classe_registrofinanceiro.pas"/>
@@ -192,7 +200,11 @@
         <EditorIndex Value="3"/>
         <TopLine Value="28"/>
         <CursorPos X="14" Y="54"/>
+<<<<<<< HEAD
         <UsageCount Value="104"/>
+=======
+        <UsageCount Value="105"/>
+>>>>>>> Desenvolvimento
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -200,16 +212,26 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
+<<<<<<< HEAD
         <TopLine Value="42"/>
         <CursorPos X="76" Y="53"/>
         <UsageCount Value="102"/>
+=======
+        <TopLine Value="131"/>
+        <CursorPos X="138" Y="69"/>
+        <UsageCount Value="103"/>
+>>>>>>> Desenvolvimento
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="classe/classe_entidade.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="101"/>
+=======
+        <UsageCount Value="102"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="classe/uenumerator.pas"/>
@@ -218,7 +240,11 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="101"/>
+=======
+        <UsageCount Value="102"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -226,7 +252,11 @@
         <ComponentName Value="Form1"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <UsageCount Value="78"/>
+=======
+        <UsageCount Value="79"/>
+>>>>>>> Desenvolvimento
       </Unit>
       <Unit>
         <Filename Value="view/ucad_receber.pas"/>
@@ -237,7 +267,11 @@
         <EditorIndex Value="1"/>
         <TopLine Value="115"/>
         <CursorPos X="3" Y="17"/>
+<<<<<<< HEAD
         <UsageCount Value="76"/>
+=======
+        <UsageCount Value="77"/>
+>>>>>>> Desenvolvimento
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>

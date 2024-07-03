@@ -17,8 +17,11 @@ type
   Tfrmcad_receber = class(Tfrmcad_padrao)
     ACBrEnterTab1: TACBrEnterTab;
     btnRECEBER: TButton;
+<<<<<<< HEAD
     btnRecOK: TButton;
     btnRecCancel: TButton;
+=======
+>>>>>>> Desenvolvimento
     edtCodPlano: TEdit;
     edtDataRecebimento: TDateTimePicker;
     edtDataVencimento: TDateTimePicker;
@@ -62,9 +65,13 @@ type
     procedure btNCANCELAClick(Sender: TObject);
     procedure btnINCLUIClick(Sender: TObject);
     procedure btnPESQUISAClick(Sender: TObject);
+<<<<<<< HEAD
     procedure btnRecCancelClick(Sender: TObject);
     procedure btnRECEBERClick(Sender: TObject);
     procedure btnRecOKClick(Sender: TObject);
+=======
+    procedure btnRECEBERClick(Sender: TObject);
+>>>>>>> Desenvolvimento
     procedure btnSALVAClick(Sender: TObject);
     procedure buttom1(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
@@ -111,6 +118,7 @@ begin
   cliqueBotao := cbNone;
 end;
 
+<<<<<<< HEAD
 procedure Tfrmcad_receber.btnRecCancelClick(Sender: TObject);
 begin
   ExibePainelReceber(false);
@@ -123,15 +131,24 @@ begin
      ShowMessage('pendente') ;
      ExibePainelReceber(true);
   end
+=======
+procedure Tfrmcad_receber.btnRECEBERClick(Sender: TObject);
+begin
+  if oContaReceber.Situacao = 'P' then
+     ShowMessage('pendente')
+>>>>>>> Desenvolvimento
   else
      ShowMessage('recebido');
 end;
 
+<<<<<<< HEAD
 procedure Tfrmcad_receber.btnRecOKClick(Sender: TObject);
 begin
   ExibePainelReceber(false);
 end;
 
+=======
+>>>>>>> Desenvolvimento
 procedure Tfrmcad_receber.btnSALVAClick(Sender: TObject);
 begin
   inherited;
@@ -263,6 +280,10 @@ begin
  inherited;
  if not qrPESQ.Active then
     qrPESQ.Open;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Desenvolvimento
 
 
 end;
