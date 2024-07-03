@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
   DateTimePicker, ACBrEnterTab, rxtooledit, rxcurredit, DB, ZDataset,
-ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit,upesquisa ;
+  ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit, ExtCtrls,
+  upesquisa ;
 
 type
 
@@ -16,6 +17,8 @@ type
   Tfrmcad_receber = class(Tfrmcad_padrao)
     ACBrEnterTab1: TACBrEnterTab;
     btnRECEBER: TButton;
+    btnRecOK: TButton;
+    btnRecCancel: TButton;
     edtCodPlano: TEdit;
     edtDataRecebimento: TDateTimePicker;
     edtDataVencimento: TDateTimePicker;
@@ -43,6 +46,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    pnpRECEBER: TPanel;
+    Panel3: TPanel;
     qrPESQ: TZQuery;
     qrPESQdescricao: TStringField;
     qrPESQdtlancamento: TDateField;
@@ -57,7 +62,9 @@ type
     procedure btNCANCELAClick(Sender: TObject);
     procedure btnINCLUIClick(Sender: TObject);
     procedure btnPESQUISAClick(Sender: TObject);
+    procedure btnRecCancelClick(Sender: TObject);
     procedure btnRECEBERClick(Sender: TObject);
+    procedure btnRecOKClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
     procedure buttom1(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
@@ -68,7 +75,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-
+    procedure ExibePainelReceber(lFlag : Boolean);
   public
 
   end;
@@ -104,12 +111,25 @@ begin
   cliqueBotao := cbNone;
 end;
 
+procedure Tfrmcad_receber.btnRecCancelClick(Sender: TObject);
+begin
+  ExibePainelReceber(false);
+end;
+
 procedure Tfrmcad_receber.btnRECEBERClick(Sender: TObject);
 begin
   if oContaReceber.Situacao = 'P' then
-     ShowMessage('pendente')
+  begin
+     ShowMessage('pendente') ;
+     ExibePainelReceber(true);
+  end
   else
      ShowMessage('recebido');
+end;
+
+procedure Tfrmcad_receber.btnRecOKClick(Sender: TObject);
+begin
+  ExibePainelReceber(false);
 end;
 
 procedure Tfrmcad_receber.btnSALVAClick(Sender: TObject);
@@ -235,6 +255,7 @@ procedure Tfrmcad_receber.FormCreate(Sender: TObject);
 begin
   oContaReceber := TContaReceber.Create;
   oPlano := Tplano.Create;
+  ExibePainelReceber(false);
 end;
 
 procedure Tfrmcad_receber.FormShow(Sender: TObject);
@@ -244,6 +265,11 @@ begin
     qrPESQ.Open;
 
 
+end;
+
+procedure Tfrmcad_receber.ExibePainelReceber(lFlag: Boolean);
+begin
+  pnpRECEBER.Visible:= lFlag;
 end;
 
 procedure Tfrmcad_receber.btnINCLUIClick(Sender: TObject);

@@ -15,7 +15,9 @@ type
 
   Tfrmcad_receber = class(Tfrmcad_padrao)
     ACBrEnterTab1: TACBrEnterTab;
+    btnRECEBER: TButton;
     edtCodPlano: TEdit;
+    edtDataRecebimento: TDateTimePicker;
     edtDataVencimento: TDateTimePicker;
     edtIdLcto: TEdit;
     edtDataLcto: TDateTimePicker;
@@ -25,12 +27,14 @@ type
     edtRecebido: TEdit;
     DBGrid1: TDBGrid;
     dsPESQ: TDataSource;
-    edtTipo: TEdit;
     edtSituacao: TEdit;
+    edtTipo: TEdit;
     edtValor: TCurrencyEdit;
     edtValorRecebido: TCurrencyEdit;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -53,7 +57,9 @@ type
     procedure btNCANCELAClick(Sender: TObject);
     procedure btnINCLUIClick(Sender: TObject);
     procedure btnPESQUISAClick(Sender: TObject);
+    procedure btnRECEBERClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
+    procedure buttom1(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure edtCodPlanoExit(Sender: TObject);
     procedure edtCodPlanoKeyDown(Sender: TObject; var Key: Word;
@@ -98,6 +104,14 @@ begin
   cliqueBotao := cbNone;
 end;
 
+procedure Tfrmcad_receber.btnRECEBERClick(Sender: TObject);
+begin
+  if oContaReceber.Situacao = 'P' then
+     ShowMessage('pendente')
+  else
+     ShowMessage('recebido');
+end;
+
 procedure Tfrmcad_receber.btnSALVAClick(Sender: TObject);
 begin
   inherited;
@@ -119,6 +133,11 @@ begin
   if qrPESQ.Active then
      qrPESQ.Refresh;
   PageControl1.PageIndex:=0;
+end;
+
+procedure Tfrmcad_receber.buttom1(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrmcad_receber.DBGrid1DblClick(Sender: TObject);
@@ -223,14 +242,15 @@ begin
  inherited;
  if not qrPESQ.Active then
     qrPESQ.Open;
- edtDataLcto.Date:=now;
- edtDataVencimento.Date:=now;
+
 
 end;
 
 procedure Tfrmcad_receber.btnINCLUIClick(Sender: TObject);
 begin
   inherited;
+  edtDataLcto.Date:=now;
+  edtDataVencimento.Date:=now;
 end;
 
 procedure Tfrmcad_receber.btnALTERAClick(Sender: TObject);

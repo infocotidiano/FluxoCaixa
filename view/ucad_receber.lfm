@@ -347,9 +347,58 @@ inherited frmcad_receber: Tfrmcad_receber
           Top = 64
           Width = 75
           Caption = 'Receber'
-          Enabled = False
           TabOrder = 3
           OnClick = btnRECEBERClick
+        end
+      end
+      object pnpRECEBER: TPanel[18]
+        Left = 0
+        Height = 167
+        Top = 96
+        Width = 595
+        BevelOuter = bvNone
+        ClientHeight = 167
+        ClientWidth = 595
+        Color = 16379334
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 10
+        object Panel3: TPanel
+          Left = 0
+          Height = 26
+          Top = 0
+          Width = 595
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'RECEBER CONTA'
+          Color = 10485760
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 0
+        end
+        object btnRecOK: TButton
+          Left = 424
+          Height = 25
+          Top = 135
+          Width = 75
+          Caption = 'Ok'
+          TabOrder = 1
+          OnClick = btnRecOKClick
+        end
+        object btnRecCancel: TButton
+          Left = 512
+          Height = 25
+          Top = 135
+          Width = 75
+          Caption = 'Cancela'
+          TabOrder = 2
+          OnClick = btnRecCancelClick
         end
       end
     end

@@ -47,10 +47,10 @@ var
 begin
   cSQL:= 'INSERT INTO receber'+
           '  (id_receber, Descricao, DtLancamento, Valor, ' +
-              'DtVencimento, ValorRecebido, Situacao, Plano) '+
+              'DtVencimento, ValorRecebido, Situacao, Plano, dtrecebimento, CodConta) '+
           'VALUES '+
           '  (:Id_Registro, :Descricao, :DtLancamento, :Valor, '+
-             ':DtVencimento, :ValorPago, :Situacao, :Plano)';
+             ':DtVencimento, :ValorPago, :Situacao, :Plano, :DtPagamento, CodConta)';
   qrINC := TZQuery.Create(nil);
   qrINC.Connection := TabGlobal.conexao;
   qrINC.sql.Text:=cSQL;
@@ -62,6 +62,8 @@ begin
   qrINC.ParamByName('ValorPago').AsFloat     := ValorPago;
   qrINC.ParamByName('Situacao').AsString     := Situacao;
   qrINC.ParamByName('Plano').AsInteger       := Plano;
+  qrINC.ParamByName('DtPagamento').AsDate    := DtPagamento;
+  qrINC.ParamByName('CodConta').AsInteger    := CodConta;
   try
     qrINC.ExecSQL;
     Result := true;
@@ -98,6 +100,8 @@ begin
        self.ValorPago    := qrPESQUISA.FieldByName('ValorRecebido').AsCurrency;
        self.Situacao     := qrPESQUISA.FieldByName('Situacao').AsString;
        Self.Plano        := qrPESQUISA.FieldByName('Plano').AsInteger;
+       Self.DtPagamento  := qrPESQUISA.FieldByName('dtrecebimento').AsDateTime;
+       Self.CodConta     := qrPESQUISA.FieldByName('CodConta').AsInteger;
        Result := true;
      end
   else
@@ -122,6 +126,8 @@ begin
           'valorrecebido=:ValorPago, '+
           'situacao=:situacao, '+
           'plano=:plano '+
+          'dtrecebimento=:DtPagamento, '+
+          'CodConta=:CodConta, '+
           'WHERE '+
           'id_receber = :Id_registro';
 
@@ -136,6 +142,8 @@ begin
   qrALT.ParamByName('ValorPago').AsFloat     := ValorPago;
   qrALT.ParamByName('Situacao').AsString     := Situacao;
   qrALT.ParamByName('Plano').AsInteger       := Plano;
+  qrALT.ParamByName('DtPagamento').AsDate    := DtPagamento;
+  qrALT.ParamByName('CodConta').AsInteger    := CodConta;
   try
     qrALT.ExecSQL;
     Result := true;
