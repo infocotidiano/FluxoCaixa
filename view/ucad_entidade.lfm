@@ -1,0 +1,164 @@
+inherited frmcad_entidade: Tfrmcad_entidade
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  inherited pnpTITULO: TPanel
+    Caption = 'Cadastro Entidades'
+  end
+  inherited PageControl1: TPageControl
+    ActivePage = tsPESQUISA
+    TabIndex = 0
+    inherited tsPESQUISA: TTabSheet
+      inherited Panel1: TPanel
+        inherited btnPESQUISA: TSpeedButton
+          OnClick = btnPESQUISAClick
+        end
+      end
+      object DBGrid1: TDBGrid[1]
+        Left = 0
+        Height = 276
+        Top = 50
+        Width = 601
+        Align = alClient
+        AlternateColor = 16574413
+        Color = clWhite
+        Columns = <        
+          item
+            Title.Caption = 'ID'
+            Width = 80
+            FieldName = 'id_entidade'
+          end        
+          item
+            Title.Caption = 'NOME'
+            Width = 300
+            FieldName = 'nome'
+          end        
+          item
+            Title.Caption = 'TELEFONE'
+            Width = 150
+            FieldName = 'telefone'
+          end>
+        DataSource = dsPesq
+        FixedColor = clBlack
+        FixedCols = 0
+        FixedHotColor = clInactiveBorder
+        Flat = True
+        Font.Color = clBlack
+        Font.Style = [fsBold]
+        Options = [dgTitles, dgColumnResize, dgColumnMove, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+        TabOrder = 1
+        TitleFont.Color = clWhite
+        TitleFont.Style = [fsBold]
+        OnDblClick = DBGrid1DblClick
+      end
+    end
+    inherited tsCADASTRO: TTabSheet
+      inherited pnpRODAPE: TPanel
+        inherited btnALTERA: TSpeedButton
+          OnClick = btnALTERAClick
+        end
+        inherited btnAPAGA: TSpeedButton
+          OnClick = btnAPAGAClick
+        end
+        inherited btnSALVA: TSpeedButton
+          OnClick = btnSALVAClick
+        end
+      end
+      object Label1: TLabel[1]
+        Left = 34
+        Height = 15
+        Top = 26
+        Width = 39
+        Caption = 'Código'
+        ParentColor = False
+      end
+      object edtCODIGO: TEdit[2]
+        Tag = 99
+        Left = 34
+        Height = 23
+        Top = 45
+        Width = 80
+        Enabled = False
+        NumbersOnly = True
+        TabOrder = 1
+      end
+      object Label2: TLabel[3]
+        Left = 34
+        Height = 15
+        Top = 80
+        Width = 33
+        Caption = 'Nome'
+        ParentColor = False
+      end
+      object edtNOME: TEdit[4]
+        Left = 34
+        Height = 23
+        Top = 99
+        Width = 432
+        CharCase = ecUppercase
+        MaxLength = 80
+        TabOrder = 2
+      end
+      object Label3: TLabel[5]
+        Left = 32
+        Height = 15
+        Top = 128
+        Width = 44
+        Caption = 'Telefone'
+        ParentColor = False
+      end
+      object edtTELEFONE: TEdit[6]
+        Left = 32
+        Height = 23
+        Top = 147
+        Width = 192
+        CharCase = ecUppercase
+        MaxLength = 80
+        TabOrder = 3
+      end
+    end
+  end
+  object qrPesq: TZQuery[2]
+    Connection = TabGlobal.conexao
+    SQL.Strings = (
+      'select * from entidades'
+    )
+    Params = <>
+    Left = 342
+    Top = 309
+    object qrPesqid_entidade: TLongintField
+      FieldKind = fkData
+      FieldName = 'id_entidade'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qrPesqnome: TStringField
+      FieldKind = fkData
+      FieldName = 'nome'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 80
+    end
+    object qrPesqtelefone: TStringField
+      FieldKind = fkData
+      FieldName = 'telefone'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+  end
+  object dsPesq: TDataSource[3]
+    DataSet = qrPesq
+    Left = 430
+    Top = 311
+  end
+end

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Linux"/>
+    <Units>
+      <Unit>
+        <Filename Value="fluxocaixa.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
+        <CursorPos Y="31"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\uprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmprincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <TopLine Value="167"/>
+        <CursorPos X="33" Y="177"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\uconfigurabanco.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmconfigurabanco"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="conexao\utabela.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TabGlobal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="58" Y="30"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_padrao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_padrao"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="81" Y="9"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_plano.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_conta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="42"/>
+        <CursorPos X="17" Y="48"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_lancamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3"/>
+        <CursorPos X="5" Y="14"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_planoconta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_planoconta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_conta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_conta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="56" Y="9"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_lcto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_lcto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="209"/>
+        <CursorPos Y="230"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\umovimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmmovimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="16" Y="11"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\upesquisa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPesquisa"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\uestatistica_despesa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEstatistica_Despesa"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uEstatistica_Despesa"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="relatorios\urel_movimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmrel_movimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\upesquisa_lcto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Frmpesquisa_lcto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\importa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImporta"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_entidade.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_entidade"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_registrofinanceiro.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="52" Y="127"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_contareceber.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="87"/>
+        <CursorPos X="73" Y="26"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_entidade.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\uenumerator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <UnitName Value="Unit1"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_receber.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_receber"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="204"/>
+        <CursorPos X="59" Y="215"/>
+        <UsageCount Value="62"/>
+      </Unit>
+      <Unit>
+        <Filename Value="classe\classe_contapagar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="24"/>
+        <CursorPos X="47" Y="36"/>
+        <UsageCount Value="56"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\ucad_pagar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmcad_pagar"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="248"/>
+        <CursorPos X="62" Y="251"/>
+        <UsageCount Value="55"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\plain\ZPlainLoader.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="238"/>
+        <CursorPos Y="258"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="view\uprincipal.lfm"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="2"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\Laz64\config_lazarus\onlinepackagemanager\packages\zeosdbo\src\plain\ZPlainLoader.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="241"/>
+        <CursorPos Y="262"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\Laz64\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1798"/>
+        <CursorPos X="23" Y="1819"/>
+        <UsageCount Value="22"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="69"/>
+        <CursorPos Y="86"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\lcl\include\application.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1421"/>
+        <CursorPos Y="1435"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\components\lazutils\laztracer.pas"/>
+        <UnitName Value="LazTracer"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="47"/>
+        <CursorPos Y="58"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcMySql.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1254"/>
+        <CursorPos X="39" Y="1265"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+    </Units>
+    <Debugger>
+      <Backend Value="{452614DB-032E-4734-A2C6-A5C50AA8784A}"/>
+    </Debugger>
+    <JumpHistory HistoryIndex="4">
+      <Position>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="175" TopLine="165"/>
+      </Position>
+      <Position>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="176" TopLine="165"/>
+      </Position>
+      <Position>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="128" TopLine="124"/>
+      </Position>
+      <Position>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="175" TopLine="167"/>
+      </Position>
+      <Position>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="172" Column="58" TopLine="167"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
