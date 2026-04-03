@@ -6,6 +6,7 @@ object frmrel_movimento: Tfrmrel_movimento
   Caption = 'Relatório Movimento'
   ClientHeight = 405
   ClientWidth = 815
+  LCLVersion = '4.4.0.0'
   object RLReport1: TRLReport
     Left = 0
     Height = 1123

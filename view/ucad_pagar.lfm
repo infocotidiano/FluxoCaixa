@@ -17,6 +17,8 @@ inherited frmcad_pagar: Tfrmcad_pagar
     ActivePage = tsPESQUISA
     TabIndex = 0
     inherited tsPESQUISA: TTabSheet
+      ClientHeight = 313
+      ClientWidth = 597
       inherited Panel1: TPanel
         Width = 597
         ClientWidth = 597
@@ -52,42 +54,42 @@ inherited frmcad_pagar: Tfrmcad_pagar
         Columns = <        
           item
             Title.Caption = 'ID'
-            Width = 30
+            Width = 28
             FieldName = 'id_pagar'
           end        
           item
             Title.Caption = 'Descricao'
-            Width = 80
+            Width = 69
             FieldName = 'descricao'
           end        
           item
             Title.Caption = 'Dt.Lcto'
-            Width = 64
+            Width = 56
             FieldName = 'dtlancamento'
           end        
           item
             Title.Caption = 'Valor'
-            Width = 49
+            Width = 44
             FieldName = 'valor'
           end        
           item
             Title.Caption = 'Vencimento'
-            Width = 95
+            Width = 83
             FieldName = 'dtvencimento'
           end        
           item
             Title.Caption = 'ValorPago'
-            Width = 81
+            Width = 71
             FieldName = 'valorpago'
           end        
           item
             Title.Caption = 'Situacao'
-            Width = 72
+            Width = 62
             FieldName = 'situacao'
           end        
           item
             Title.Caption = 'Plano'
-            Width = 52
+            Width = 45
             FieldName = 'plano'
           end>
         DataSource = dsPESQ
@@ -106,6 +108,8 @@ inherited frmcad_pagar: Tfrmcad_pagar
       end
     end
     inherited tsCADASTRO: TTabSheet
+      ClientHeight = 313
+      ClientWidth = 597
       inherited pnpRODAPE: TPanel
         Top = 263
         Width = 597
@@ -226,7 +230,7 @@ inherited frmcad_pagar: Tfrmcad_pagar
         Left = 402
         Height = 15
         Top = 56
-        Width = 23
+        Width = 24
         Caption = 'Tipo'
         ParentColor = False
       end
@@ -292,7 +296,7 @@ inherited frmcad_pagar: Tfrmcad_pagar
         Width = 323
         Caption = 'Pagamento'
         ClientHeight = 96
-        ClientWidth = 321
+        ClientWidth = 319
         TabOrder = 9
         object edtDataPagamento: TDateTimePicker
           Tag = 99

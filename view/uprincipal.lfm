@@ -6,7 +6,7 @@ object frmprincipal: Tfrmprincipal
   Caption = 'Sistema Fluxo de Caixa'
   ClientHeight = 600
   ClientWidth = 800
-  Position = poWorkAreaCenter
+  Position = poDesktopCenter
   LCLVersion = '4.4.0.0'
   OnCreate = FormCreate
   OnShow = FormShow

@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Linux"/>
+    <BuildModes Active="Windows"/>
     <Units>
       <Unit>
         <Filename Value="fluxocaixa.lpr"/>
@@ -11,7 +11,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos Y="31"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\uprincipal.pas"/>
@@ -19,9 +19,9 @@
         <ComponentName Value="frmprincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="167"/>
-        <CursorPos X="33" Y="177"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="213"/>
+        <CursorPos X="67" Y="228"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -31,8 +31,12 @@
         <ComponentName Value="frmconfigurabanco"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="79"/>
+        <CursorPos X="56" Y="14"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="conexao\utabela.pas"/>
@@ -40,9 +44,13 @@
         <ComponentName Value="TabGlobal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="58" Y="30"/>
-        <UsageCount Value="62"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="25"/>
+        <CursorPos X="58" Y="31"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_padrao.pas"/>
@@ -52,13 +60,13 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="81" Y="9"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_plano.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_conta.pas"/>
@@ -66,7 +74,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="17" Y="48"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_lancamento.pas"/>
@@ -74,7 +82,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="5" Y="14"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_planoconta.pas"/>
@@ -82,8 +90,12 @@
         <ComponentName Value="frmcad_planoconta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="115"/>
+        <CursorPos X="74" Y="16"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_conta.pas"/>
@@ -91,9 +103,12 @@
         <ComponentName Value="frmcad_conta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="112"/>
         <CursorPos X="56" Y="9"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_lcto.pas"/>
@@ -102,9 +117,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="209"/>
-        <CursorPos Y="230"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="262"/>
+        <CursorPos X="8" Y="221"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\umovimento.pas"/>
@@ -113,8 +128,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="16" Y="11"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="121"/>
+        <CursorPos X="61" Y="16"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\upesquisa.pas"/>
@@ -122,7 +138,9 @@
         <ComponentName Value="frmPesquisa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="52"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\uestatistica_despesa.pas"/>
@@ -131,7 +149,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uEstatistica_Despesa"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="67"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="relatorios\urel_movimento.pas"/>
@@ -139,7 +159,10 @@
         <ComponentName Value="frmrel_movimento"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="70" Y="18"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\upesquisa_lcto.pas"/>
@@ -147,7 +170,9 @@
         <ComponentName Value="Frmpesquisa_lcto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="85" Y="16"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\importa.pas"/>
@@ -155,7 +180,10 @@
         <ComponentName Value="frmImporta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="75" Y="15"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_entidade.pas"/>
@@ -164,14 +192,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="67"/>
+        <CursorPos X="76" Y="13"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_registrofinanceiro.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="52" Y="127"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_contareceber.pas"/>
@@ -179,24 +209,23 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos X="73" Y="26"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_entidade.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\uenumerator.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <UnitName Value="Unit1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_receber.pas"/>
@@ -205,9 +234,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="204"/>
-        <CursorPos X="59" Y="215"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="272"/>
+        <CursorPos X="75" Y="288"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_contapagar.pas"/>
@@ -215,7 +244,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="47" Y="36"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="57"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_pagar.pas"/>
@@ -223,13 +252,10 @@
         <ComponentName Value="frmcad_pagar"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="248"/>
-        <CursorPos X="62" Y="251"/>
-        <UsageCount Value="55"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="151"/>
+        <CursorPos X="65" Y="135"/>
+        <UsageCount Value="56"/>
       </Unit>
       <Unit>
         <Filename Value="C:\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\plain\ZPlainLoader.pas"/>
@@ -261,21 +287,21 @@
         <UsageCount Value="22"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\lcl\include\customform.inc"/>
+        <Filename Value="C:\usr\share\lazarus\4.4.0\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos Y="86"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\lcl\include\application.inc"/>
+        <Filename Value="C:\usr\share\lazarus\4.4.0\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1421"/>
         <CursorPos Y="1435"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\..\..\usr\share\lazarus\4.4.0\components\lazutils\laztracer.pas"/>
+        <Filename Value="C:\usr\share\lazarus\4.4.0\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="47"/>
@@ -283,7 +309,7 @@
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcMySql.pas"/>
+        <Filename Value="C:\.lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcMySql.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1254"/>
         <CursorPos X="39" Y="1265"/>

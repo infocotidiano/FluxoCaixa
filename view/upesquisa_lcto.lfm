@@ -6,9 +6,10 @@ object Frmpesquisa_lcto: TFrmpesquisa_lcto
   Caption = 'Pesquisa Lancamento'
   ClientHeight = 426
   ClientWidth = 693
+  Position = poMainFormCenter
+  LCLVersion = '4.4.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poMainFormCenter
   object pnpTITULO: TPanel
     Left = 0
     Height = 50
@@ -22,6 +23,7 @@ object Frmpesquisa_lcto: TFrmpesquisa_lcto
     Font.Height = -24
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    ParentBackground = False
     ParentColor = False
     ParentFont = False
     TabOrder = 0
@@ -107,9 +109,9 @@ object Frmpesquisa_lcto: TFrmpesquisa_lcto
       Height = 23
       Top = 25
       Width = 57
+      TabOrder = 3
       OnExit = edtCodPlanoExit
       OnKeyDown = edtCodPlanoKeyDown
-      TabOrder = 3
     end
     object edtDescPlano: TEdit
       Left = 304
@@ -157,8 +159,8 @@ object Frmpesquisa_lcto: TFrmpesquisa_lcto
       Top = 14
       Width = 75
       Caption = 'Pesquisa'
-      OnClick = btnPESQUISAClick
       TabOrder = 7
+      OnClick = btnPESQUISAClick
     end
     object chkFiltroValor: TCheckBox
       Left = 528
@@ -166,8 +168,8 @@ object Frmpesquisa_lcto: TFrmpesquisa_lcto
       Top = 92
       Width = 80
       Caption = 'Filtrar Valor'
-      OnChange = chkFiltroValorChange
       TabOrder = 8
+      OnChange = chkFiltroValorChange
     end
   end
   object DBGrid1: TDBGrid

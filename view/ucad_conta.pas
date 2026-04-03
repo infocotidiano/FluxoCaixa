@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
   ACBrEnterTab, ZDataset, DB, ucad_padrao, classe_conta;
+
 type
 
   { Tfrmcad_conta }
@@ -47,7 +48,7 @@ type
 
 var
   frmcad_conta: Tfrmcad_conta;
-  conta : Tconta;
+  conta: Tconta;
 
 implementation
 
@@ -55,11 +56,10 @@ implementation
 
 { Tfrmcad_conta }
 
-procedure Tfrmcad_conta.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
+procedure Tfrmcad_conta.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Assigned(conta) then
-     FreeAndNil(conta);
+    FreeAndNil(conta);
 
 end;
 
@@ -69,82 +69,82 @@ begin
   qrPESQ.SQL.Clear;
   qrPESQ.sql.Add('select * from contas');
   qrPESQ.sql.add('where descricao like :cPESQ');
-  qrPESQ.ParamByName('cPESQ').AsString:= '%'+trim(edtPESQUISA.Text+'%');
+  qrPESQ.ParamByName('cPESQ').AsString := '%' + trim(edtPESQUISA.Text + '%');
   try
     qrPESQ.Open;
   except
-    on e: exception do
-      ShowMessage('Erro ao realizar a pesquisa'+sLineBreak+
-      e.ClassName+sLineBreak+ e.Message);
+    on e: Exception do
+      ShowMessage('Erro ao realizar a pesquisa' + sLineBreak +
+        e.ClassName + sLineBreak + e.Message);
   end;
-    if qrPESQ.RecordCount <= 0 then
-      ShowMessage('Nenhum registro encontrado !');
-  cliqueBotao:=cbNone;
+  if qrPESQ.RecordCount <= 0 then
+    ShowMessage('Nenhum registro encontrado !');
+  cliqueBotao := cbNone;
 
 end;
 
 procedure Tfrmcad_conta.btnSALVAClick(Sender: TObject);
 begin
   inherited;
-  conta.id_conta :=StrToIntDef(edtCODIGO.Text,0);
-  conta.descricao:=edtDESCRICAO.Text;
-  conta.banco    :=edtBANCO.Text;
-  conta.agencia  :=edtAGENCIA.Text;
-  conta.conta    :=edtCONTA.Text;
+  conta.id_conta := StrToIntDef(edtCODIGO.Text, 0);
+  conta.descricao := edtDESCRICAO.Text;
+  conta.banco := edtBANCO.Text;
+  conta.agencia := edtAGENCIA.Text;
+  conta.conta := edtCONTA.Text;
   if cliqueBotao = cbAlterar then
-     conta.altera(conta.id_conta)
+    conta.altera(conta.id_conta)
   else if cliqueBotao = cbIncluir then
-     conta.incluir;
-  cliqueBotao:=cbNone;
+    conta.incluir;
+  cliqueBotao := cbNone;
   qrPESQ.Refresh;
-  PageControl1.PageIndex:=0;
+  PageControl1.PageIndex := 0;
 
 end;
 
 procedure Tfrmcad_conta.btnALTERAClick(Sender: TObject);
 begin
-    if strtointdef(edtCODIGO.Text,0) = 0 then
-       begin
-         ShowMessage('nenhum registro selecionado');
-         cliqueBotao:=cbNone;
-         Abort;
-       end;
-    inherited;
-    edtDESCRICAO.SetFocus;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
+    cliqueBotao := cbNone;
+    Abort;
+  end;
+  inherited;
+  edtDESCRICAO.SetFocus;
 
 end;
 
 procedure Tfrmcad_conta.btnAPAGAClick(Sender: TObject);
 begin
-    if strtointdef(edtCODIGO.Text,0) = 0 then
-       begin
-         ShowMessage('nenhum registro selecionado');
-         cliqueBotao:=cbNone;
-         Abort;
-       end;
-    if QuestionDlg('Confirmação','Excluir o registro',mtConfirmation,
-      [mrYes,'Sim', mrNo,'Não'],0) = mrYes then
-         conta.exclui(conta.id_conta);
-    inherited;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
+    cliqueBotao := cbNone;
+    Abort;
+  end;
+  if QuestionDlg('Confirmação', 'Excluir o registro', mtConfirmation,
+    [mrYes, 'Sim', mrNo, 'Não'], 0) = mrYes then
+    conta.exclui(conta.id_conta);
+  inherited;
 
-    qrPESQ.Refresh;
+  qrPESQ.Refresh;
 
-    PageControl1.PageIndex:=0;
-    cliqueBotao:=cbNone;
+  PageControl1.PageIndex := 0;
+  cliqueBotao := cbNone;
 
 end;
 
 procedure Tfrmcad_conta.DBGrid1DblClick(Sender: TObject);
 begin
-    if conta.localiza(qrPESQid_conta.Value) then
-     begin
-       PageControl1.PageIndex:=1;
-       edtCODIGO.Text   :=inttostr(conta.id_conta);
-       edtDESCRICAO.Text:=conta.descricao;
-       edtBANCO.Text    :=conta.banco;
-       edtAGENCIA.Text  :=conta.agencia;
-       edtCONTA.Text    :=conta.conta;
-     end;
+  if conta.localiza(qrPESQid_conta.Value) then
+  begin
+    PageControl1.PageIndex := 1;
+    edtCODIGO.Text := IntToStr(conta.id_conta);
+    edtDESCRICAO.Text := conta.descricao;
+    edtBANCO.Text := conta.banco;
+    edtAGENCIA.Text := conta.agencia;
+    edtCONTA.Text := conta.conta;
+  end;
 
 end;
 
@@ -157,8 +157,7 @@ procedure Tfrmcad_conta.FormShow(Sender: TObject);
 begin
   inherited;
   if not qrPESQ.Active then
-     qrPESQ.Open;
+    qrPESQ.Open;
 end;
 
 end.
-

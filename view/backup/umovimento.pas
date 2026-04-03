@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, DBGrids, ZDataset, rxcurredit, PReport, LR_Class, LR_DBSet, DB, LCLType, ComCtrls,
   ACBrEnterTab, utabela, ucad_lcto,
   classe_conta,  upesquisa, uEstatistica_Despesa, upesquisa_lcto, importa, urel_movimento,
-  ACBrUtil.Base;
+  ACBrUtil.Base, classe_lancamento;
 
 type
 
@@ -138,7 +138,7 @@ end;
 
 procedure Tfrmmovimento.dtFIMExit(Sender: TObject);
 begin
-  btnOK.SetFocus;
+  // Evita reentrada de foco no GTK/Linux.
 end;
 
 procedure Tfrmmovimento.btnEstatisticaDespesasClick(Sender: TObject);
@@ -159,7 +159,13 @@ end;
 
 procedure Tfrmmovimento.btnImportaExtratoClick(Sender: TObject);
 begin
-  if conta.descricao = EmptyStr then
+  if not Assigned(conta) then
+     begin
+       ShowMessage('Conta nao foi inicializada.');
+       Abort;
+     end;
+
+  if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
      begin
         ShowMessage('Inicie o movimento e clique OK');
         abort;
@@ -195,16 +201,13 @@ end;
 
 procedure Tfrmmovimento.edtCODExit(Sender: TObject);
 begin
+   if not Assigned(conta) then
+      conta := Tconta.Create;
+
    if conta.localiza(StrToIntDef(edtCOD.Text,0)) then
-      begin
-        edtDESC.Text:=conta.descricao;
-        dtINICIO.SetFocus;
-      end
+      edtDESC.Text:=conta.descricao
    else
-      begin
-        edtDESC.Text:='';
-        edtCOD.SetFocus;
-      end;
+      edtDESC.Text:='';
 
 end;
 
@@ -221,6 +224,8 @@ begin
           frmPesquisa.ShowModal;
           edtCOD.text:= frmPesquisa.edtResultado.Text;
         finally
+          if Assigned(frmPesquisa) then
+             FreeAndNil(frmPesquisa);
         end;
      end;
 end;
@@ -259,10 +264,12 @@ begin
 
 end;
 
+
 procedure Tfrmmovimento.Movimento(nCOD: integer; dIncio, dFinal: TDate);
 var
   cSQL : string;
   nSA  : Real;  // saldo anterior
+  oLancamento: Tlancamento;
 begin
   //-------------------------------------------->> Definir valor da variavel saldo anteior
   // se a tabela qrMvto estiver aberta. feche
@@ -270,8 +277,13 @@ begin
   // limpa os comandos sql da qrmovto
   qrMvto.sql.Clear;
   // nSA (Saldo Anterior) vai receber o saldo anterior da função lancamento.saldoanterior
-  nSA:= lancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                 dtINICIO.Date);
+  oLancamento := Tlancamento.Create;
+  try
+    nSA:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
+                                    dtINICIO.Date);
+  finally
+    FreeAndNil(oLancamento);
+  end;
   // vamos alimentar a variavel @saldo com o valor da variavel nSA (saldo anterior)
   qrMvto.sql.add('set @saldo := :nSaldoAnt');
   qrMvto.ParamByName('nSaldoAnt').AsFloat:=nSA;
@@ -350,7 +362,15 @@ begin
 end;
 
 procedure Tfrmmovimento.AtivaMovimento;
+var
+  oLancamento: Tlancamento;
 begin
+  if not Assigned(conta) then
+     begin
+       ShowMessage('Conta nao foi inicializada.');
+       Abort;
+     end;
+
   if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
      begin
        ShowMessage('Conta Inválida !');
@@ -363,15 +383,20 @@ begin
     abort;
    end;
 
-  nSaldoAnterior.Value:= lancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                  dtINICIO.Date);
-  nSaldoPeriodo.Value  := lancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                   dtINICIO.Date)+
-                          lancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
-                                                  dtINICIO.Date,
-                                                  dtFIM.Date);
-  nSaldoFuturo.Value:= lancamento.SaldoFuturo(StrToIntDef(edtCOD.Text,0),
-                                                  Date);
+  oLancamento := Tlancamento.Create;
+  try
+    nSaldoAnterior.Value:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
+                                                     dtINICIO.Date);
+    nSaldoPeriodo.Value  := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
+                                                      dtINICIO.Date)+
+                            oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
+                                                     dtINICIO.Date,
+                                                     dtFIM.Date);
+    nSaldoFuturo.Value:= oLancamento.SaldoFuturo(StrToIntDef(edtCOD.Text,0),
+                                                 Date);
+  finally
+    FreeAndNil(oLancamento);
+  end;
 
 
   Movimento(StrToIntDef(edtCOD.Text,0),dtINICIO.Date, dtFIM.Date);
@@ -391,7 +416,15 @@ begin
 end;
 
 procedure Tfrmmovimento.AtualizaSaldos;
+var
+  oLancamento: Tlancamento;
 begin
+  if not Assigned(conta) then
+     begin
+       ShowMessage('Conta nao foi inicializada.');
+       Abort;
+     end;
+
   if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
      begin
        ShowMessage('Conta Inválida !');
@@ -404,13 +437,19 @@ begin
     abort;
    end;
 
-  nSaldoAnterior.Value:= lancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                  dtINICIO.Date);
-  nSaldoPeriodo.Value  := lancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                   dtINICIO.Date)+
-                          lancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
-                                                  dtINICIO.Date,
-                                                  dtFIM.Date);
+  oLancamento := Tlancamento.Create;
+  try
+    nSaldoAnterior.Value:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
+                                                     dtINICIO.Date);
+    nSaldoPeriodo.Value  := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
+                                                      dtINICIO.Date)+
+                            oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
+                                                     dtINICIO.Date,
+                                                     dtFIM.Date);
+  finally
+    FreeAndNil(oLancamento);
+  end;
+
   qrMvto.Refresh;
 
 end;
@@ -423,23 +462,4 @@ begin
   nSaldoPeriodo.Value:=0;
 end;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end.
-

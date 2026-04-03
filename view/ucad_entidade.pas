@@ -41,7 +41,7 @@ type
 
 var
   frmcad_entidade: Tfrmcad_entidade;
-  Entidade : TEntidade;
+  Entidade: TEntidade;
 
 implementation
 
@@ -55,51 +55,50 @@ begin
   qrPESQ.SQL.Clear;
   qrPESQ.sql.Add('select * from entidades');
   qrPESQ.sql.add('where nome like :cPESQ');
-  qrPESQ.ParamByName('cPESQ').AsString:= '%'+trim(edtPESQUISA.Text+'%');
+  qrPESQ.ParamByName('cPESQ').AsString := '%' + trim(edtPESQUISA.Text + '%');
   try
     qrPESQ.Open;
   except
-    on e: exception do
-      ShowMessage('Erro ao realizar a pesquisa'+sLineBreak+
-      e.ClassName+sLineBreak+ e.Message);
+    on e: Exception do
+      ShowMessage('Erro ao realizar a pesquisa' + sLineBreak +
+        e.ClassName + sLineBreak + e.Message);
   end;
-    if qrPESQ.RecordCount <= 0 then
-      ShowMessage('Nenhum registro encontrado !');
-  cliqueBotao:=cbNone;
+  if qrPESQ.RecordCount <= 0 then
+    ShowMessage('Nenhum registro encontrado !');
+  cliqueBotao := cbNone;
 end;
 
 procedure Tfrmcad_entidade.btnSALVAClick(Sender: TObject);
 begin
   inherited;
-  Entidade.Id_Entidade  := StrToIntDef(edtCODIGO.Text,0);
-  Entidade.Nome         := edtNOME.Text;
-  Entidade.Telefone     := edtTELEFONE.Text;
+  Entidade.Id_Entidade := StrToIntDef(edtCODIGO.Text, 0);
+  Entidade.Nome := edtNOME.Text;
+  Entidade.Telefone := edtTELEFONE.Text;
   if cliqueBotao = cbAlterar then
-     Entidade.altera(Entidade.Id_Entidade)
+    Entidade.altera(Entidade.Id_Entidade)
   else if cliqueBotao = cbIncluir then
-     Entidade.incluir;
-  cliqueBotao:=cbNone;
+    Entidade.incluir;
+  cliqueBotao := cbNone;
   qrPESQ.Refresh;
-  PageControl1.PageIndex:=0;
+  PageControl1.PageIndex := 0;
 end;
 
 procedure Tfrmcad_entidade.DBGrid1DblClick(Sender: TObject);
 begin
   if Entidade.localiza(qrPesqid_entidade.Value) then
-     begin
-       PageControl1.PageIndex := 1;
-       edtCODIGO.Text         := inttostr(Entidade.Id_Entidade);
-       edtNOME.Text           := Entidade.Nome;
-       edtTELEFONE.Text       := Entidade.Telefone;
-     end;
+  begin
+    PageControl1.PageIndex := 1;
+    edtCODIGO.Text := IntToStr(Entidade.Id_Entidade);
+    edtNOME.Text := Entidade.Nome;
+    edtTELEFONE.Text := Entidade.Telefone;
+  end;
 
 end;
 
-procedure Tfrmcad_entidade.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
+procedure Tfrmcad_entidade.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Assigned(Entidade) then
-     FreeAndNil(Entidade);
+    FreeAndNil(Entidade);
 end;
 
 procedure Tfrmcad_entidade.FormCreate(Sender: TObject);
@@ -111,36 +110,36 @@ procedure Tfrmcad_entidade.FormShow(Sender: TObject);
 begin
   inherited;
   if not qrPesq.Active then
-     qrPesq.Open;
+    qrPesq.Open;
 end;
 
 procedure Tfrmcad_entidade.btnALTERAClick(Sender: TObject);
 begin
-    if strtointdef(edtCODIGO.Text,0) = 0 then
-       begin
-         ShowMessage('nenhum registro selecionado');
-         CliqueBotao := cbNone;
-         Abort;
-       end;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
+    CliqueBotao := cbNone;
+    Abort;
+  end;
   inherited;
 end;
 
 procedure Tfrmcad_entidade.btnAPAGAClick(Sender: TObject);
 begin
-    if strtointdef(edtCODIGO.Text,0) = 0 then
-       begin
-         ShowMessage('nenhum registro selecionado');
-         cliqueBotao := cbNone;
-         Abort;
-       end;
-
-    if QuestionDlg('Confirmação','Excluir o registro',mtConfirmation,
-      [mrYes,'Sim', mrNo,'Não'],0) = mrYes then
-         Entidade.exclui(Entidade.Id_Entidade);
-    inherited;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
     cliqueBotao := cbNone;
-    qrPESQ.Refresh;
-    PageControl1.PageIndex := 0;
+    Abort;
+  end;
+
+  if QuestionDlg('Confirmação', 'Excluir o registro', mtConfirmation,
+    [mrYes, 'Sim', mrNo, 'Não'], 0) = mrYes then
+    Entidade.exclui(Entidade.Id_Entidade);
+  inherited;
+  cliqueBotao := cbNone;
+  qrPESQ.Refresh;
+  PageControl1.PageIndex := 0;
 
 end;
 

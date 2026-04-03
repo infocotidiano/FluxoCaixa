@@ -1,21 +1,54 @@
-backup/
-classe/backup
-lib/
-temp/
-*.dbg
-*.exe
+# ===== Pastas geradas =====
+
 /lib/
+/temp/
 /bin/
 /backup/
-/temp/
 /tmp/
 /debug/
 /release/
-.codex
-.gitattributes
-fluxocaixa_dbg
-fluxocaixa_dbg.dbg
+
+# ===== Backup específico =====
+
+backup/
+classe/backup/
+
+# ===== Binários =====
+
+*.exe
+*.dll
+*.so
+
+# ===== Compilação FreePascal/Lazarus =====
+
+*.o
+*.ppu
+*.a
+*.or
+*.res
+*.compiled
+*.dbg
+*.dcu
+
+# ===== Executáveis gerados =====
+
 fluxocaixa.exe
 fluxocaixa_linux
+fluxocaixa_dbg
+fluxocaixa_dbg.dbg
+
+# ===== Arquivos temporários =====
+
+*.bak
+*.tmp
+*.log
+
+# ===== IDE / Config =====
+
 .vscode/
-/.vscode/
+.codex
+
+# ===== Sistema =====
+
+Thumbs.db
+.DS_Store

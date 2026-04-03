@@ -6,8 +6,9 @@ object frmconfigurabanco: Tfrmconfigurabanco
   Caption = 'Configura Banco'
   ClientHeight = 394
   ClientWidth = 513
-  OnShow = FormShow
   Position = poMainFormCenter
+  LCLVersion = '4.4.0.0'
+  OnShow = FormShow
   object Shape1: TShape
     Left = 8
     Height = 2

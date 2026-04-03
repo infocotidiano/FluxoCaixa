@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, rxmemds,IniFiles;
+  Buttons, rxmemds, IniFiles;
 
 type
 
@@ -14,9 +14,9 @@ type
 
   Tfrmprincipal = class(TForm)
     btnCFG: TSpeedButton;
+    btnContaPagar: TSpeedButton;
     btnEntidade: TSpeedButton;
     btnContaReceber: TSpeedButton;
-    btnteste: TButton;
     Label1: TLabel;
     pnpEsquerda: TPanel;
     Shape1: TShape;
@@ -25,6 +25,7 @@ type
     btnLCTO: TSpeedButton;
     btnSAIR: TSpeedButton;
     procedure btnCFGClick(Sender: TObject);
+    procedure btnContaPagarClick(Sender: TObject);
     procedure btnContaReceberClick(Sender: TObject);
     procedure btnCONTASClick(Sender: TObject);
     procedure btnEntidadeClick(Sender: TObject);
@@ -43,15 +44,25 @@ type
 var
   frmprincipal: Tfrmprincipal;
   cfg_arqINI, cfg_pathApp: string;
-  cfg_banco, cfg_servidor, cfg_usuario, cfg_senha, cfg_odbc, cfg_dllMariadb:string;
-  cfg_porta : integer;
+  cfg_banco, cfg_servidor, cfg_usuario, cfg_senha, cfg_odbc, cfg_dllMariadb: string;
+  cfg_porta: integer;
 
 implementation
-  uses utabela, uconfigurabanco, ucad_padrao,  ucad_entidade,
-  ucad_planoconta, ucad_conta, umovimento,
-  classe_plano,  ucad_receber ;
 
-{$R *.lfm}
+uses utabela, uconfigurabanco, ucad_padrao, ucad_entidade,
+  ucad_planoconta, ucad_conta, umovimento,
+  classe_plano, ucad_receber, ucad_pagar;
+
+  {$R *.lfm}
+
+function DefaultMariaDbLibrary: string;
+begin
+  {$IFDEF WINDOWS}
+  Result := 'libmariadb.dll';
+  {$ELSE}
+  Result := 'libmariadb.so';
+  {$ENDIF}
+end;
 
 { Tfrmprincipal }
 
@@ -91,6 +102,16 @@ begin
   end;
 end;
 
+procedure Tfrmprincipal.btnContaPagarClick(Sender: TObject);
+begin
+  frmcad_pagar := Tfrmcad_pagar.Create(self);
+  try
+    frmcad_pagar.ShowModal;
+  finally
+    FreeAndNil(frmcad_pagar);
+  end;
+end;
+
 procedure Tfrmprincipal.btnContaReceberClick(Sender: TObject);
 begin
   frmcad_receber := Tfrmcad_receber.Create(self);
@@ -103,12 +124,12 @@ end;
 
 procedure Tfrmprincipal.btnCONTASClick(Sender: TObject);
 begin
-    frmcad_conta := Tfrmcad_conta.Create(self);
-    try
-      frmcad_conta.ShowModal;
-    finally
-      FreeAndNil(frmcad_conta);
-    end;
+  frmcad_conta := Tfrmcad_conta.Create(self);
+  try
+    frmcad_conta.ShowModal;
+  finally
+    FreeAndNil(frmcad_conta);
+  end;
 end;
 
 procedure Tfrmprincipal.btnEntidadeClick(Sender: TObject);
@@ -160,57 +181,81 @@ begin
      // Formatação de datas
       DateSeparator := '/';
       ShortDateFormat := 'dd/mm/yyyy';
-    {$ENDIF}
-    cfg_arqINI := ChangeFileExt(ParamStr(0),'.ini');
-    cfg_pathApp:= ExtractFilePath(ParamStr(0));
+  {$ENDIF}
 
+  cfg_arqINI := ChangeFileExt(ParamStr(0), '.ini');
+  cfg_pathApp := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
 
 end;
 
 procedure Tfrmprincipal.FormShow(Sender: TObject);
 var
-  oPlano : Tplano;
+  oPlano: Tplano;
 begin
   if not FileExists(cfg_arqINI) then
-     btnCFG.Click;
+    btnCFG.Click;
+
+  if not FileExists(cfg_arqINI) then
+  begin
+    ShowMessage('Arquivo de configuracao nao encontrado: ' + cfg_arqINI);
+    Exit;
+  end;
+
   ler_ini;
 
-  try
-    TabGlobal.conexao.Connect;
-    //ShowMessage('Conectado !');
-  except
-    on e: exception do
-       ShowMessage('Erro ao conectar com o banco'+sLineBreak+
-       e.ClassName+sLineBreak+e.Message);
+  if not Assigned(TabGlobal) then
+  begin
+    ShowMessage('Modulo de conexao nao foi inicializado.');
+    Exit;
+  end;
+
+  if not Assigned(TabGlobal.conexao) then
+  begin
+    ShowMessage('Componente de conexao nao foi inicializado.');
+    Exit;
+  end;
+
+  if not TabGlobal.conexao.Connected then
+  begin
+    try
+      TabGlobal.conexao.Connect;
+    except
+      on e: Exception do
+      begin
+        ShowMessage('Erro ao conectar com o banco' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+        Exit;
+      end;
+    end;
   end;
 
   oPlano := Tplano.Create;
-  oPlano.fixacodigoCredito;
-  oPlano.fixacodigoDebito;
-  if Assigned(oPlano) then
-     FreeAndNil(oPlano);
-
+  try
+    oPlano.fixacodigoCredito;
+    oPlano.fixacodigoDebito;
+  finally
+    FreeAndNil(oPlano);
+  end;
 end;
 
 
 procedure Tfrmprincipal.ler_ini;
 var
-ArqIni : TIniFile;
+  ArqIni: TIniFile;
 begin
-    ArqIni := TIniFile.Create(cfg_arqINI);
-    try
-      cfg_banco    := ArqIni.ReadString('ConexaoDB','Banco','');
-      cfg_servidor := ArqIni.ReadString('ConexaoDB','Server','');
-      cfg_porta    := ArqIni.ReadInteger('ConexaoDB','Porta',3306);
-      cfg_usuario  := ArqIni.ReadString('ConexaoDB','User','');
-      cfg_senha    := ArqIni.ReadString('ConexaoDB','Senha','');
-      cfg_odbc     := ArqIni.ReadString('ConexaoDB','ODBC','mariadb ODBC 3.1 Driver');
-      cfg_dllMariadb:=ArqIni.ReadString('ConexaoDB','DLL','libmariadb.dll');
-    finally
-      ArqINI.Free;
-    end;
+  ArqIni := TIniFile.Create(cfg_arqINI);
+  try
+    cfg_banco := ArqIni.ReadString('ConexaoDB', 'Banco', '');
+    cfg_servidor := ArqIni.ReadString('ConexaoDB', 'Server', '');
+    cfg_porta := ArqIni.ReadInteger('ConexaoDB', 'Porta', 3306);
+    cfg_usuario := ArqIni.ReadString('ConexaoDB', 'User', '');
+    cfg_senha := ArqIni.ReadString('ConexaoDB', 'Senha', '');
+    cfg_odbc := ArqIni.ReadString('ConexaoDB', 'ODBC', 'mariadb ODBC 3.1 Driver');
+    cfg_dllMariadb := ArqIni.ReadString('ConexaoDB', 'DLL', DefaultMariaDbLibrary);
+  finally
+    ArqINI.Free;
+  end;
 
 end;
 
 end.
-

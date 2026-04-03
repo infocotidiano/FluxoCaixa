@@ -7,6 +7,8 @@ inherited frmcad_planoconta: Tfrmcad_planoconta
     Caption = 'Cadastro Plano de Conta'
   end
   inherited PageControl1: TPageControl
+    ActivePage = tsPESQUISA
+    TabIndex = 0
     inherited tsPESQUISA: TTabSheet
       inherited Panel1: TPanel
         inherited btnPESQUISA: TSpeedButton
@@ -46,6 +48,7 @@ inherited frmcad_planoconta: Tfrmcad_planoconta
         Font.Color = clBlack
         Font.Style = [fsBold]
         Options = [dgTitles, dgColumnResize, dgColumnMove, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+        ParentFont = False
         TabOrder = 1
         TitleFont.Color = clWhite
         TitleFont.Style = [fsBold]
@@ -84,7 +87,7 @@ inherited frmcad_planoconta: Tfrmcad_planoconta
         Left = 32
         Height = 15
         Top = 128
-        Width = 23
+        Width = 24
         Caption = 'Tipo'
         ParentColor = False
       end

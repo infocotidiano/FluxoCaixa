@@ -64,7 +64,7 @@ type
 
 var
   frmImporta: TfrmImporta;
-  FACBrOFX : TACBrOFX;
+  FACBrOFX: TACBrOFX;
 
 implementation
 
@@ -77,33 +77,34 @@ var
   nX: integer;
 begin
   if edtARQUIVO.Text <> EmptyStr then
-     begin
-       if FileExists(edtARQUIVO.Text) then
-          begin
-             FACBrOFX.FileOFX:=edtARQUIVO.Text;
-             FACBrOFX.Import;
-          end
-       else
-          begin
-            ShowMessage('Arquivo inexistente !');
-            abort;
-          end;
-     end
+  begin
+    if FileExists(edtARQUIVO.Text) then
+    begin
+      FACBrOFX.FileOFX := edtARQUIVO.Text;
+      FACBrOFX.Import;
+    end
+    else
+    begin
+      ShowMessage('Arquivo inexistente !');
+      abort;
+    end;
+  end
   else
-     begin
-       ShowMessage('Favor informar o arquivo');
-       abort;
-     end;
+  begin
+    ShowMessage('Favor informar o arquivo');
+    abort;
+  end;
   if (FACBrOFX.AccountID <> edtNumConta.Text) or
-     (FACBrOFX.BranchID <> edtAgencia.Text) then
-     begin
-       ShowMessage('Este arquivo não pertence a esta conta'+sLineBreak+
-                   'OFX Agencia/Conta: '+FACBrOFX.BranchID+' / '+FACBrOFX.AccountID+sLineBreak+
-                   'Agencia/Conta: '+edtAgencia.Text+' / '+edtNumConta.Text
-         );
-       abort;
-     end;
-  for nX := 0 to (FACBrOFX.Count -1) do
+    (FACBrOFX.BranchID <> edtAgencia.Text) then
+  begin
+    ShowMessage('Este arquivo não pertence a esta conta' + sLineBreak +
+      'OFX Agencia/Conta: ' + FACBrOFX.BranchID + ' / ' +
+      FACBrOFX.AccountID + sLineBreak + 'Agencia/Conta: ' +
+      edtAgencia.Text + ' / ' + edtNumConta.Text
+      );
+    abort;
+  end;
+  for nX := 0 to (FACBrOFX.Count - 1) do
   begin
     AddItem(
       FACBrOFX.get(nX).MovDate,
@@ -132,9 +133,7 @@ begin
     if qrTMP.RecordCount >= 1 then
     begin
       frmPesquisa := TfrmPesquisa.Create(
-        self, ['ID_PLANO', 'DESCRICAO', 'TIPO'],
-        'PLANOS',
-        'ID_PLANO');
+        self, ['ID_PLANO', 'DESCRICAO', 'TIPO'], 'PLANOS', 'ID_PLANO');
       try
         frmPesquisa.ShowModal;
         nCODPLANO := strtointdef(frmPesquisa.edtResultado.Text, 0);
@@ -154,13 +153,13 @@ begin
           begin
             qrTMP.Edit;
             if plano.tipo = 'D' then
-               if qrTMPValor.Value > 0 then
-                  qrTMPValor.Value := qrTMPValor.Value * -1
-            else
+              if qrTMPValor.Value > 0 then
+                qrTMPValor.Value := qrTMPValor.Value * -1
+              else
               if qrTMPValor.Value < 0 then
-                 qrTMPValor.Value := qrTMPValor.Value * -1;
+                qrTMPValor.Value := qrTMPValor.Value * -1;
 
-            qrTMPCodPlano.Value  := nCODPLANO;
+            qrTMPCodPlano.Value := nCODPLANO;
             qrTMPDescPlano.Value := cDESCPLANO;
             qrTMPTipoMovimento.Value := plano.tipo;
             qrTMPSelcionado.Value := False;
@@ -183,31 +182,31 @@ end;
 
 procedure TfrmImporta.btnImportaClick(Sender: TObject);
 var
-  Lcto : Tlancamento;
+  Lcto: Tlancamento;
 begin
   Lcto := Tlancamento.Create;
   try
     qrTMP.First;
     while not qrTMP.EOF do
-       begin
-         if qrTMPCodPlano.Value > 0 then
-            begin
-              Lcto.conta    := strtoint(edtCodConta.Text);
-              Lcto.cod_plano:= qrTMPCodPlano.Value;
-              Lcto.data_mvto:= qrTMPData.Value;
-              Lcto.descricao:= qrTMPDescricao.Value;
-              Lcto.valor    := qrTMPValor.Value;
-              Lcto.idbanco  := qrTMPIDbanco.Value;
-              Lcto.inclui;
-              qrTMP.Delete;
-            end
-         else
-            begin
-              ShowMessage('Obrigatorio informar o plano de conta');
-              qrTMP.Next;
-            end;
+    begin
+      if qrTMPCodPlano.Value > 0 then
+      begin
+        Lcto.conta := StrToInt(edtCodConta.Text);
+        Lcto.cod_plano := qrTMPCodPlano.Value;
+        Lcto.data_mvto := qrTMPData.Value;
+        Lcto.descricao := qrTMPDescricao.Value;
+        Lcto.valor := qrTMPValor.Value;
+        Lcto.idbanco := qrTMPIDbanco.Value;
+        Lcto.inclui;
+        qrTMP.Delete;
+      end
+      else
+      begin
+        ShowMessage('Obrigatorio informar o plano de conta');
+        qrTMP.Next;
+      end;
 
-       end;
+    end;
   finally
     FreeAndNil(Lcto);
   end;
@@ -217,7 +216,7 @@ end;
 procedure TfrmImporta.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Assigned(FACBrOFX) then
-     FreeAndNil(FACBrOFX);
+    FreeAndNil(FACBrOFX);
 end;
 
 procedure TfrmImporta.FormCreate(Sender: TObject);
@@ -234,16 +233,16 @@ end;
 procedure TfrmImporta.btnFiltroClick(Sender: TObject);
 begin
   if edtFiltro.Text <> EmptyStr then
-     begin
-       qrTMP.Filtered := False;
-       qrTMP.Filter   := 'descricao='+QuotedStr('*'+edtFiltro.Text+'*');
-       qrTMP.Filtered := True;
-     end
+  begin
+    qrTMP.Filtered := False;
+    qrTMP.Filter := 'descricao=' + QuotedStr('*' + edtFiltro.Text + '*');
+    qrTMP.Filtered := True;
+  end
   else
-     begin
-       qrTMP.Filtered := False;
-       qrTMP.Filter := '';
-     end;
+  begin
+    qrTMP.Filtered := False;
+    qrTMP.Filter := '';
+  end;
 end;
 
 function TfrmImporta.AddItem(dData: TDate; cDesc, cDocto, cTipo, cIDBanco: string;

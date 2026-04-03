@@ -35,8 +35,8 @@ type
     procedure btnSALVAClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-     procedure salva_ini;
-     procedure ler_ini;
+    procedure salva_ini;
+    procedure ler_ini;
   public
 
   end;
@@ -45,9 +45,10 @@ var
   frmconfigurabanco: Tfrmconfigurabanco;
 
 implementation
- uses uprincipal;
 
-{$R *.lfm}
+uses uprincipal;
+
+  {$R *.lfm}
 
 function DefaultMariaDbLibrary: string;
 begin
@@ -63,12 +64,12 @@ end;
 procedure Tfrmconfigurabanco.btnSALVAClick(Sender: TObject);
 begin
   salva_ini;
-  close;
+  Close;
 end;
 
 procedure Tfrmconfigurabanco.btnCANCELClick(Sender: TObject);
 begin
-  close;
+  Close;
 end;
 
 procedure Tfrmconfigurabanco.FormShow(Sender: TObject);
@@ -78,40 +79,39 @@ end;
 
 procedure Tfrmconfigurabanco.salva_ini;
 var
-  ArqINI : TIniFile;
+  ArqINI: TIniFile;
 begin
   ArqINI := TIniFile.Create(cfg_arqINI);
   try
-    ArqINI.WriteString('ConexaoDB','Banco',edtBANCO.Text);
-    ArqINI.WriteString('ConexaoDB','Server',edtServer.Text);
-    ArqINI.WriteInteger('ConexaoDB','Porta', StrToIntDef(edtPORTA.Text,3306));
-    ArqINI.WriteString('ConexaoDB','User',edtUSER.Text);
-    ArqINI.WriteString('ConexaoDB','Senha',edtSenha.Text);
-    ArqINI.WriteString('ConexaoDB','ODBC',edtODBC.Text);
-    ArqINI.WriteString('ConexaoDB','DLL',edtDLLMariaDB.Text);
+    ArqINI.WriteString('ConexaoDB', 'Banco', edtBANCO.Text);
+    ArqINI.WriteString('ConexaoDB', 'Server', edtServer.Text);
+    ArqINI.WriteInteger('ConexaoDB', 'Porta', StrToIntDef(edtPORTA.Text, 3306));
+    ArqINI.WriteString('ConexaoDB', 'User', edtUSER.Text);
+    ArqINI.WriteString('ConexaoDB', 'Senha', edtSenha.Text);
+    ArqINI.WriteString('ConexaoDB', 'ODBC', edtODBC.Text);
+    ArqINI.WriteString('ConexaoDB', 'DLL', edtDLLMariaDB.Text);
   finally
     ArqINI.Free;
   end;
-
 
 end;
 
 procedure Tfrmconfigurabanco.ler_ini;
 var
-ArqIni : TIniFile;
+  ArqIni: TIniFile;
 begin
-    ArqIni := TIniFile.Create(cfg_arqINI);
-    try
-      edtBANCO.Text  := ArqIni.ReadString('ConexaoDB','Banco','fluxo_caixa');
-      edtServer.Text := ArqIni.ReadString('ConexaoDB','Server','localhost');
-      edtPORTA.Text  := InttoStr( ArqIni.ReadInteger('ConexaoDB','Porta',3306));
-      edtUSER.Text   := ArqIni.ReadString('ConexaoDB','User','suporte');
-      edtSenha.Text  := ArqIni.ReadString('ConexaoDB','Senha','Info@1234');
-      edtODBC.Text  := ArqIni.ReadString('ConexaoDB','ODBC','mariadb ODBC 3.1 Driver');
-      edtDLLMariaDB.Text  := ArqIni.ReadString('ConexaoDB','DLL',DefaultMariaDbLibrary);
-    finally
-      ArqINI.Free;
-    end;
+  ArqIni := TIniFile.Create(cfg_arqINI);
+  try
+    edtBANCO.Text := ArqIni.ReadString('ConexaoDB', 'Banco', 'fluxo_caixa');
+    edtServer.Text := ArqIni.ReadString('ConexaoDB', 'Server', 'localhost');
+    edtPORTA.Text := IntToStr(ArqIni.ReadInteger('ConexaoDB', 'Porta', 3306));
+    edtUSER.Text := ArqIni.ReadString('ConexaoDB', 'User', 'suporte');
+    edtSenha.Text := ArqIni.ReadString('ConexaoDB', 'Senha', 'Info@1234');
+    edtODBC.Text := ArqIni.ReadString('ConexaoDB', 'ODBC', 'mariadb ODBC 3.1 Driver');
+    edtDLLMariaDB.Text := ArqIni.ReadString('ConexaoDB', 'DLL', DefaultMariaDbLibrary);
+  finally
+    ArqINI.Free;
+  end;
 
 end;
 

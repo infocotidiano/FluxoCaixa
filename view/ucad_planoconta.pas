@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
-  ACBrEnterTab, ZDataset,  DB, ucad_padrao, classe_plano;
+  ACBrEnterTab, ZDataset, DB, ucad_padrao, classe_plano;
 
 type
 
@@ -42,7 +42,7 @@ type
 
 var
   frmcad_planoconta: Tfrmcad_planoconta;
-  oPlano : Tplano;
+  oPlano: Tplano;
 
 implementation
 
@@ -59,52 +59,51 @@ procedure Tfrmcad_planoconta.FormShow(Sender: TObject);
 begin
   inherited;
   if not qrPESQ.Active then
-     qrPESQ.Open;
+    qrPESQ.Open;
 
 end;
 
-procedure Tfrmcad_planoconta.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
+procedure Tfrmcad_planoconta.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Assigned(oPlano) then
-     FreeAndNil(oPlano);
+    FreeAndNil(oPlano);
 
 end;
 
 procedure Tfrmcad_planoconta.DBGrid1DblClick(Sender: TObject);
 begin
   if oPlano.localiza(qrPESQid_Plano.Value) then
-     begin
-       PageControl1.PageIndex := 1;
-       edtCODIGO.Text         := inttostr(oPlano.id_plano);
-       edtDESCRICAO.Text      := oPlano.descricao;
-       cmbTIPO.Text           := oPlano.tipo;
-     end;
+  begin
+    PageControl1.PageIndex := 1;
+    edtCODIGO.Text := IntToStr(oPlano.id_plano);
+    edtDESCRICAO.Text := oPlano.descricao;
+    cmbTIPO.Text := oPlano.tipo;
+  end;
 end;
 
 procedure Tfrmcad_planoconta.btnALTERAClick(Sender: TObject);
 begin
-  if strtointdef(edtCODIGO.Text,0) = 0 then
-     begin
-       ShowMessage('nenhum registro selecionado');
-       CliqueBotao := cbNone;
-       Abort;
-     end;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
+    CliqueBotao := cbNone;
+    Abort;
+  end;
   inherited;
 end;
 
 procedure Tfrmcad_planoconta.btnAPAGAClick(Sender: TObject);
 begin
-  if strtointdef(edtCODIGO.Text,0) = 0 then
-     begin
-       ShowMessage('nenhum registro selecionado');
-       cliqueBotao := cbNone;
-       Abort;
-     end;
+  if strtointdef(edtCODIGO.Text, 0) = 0 then
+  begin
+    ShowMessage('nenhum registro selecionado');
+    cliqueBotao := cbNone;
+    Abort;
+  end;
 
-  if QuestionDlg('Confirmação','Excluir o registro',mtConfirmation,
-    [mrYes,'Sim', mrNo,'Não'],0) = mrYes then
-       oPlano.exclui(oPlano.id_plano);
+  if QuestionDlg('Confirmação', 'Excluir o registro', mtConfirmation,
+    [mrYes, 'Sim', mrNo, 'Não'], 0) = mrYes then
+    oPlano.exclui(oPlano.id_plano);
   inherited;
   cliqueBotao := cbNone;
   qrPESQ.Refresh;
@@ -117,16 +116,16 @@ begin
   qrPESQ.SQL.Clear;
   qrPESQ.sql.Add('select * from planos');
   qrPESQ.sql.add('where descricao like :cPESQ');
-  qrPESQ.ParamByName('cPESQ').AsString:= '%'+trim(edtPESQUISA.Text+'%');
+  qrPESQ.ParamByName('cPESQ').AsString := '%' + trim(edtPESQUISA.Text + '%');
   try
     qrPESQ.Open;
   except
-    on e: exception do
-       ShowMessage('Erro ao realizar a pesquisa'+sLineBreak+
-       e.ClassName+sLineBreak+ e.Message);
+    on e: Exception do
+      ShowMessage('Erro ao realizar a pesquisa' + sLineBreak +
+        e.ClassName + sLineBreak + e.Message);
   end;
   if qrPESQ.RecordCount <= 0 then
-     ShowMessage('Nenhum registro encontrado !');
+    ShowMessage('Nenhum registro encontrado !');
   cliqueBotao := cbNone;
 
 end;
@@ -134,18 +133,17 @@ end;
 procedure Tfrmcad_planoconta.btnSALVAClick(Sender: TObject);
 begin
   inherited;
-  oPlano.id_plano  := StrToIntDef(edtCODIGO.Text,0);
+  oPlano.id_plano := StrToIntDef(edtCODIGO.Text, 0);
   oPlano.descricao := edtDESCRICAO.Text;
-  oPlano.tipo      := cmbTIPO.Text;
+  oPlano.tipo := cmbTIPO.Text;
   if cliqueBotao = cbAlterar then
-     oPlano.altera(oPlano.id_plano)
+    oPlano.altera(oPlano.id_plano)
   else if cliqueBotao = cbIncluir then
-     oPlano.incluir;
-  cliqueBotao:=cbNone;
+    oPlano.incluir;
+  cliqueBotao := cbNone;
   qrPESQ.Refresh;
-  PageControl1.PageIndex:=0;
+  PageControl1.PageIndex := 0;
 
 end;
 
 end.
-

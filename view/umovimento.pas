@@ -6,9 +6,11 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  EditBtn, Buttons, DBGrids, ZDataset, rxcurredit, PReport, LR_Class, LR_DBSet, DB, LCLType, ComCtrls,
+  EditBtn, Buttons, DBGrids, ZDataset, rxcurredit, PReport, LR_Class,
+  LR_DBSet, DB, LCLType, ComCtrls,
   ACBrEnterTab, utabela, ucad_lcto,
-  classe_conta,  upesquisa, uEstatistica_Despesa, upesquisa_lcto, importa, urel_movimento,
+  classe_conta, upesquisa, uEstatistica_Despesa, upesquisa_lcto,
+  importa, urel_movimento,
   ACBrUtil.Base, classe_lancamento;
 
 type
@@ -81,15 +83,15 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure dtFIMExit(Sender: TObject);
     procedure edtCODExit(Sender: TObject);
-    procedure edtCODKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edtCODKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure frReport1GetValue(const ParName: String; var ParValue: Variant);
+    procedure frReport1GetValue(const ParName: string; var ParValue: variant);
   private
-    procedure Movimento(nCOD:integer;dIncio, dFinal:TDate);
-    procedure Futuro(nCOD:integer;dIncio:TDate);
-    procedure Estatistica(nCOD:integer;dIncio, dFinal:TDate);
+    procedure Movimento(nCOD: integer; dIncio, dFinal: TDate);
+    procedure Futuro(nCOD: integer; dIncio: TDate);
+    procedure Estatistica(nCOD: integer; dIncio, dFinal: TDate);
     procedure AtivaMovimento;
     procedure AtualizaSaldos;
     procedure fechaMovimento;
@@ -99,7 +101,7 @@ type
 
 var
   frmmovimento: Tfrmmovimento;
-  conta : Tconta;
+  conta: Tconta;
 
 
 implementation
@@ -112,8 +114,8 @@ procedure Tfrmmovimento.btnINCLUIClick(Sender: TObject);
 begin
   frmcad_lcto := Tfrmcad_lcto.Create(self);
   try
-    frmcad_lcto.edtConta.Text:=edtCOD.Text;
-    frmcad_lcto.edtDescConta.Text:=edtDESC.Text;
+    frmcad_lcto.edtConta.Text := edtCOD.Text;
+    frmcad_lcto.edtDescConta.Text := edtDESC.Text;
     frmcad_lcto.ShowModal;
   finally
     FreeAndNil(frmcad_lcto);
@@ -145,14 +147,14 @@ procedure Tfrmmovimento.btnEstatisticaDespesasClick(Sender: TObject);
 begin
   frmEstatistica_Despesa := TfrmEstatistica_Despesa.Create(self);
   try
-    Estatistica( StrToIntDef(edtCOD.Text,0),
-                 dtINICIO.Date,
-                 dtFIM.Date);
+    Estatistica(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date,
+      dtFIM.Date);
     frmEstatistica_Despesa.ShowModal;
   finally
     FreeAndNil(frmEstatistica_Despesa);
     if qrEstatistica.Active then
-       qrEstatistica.Close;
+      qrEstatistica.Close;
   end;
 
 end;
@@ -160,22 +162,22 @@ end;
 procedure Tfrmmovimento.btnImportaExtratoClick(Sender: TObject);
 begin
   if not Assigned(conta) then
-     begin
-       ShowMessage('Conta nao foi inicializada.');
-       Abort;
-     end;
+  begin
+    ShowMessage('Conta nao foi inicializada.');
+    Abort;
+  end;
 
-  if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
-     begin
-        ShowMessage('Inicie o movimento e clique OK');
-        abort;
-     end;
+  if not conta.localiza(StrToIntDef(edtCOD.Text, 0)) then
+  begin
+    ShowMessage('Inicie o movimento e clique OK');
+    abort;
+  end;
   frmImporta := TfrmImporta.Create(self);
   try
-    frmImporta.edtCodConta.Text:=edtCOD.Text;
-    frmImporta.edtAgencia.Text:=conta.agencia;
-    frmImporta.edtNumConta.Text:=conta.conta;
-    frmImporta.edtNumBanco.Text:=conta.banco;
+    frmImporta.edtCodConta.Text := edtCOD.Text;
+    frmImporta.edtAgencia.Text := conta.agencia;
+    frmImporta.edtNumConta.Text := conta.conta;
+    frmImporta.edtNumBanco.Text := conta.banco;
     frmImporta.ShowModal;
   finally
     FreeAndNil(frmImporta);
@@ -187,10 +189,12 @@ procedure Tfrmmovimento.btnImprimeClick(Sender: TObject);
 begin
   frmrel_movimento := Tfrmrel_movimento.Create(self);
   try
-    frmrel_movimento.lSaldoAnterior.Caption   :='Saldo Anterior: R$ '+FormatFloatBr(msk13x2 ,nSaldoAnterior.Value);
-    frmrel_movimento.lSaldoAtual.Caption      :='Saldo Atual Período: R$ '+FormatFloatBr(msk13x2 ,nSaldoPeriodo.Value);
-    frmrel_movimento.lPeriodo.Caption:='Período de '+dtINICIO.Text+' até '+dtFIM.Text;
-    frmrel_movimento.lCONTA.Caption  :='Conta: '+edtCOD.Text+' - '+edtDESC.Text;
+    frmrel_movimento.lSaldoAnterior.Caption :=
+      'Saldo Anterior: R$ ' + FormatFloatBr(msk13x2, nSaldoAnterior.Value);
+    frmrel_movimento.lSaldoAtual.Caption :=
+      'Saldo Atual Período: R$ ' + FormatFloatBr(msk13x2, nSaldoPeriodo.Value);
+    frmrel_movimento.lPeriodo.Caption := 'Período de ' + dtINICIO.Text + ' até ' + dtFIM.Text;
+    frmrel_movimento.lCONTA.Caption := 'Conta: ' + edtCOD.Text + ' - ' + edtDESC.Text;
     frmrel_movimento.RLReport1.PreviewModal;
   finally
     FreeAndNil(frmrel_movimento);
@@ -201,41 +205,40 @@ end;
 
 procedure Tfrmmovimento.edtCODExit(Sender: TObject);
 begin
-   if not Assigned(conta) then
-      conta := Tconta.Create;
+  if not Assigned(conta) then
+    conta := Tconta.Create;
 
-   if conta.localiza(StrToIntDef(edtCOD.Text,0)) then
-      edtDESC.Text:=conta.descricao
-   else
-      edtDESC.Text:='';
+  if conta.localiza(StrToIntDef(edtCOD.Text, 0)) then
+    edtDESC.Text := conta.descricao
+  else
+    edtDESC.Text := '';
 
 end;
 
-procedure Tfrmmovimento.edtCODKeyDown(Sender: TObject; var Key: Word;
+procedure Tfrmmovimento.edtCODKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
-  If key = VK_F4 then
-     begin
-        frmPesquisa := TfrmPesquisa.
-        Create(self,['ID_CONTA','DESCRICAO','BANCO','CONTA'],
-                                                 'CONTAS',
-                                                 'ID_CONTA');
-        TRY
-          frmPesquisa.ShowModal;
-          edtCOD.text:= frmPesquisa.edtResultado.Text;
-        finally
-          if Assigned(frmPesquisa) then
-             FreeAndNil(frmPesquisa);
-        end;
-     end;
+  if key = VK_F4 then
+  begin
+    frmPesquisa := TfrmPesquisa.Create(
+      self, ['ID_CONTA', 'DESCRICAO', 'BANCO', 'CONTA'],
+      'CONTAS',
+      'ID_CONTA');
+    try
+      frmPesquisa.ShowModal;
+      edtCOD.Text := frmPesquisa.edtResultado.Text;
+    finally
+      if Assigned(frmPesquisa) then
+        FreeAndNil(frmPesquisa);
+    end;
+  end;
 end;
 
-procedure Tfrmmovimento.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
+procedure Tfrmmovimento.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   fechaMovimento;
   if Assigned(conta) then
-      FreeAndNil(conta);
+    FreeAndNil(conta);
 end;
 
 procedure Tfrmmovimento.FormCreate(Sender: TObject);
@@ -245,30 +248,29 @@ end;
 
 procedure Tfrmmovimento.FormShow(Sender: TObject);
 begin
-  dtINICIO.Date:=date -30;
-  dtFIM.Date   :=date;
+  dtINICIO.Date := date - 30;
+  dtFIM.Date := date;
   edtCOD.SetFocus;
 end;
 
-procedure Tfrmmovimento.frReport1GetValue(const ParName: String;
-  var ParValue: Variant);
+procedure Tfrmmovimento.frReport1GetValue(const ParName: string; var ParValue: variant);
 begin
   if ParName = 'conta' then
-     ParValue:=edtCOD.Text+' - '+edtDESC.Text;
+    ParValue := edtCOD.Text + ' - ' + edtDESC.Text;
   if ParName = 'periodo' then
-     ParValue:= ' de '+DateToStr(dtINICIO.Date)+' até '+DateToStr(dtFIM.Date);
+    ParValue := ' de ' + DateToStr(dtINICIO.Date) + ' até ' + DateToStr(dtFIM.Date);
   if ParName = 'saldoinicial' then
-     ParValue:= FloatToStr(nSaldoAnterior.Value);
+    ParValue := FloatToStr(nSaldoAnterior.Value);
   if ParName = 'saldofinal' then
-     ParValue:= FloatToStr(nSaldoPeriodo.Value);
+    ParValue := FloatToStr(nSaldoPeriodo.Value);
 
 end;
 
 
 procedure Tfrmmovimento.Movimento(nCOD: integer; dIncio, dFinal: TDate);
 var
-  cSQL : string;
-  nSA  : Real;  // saldo anterior
+  cSQL: string;
+  nSA: real;  // saldo anterior
   oLancamento: Tlancamento;
 begin
   //-------------------------------------------->> Definir valor da variavel saldo anteior
@@ -279,84 +281,75 @@ begin
   // nSA (Saldo Anterior) vai receber o saldo anterior da função lancamento.saldoanterior
   oLancamento := Tlancamento.Create;
   try
-    nSA:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                    dtINICIO.Date);
+    nSA := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date);
   finally
     FreeAndNil(oLancamento);
   end;
   // vamos alimentar a variavel @saldo com o valor da variavel nSA (saldo anterior)
   qrMvto.sql.add('set @saldo := :nSaldoAnt');
-  qrMvto.ParamByName('nSaldoAnt').AsFloat:=nSA;
+  qrMvto.ParamByName('nSaldoAnt').AsFloat := nSA;
   // executamos a query para definir o Saldo anteior
   qrMvto.ExecSQL;
   //--------------------------------------------> Selecionar registros exibindo calculo saldo anterior
   // se a tabela qrMvto estiver aberta. feche
   if qrMvto.Active then
-     qrMvto.Close;
+    qrMvto.Close;
   qrMvto.sql.Clear;
   //Vamos criar a consulta SQL utilizando codigo conta e periodo
-  cSQL:='select l.id_lcto, l.data_mvto,p.descricao plano, '+
-        'l.descricao , l.valor, '+
-        '(@saldo := @saldo + l.valor) SaldoAtual '+
-        'from lancamentos l '+
-        'join planos p on p.id_plano = l.plano '+
-        'where l.conta = :nCOD '+
-        'and l.data_mvto between :dINICIO and :dFINAL';
+  cSQL := 'select l.id_lcto, l.data_mvto,p.descricao plano, ' +
+    'l.descricao , l.valor, ' + '(@saldo := @saldo + l.valor) SaldoAtual ' +
+    'from lancamentos l ' + 'join planos p on p.id_plano = l.plano ' +
+    'where l.conta = :nCOD ' + 'and l.data_mvto between :dINICIO and :dFINAL';
   //alimentamos a query com o cSQL (nossa consulta) e definimos os parametros
-  qrMvto.sql.Text:=cSQL;
+  qrMvto.sql.Text := cSQL;
   qrMvto.ParamByName('nCOD').AsInteger := nCOD;
   qrMvto.ParamByName('dINICIO').AsDate := dIncio;
-  qrMvto.ParamByName('dFINAL').AsDate  := dFinal;
+  qrMvto.ParamByName('dFINAL').AsDate := dFinal;
   qrMvto.Open;
 end;
 
 procedure Tfrmmovimento.Futuro(nCOD: integer; dIncio: TDate);
 var
-  cSQL : string;
+  cSQL: string;
 begin
-  cSQL := 'select l.id_lcto, l.data_mvto, l.plano, '+
-          'p.descricao, l.descricao, l.valor '+
-          'from lancamentos l '+
-          'join planos p on p.id_plano = l.plano '+
-          'where l.conta = :nCOD '+
-          'and l.data_mvto > :dINICIO';
+  cSQL := 'select l.id_lcto, l.data_mvto, l.plano, ' +
+    'p.descricao, l.descricao, l.valor ' + 'from lancamentos l ' +
+    'join planos p on p.id_plano = l.plano ' + 'where l.conta = :nCOD ' +
+    'and l.data_mvto > :dINICIO';
   if qrFuturo.Active then
-   qrFuturo.Close;
+    qrFuturo.Close;
   qrFuturo.sql.Clear;
-  qrFuturo.sql.Text:=cSQL;
+  qrFuturo.sql.Text := cSQL;
   qrFuturo.ParamByName('nCOD').AsInteger := nCOD;
   qrFuturo.ParamByName('dINICIO').AsDate := dIncio;
   qrFuturo.Open;
   if qrFuturo.RecordCount <= 0 then
-     ShowMessage('Não existem lançamentos futuros !');
+    ShowMessage('Não existem lançamentos futuros !');
 
 end;
 
 procedure Tfrmmovimento.Estatistica(nCOD: integer; dIncio, dFinal: TDate);
 var
-  cSQL : string;
+  cSQL: string;
 begin
-  cSQL:='select l.plano Plano, p.descricao Descricao, '+
-  'sum(l.valor*-1) SubTotal, '+
-  'sum((l.valor*-1)/tmp.total*100) Percentual '+
-  'from lancamentos l '+
-  'join planos p on p.id_plano = l.plano, '+
-  '(select sum(valor*-1) Total '+
-  'from lancamentos '+
-  'where valor < 0 and conta = :nCOD '+
-  'and data_mvto between :dINICIO and :dFINAL) tmp '+
-  'where p.tipo  = '+QuotedStr('D')+' and l.conta = :nCOD '+
-  'and l.data_mvto between :dINICIO and :dFINAL '+
-  'group by l.plano, p.descricao '+
-  'order by p.descricao';
+  cSQL := 'select l.plano Plano, p.descricao Descricao, ' +
+    'sum(l.valor*-1) SubTotal, ' + 'sum((l.valor*-1)/tmp.total*100) Percentual ' +
+    'from lancamentos l ' + 'join planos p on p.id_plano = l.plano, ' +
+    '(select sum(valor*-1) Total ' + 'from lancamentos ' +
+    'where valor < 0 and conta = :nCOD ' +
+    'and data_mvto between :dINICIO and :dFINAL) tmp ' +
+    'where p.tipo  = ' + QuotedStr('D') + ' and l.conta = :nCOD ' +
+    'and l.data_mvto between :dINICIO and :dFINAL ' + 'group by l.plano, p.descricao ' +
+    'order by p.descricao';
 
   if qrEstatistica.Active then
-     qrEstatistica.Close;
+    qrEstatistica.Close;
   qrEstatistica.sql.Clear;
-  qrEstatistica.sql.Text:=cSQL;
+  qrEstatistica.sql.Text := cSQL;
   qrEstatistica.ParamByName('nCOD').AsInteger := nCOD;
   qrEstatistica.ParamByName('dINICIO').AsDate := dIncio;
-  qrEstatistica.ParamByName('dFINAL').AsDate  := dFinal;
+  qrEstatistica.ParamByName('dFINAL').AsDate := dFinal;
   qrEstatistica.Open;
 
 end;
@@ -366,52 +359,52 @@ var
   oLancamento: Tlancamento;
 begin
   if not Assigned(conta) then
-     begin
-       ShowMessage('Conta nao foi inicializada.');
-       Abort;
-     end;
+  begin
+    ShowMessage('Conta nao foi inicializada.');
+    Abort;
+  end;
 
-  if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
-     begin
-       ShowMessage('Conta Inválida !');
-       abort;
-     end;
+  if not conta.localiza(StrToIntDef(edtCOD.Text, 0)) then
+  begin
+    ShowMessage('Conta Inválida !');
+    abort;
+  end;
 
   if dtINICIO.Date > dtFIM.Date then
-   begin
+  begin
     ShowMessage('A data inicial não pode ser MAIOR que a data Final!');
     abort;
-   end;
+  end;
 
   oLancamento := Tlancamento.Create;
   try
-    nSaldoAnterior.Value:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                     dtINICIO.Date);
-    nSaldoPeriodo.Value  := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                      dtINICIO.Date)+
-                            oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
-                                                     dtINICIO.Date,
-                                                     dtFIM.Date);
-    nSaldoFuturo.Value:= oLancamento.SaldoFuturo(StrToIntDef(edtCOD.Text,0),
-                                                 Date);
+    nSaldoAnterior.Value := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date);
+    nSaldoPeriodo.Value := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date) +
+      oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date,
+      dtFIM.Date);
+    nSaldoFuturo.Value := oLancamento.SaldoFuturo(StrToIntDef(edtCOD.Text, 0),
+      Date);
   finally
     FreeAndNil(oLancamento);
   end;
 
 
-  Movimento(StrToIntDef(edtCOD.Text,0),dtINICIO.Date, dtFIM.Date);
-  Futuro(StrToIntDef(edtCOD.Text,0),Date);
+  Movimento(StrToIntDef(edtCOD.Text, 0), dtINICIO.Date, dtFIM.Date);
+  Futuro(StrToIntDef(edtCOD.Text, 0), Date);
 
   if qrMvto.RecordCount > 0 then
-      begin
-         dbgMvto.SetFocus;
-         qrMvto.Last;
-      end
+  begin
+    dbgMvto.SetFocus;
+    qrMvto.Last;
+  end
   else
-      begin
-        ShowMessage('Não existe lançamentos no período !');
-        edtCOD.SetFocus;
-      end;
+  begin
+    ShowMessage('Não existe lançamentos no período !');
+    edtCOD.SetFocus;
+  end;
 
 end;
 
@@ -420,32 +413,32 @@ var
   oLancamento: Tlancamento;
 begin
   if not Assigned(conta) then
-     begin
-       ShowMessage('Conta nao foi inicializada.');
-       Abort;
-     end;
+  begin
+    ShowMessage('Conta nao foi inicializada.');
+    Abort;
+  end;
 
-  if not conta.localiza(StrToIntDef(edtCOD.Text,0)) then
-     begin
-       ShowMessage('Conta Inválida !');
-       abort;
-     end;
+  if not conta.localiza(StrToIntDef(edtCOD.Text, 0)) then
+  begin
+    ShowMessage('Conta Inválida !');
+    abort;
+  end;
 
   if dtINICIO.Date > dtFIM.Date then
-   begin
+  begin
     ShowMessage('A data inicial não pode ser MAIOR que a data Final!');
     abort;
-   end;
+  end;
 
   oLancamento := Tlancamento.Create;
   try
-    nSaldoAnterior.Value:= oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                     dtINICIO.Date);
-    nSaldoPeriodo.Value  := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text,0),
-                                                      dtINICIO.Date)+
-                            oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text,0),
-                                                     dtINICIO.Date,
-                                                     dtFIM.Date);
+    nSaldoAnterior.Value := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date);
+    nSaldoPeriodo.Value := oLancamento.SaldoAnterior(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date) +
+      oLancamento.SaldoPeriodo(StrToIntDef(edtCOD.Text, 0),
+      dtINICIO.Date,
+      dtFIM.Date);
   finally
     FreeAndNil(oLancamento);
   end;
@@ -457,9 +450,9 @@ end;
 procedure Tfrmmovimento.fechaMovimento;
 begin
   if qrMvto.Active then
-     qrMvto.Close;
-  nSaldoAnterior.Value:=0;
-  nSaldoPeriodo.Value:=0;
+    qrMvto.Close;
+  nSaldoAnterior.Value := 0;
+  nSaldoPeriodo.Value := 0;
 end;
 
 end.

@@ -8,6 +8,7 @@ object frmPesquisa: TfrmPesquisa
   ClientWidth = 551
   Color = 6973961
   Position = poMainFormCenter
+  LCLVersion = '4.4.0.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 287
@@ -33,6 +34,7 @@ object frmPesquisa: TfrmPesquisa
     ClientHeight = 94
     ClientWidth = 551
     Color = 16744576
+    ParentBackground = False
     ParentColor = False
     TabOrder = 1
     object cbCampos: TComboBox
@@ -64,8 +66,8 @@ object frmPesquisa: TfrmPesquisa
       Height = 23
       Top = 42
       Width = 192
-      OnKeyDown = edtBuscaKeyDown
       TabOrder = 2
+      OnKeyDown = edtBuscaKeyDown
     end
     object btnPesquisa: TButton
       Left = 448
@@ -73,8 +75,8 @@ object frmPesquisa: TfrmPesquisa
       Top = 23
       Width = 75
       Caption = 'Pesquisa'
-      OnClick = btnPesquisaClick
       TabOrder = 3
+      OnClick = btnPesquisaClick
     end
     object Label1: TLabel
       Left = 25

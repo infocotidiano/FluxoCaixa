@@ -46,6 +46,7 @@ inherited frmcad_entidade: Tfrmcad_entidade
         Font.Color = clBlack
         Font.Style = [fsBold]
         Options = [dgTitles, dgColumnResize, dgColumnMove, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+        ParentFont = False
         TabOrder = 1
         TitleFont.Color = clWhite
         TitleFont.Style = [fsBold]

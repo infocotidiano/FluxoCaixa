@@ -7,10 +7,11 @@ object frmImporta: TfrmImporta
   ClientHeight = 421
   ClientWidth = 892
   KeyPreview = True
+  Position = poMainFormCenter
+  LCLVersion = '4.4.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  Position = poMainFormCenter
   object pnpTITULO: TPanel
     Left = 0
     Height = 50
@@ -24,6 +25,7 @@ object frmImporta: TfrmImporta
     Font.Height = -24
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    ParentBackground = False
     ParentColor = False
     ParentFont = False
     TabOrder = 0
@@ -105,8 +107,8 @@ object frmImporta: TfrmImporta
       Top = 73
       Width = 75
       Caption = 'Filtro'
-      OnClick = btnFiltroClick
       TabOrder = 2
+      OnClick = btnFiltroClick
     end
   end
   object RxDBGrid1: TRxDBGrid
@@ -314,7 +316,6 @@ object frmImporta: TfrmImporta
     Align = alClient
     Color = clWindow
     DrawFullLine = False
-    FocusColor = clRed
     SelectedColor = clHighlight
     DataSource = DsTMP
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]

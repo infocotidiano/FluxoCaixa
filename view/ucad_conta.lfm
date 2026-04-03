@@ -6,6 +6,8 @@ inherited frmcad_conta: Tfrmcad_conta
     Caption = 'Cadastro Conta'
   end
   inherited PageControl1: TPageControl
+    ActivePage = tsPESQUISA
+    TabIndex = 0
     inherited tsPESQUISA: TTabSheet
       inherited Panel1: TPanel
         inherited btnPESQUISA: TSpeedButton
@@ -53,6 +55,7 @@ inherited frmcad_conta: Tfrmcad_conta
         Font.Color = clBlack
         Font.Style = [fsBold]
         Options = [dgTitles, dgColumnResize, dgColumnMove, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+        ParentFont = False
         TabOrder = 1
         TitleFont.Color = clWhite
         TitleFont.Style = [fsBold]

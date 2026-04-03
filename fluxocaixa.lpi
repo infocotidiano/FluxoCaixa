@@ -18,17 +18,17 @@
       <Icon Value="0"/>
     </General>
     <BuildModes>
-      <Item Name="Linux" Default="True"/>
-      <Item Name="Debug wIN">
+      <Item Name="Debug Windows" Default="True"/>
+      <Item Name="Linux">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="fluxocaixa_dbg"/>
+            <Filename Value="fluxocaixa"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
             <OtherUnitFiles Value="conexao;classe;view;relatorios"/>
-            <UnitOutputDirectory Value="c:\temp\lib\$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="$(ProjPath)lib/linux"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -47,8 +47,6 @@
           <Linking>
             <Debugging>
               <DebugInfoType Value="dsDwarf3"/>
-              <UseHeaptrc Value="True"/>
-              <TrashVariables Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
             <Options>
@@ -59,7 +57,7 @@
           </Linking>
         </CompilerOptions>
       </Item>
-      <Item Name="Release">
+      <Item Name="Windows">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -68,7 +66,7 @@
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
             <OtherUnitFiles Value="conexao;classe;view;relatorios"/>
-            <UnitOutputDirectory Value="c:/temp/lib/$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="$(ProjPath)lib/windows"/>
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
@@ -272,12 +270,6 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unit1.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
-        <UnitName Value="Unit1"/>
-      </Unit>
-      <Unit>
         <Filename Value="view/ucad_receber.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmcad_receber"/>
@@ -300,12 +292,12 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="fluxocaixa_linux"/>
+      <Filename Value="fluxocaixa"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="conexao;classe;view;relatorios"/>
-      <UnitOutputDirectory Value="/home/danegd/ProjetosLaz/fluxoCaixa/temp/$(TargetCPU)-$(TargetOS)"/>
+      <UnitOutputDirectory Value="$(ProjPath)lib/Windows"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -324,6 +316,8 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf3"/>
+        <UseHeaptrc Value="True"/>
+        <TrashVariables Value="True"/>
         <UseExternalDbgSyms Value="True"/>
       </Debugging>
       <Options>

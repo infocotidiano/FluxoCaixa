@@ -16,8 +16,6 @@ inherited frmcad_receber: Tfrmcad_receber
     ActivePage = tsPESQUISA
     TabIndex = 0
     inherited tsPESQUISA: TTabSheet
-      ClientHeight = 309
-      ClientWidth = 598
       inherited Panel1: TPanel
         Width = 598
         ClientWidth = 598
@@ -56,42 +54,42 @@ inherited frmcad_receber: Tfrmcad_receber
         Columns = <        
           item
             Title.Caption = 'ID'
-            Width = 30
+            Width = 28
             FieldName = 'id_receber'
           end        
           item
             Title.Caption = 'Descricao'
-            Width = 80
+            Width = 69
             FieldName = 'descricao'
           end        
           item
             Title.Caption = 'Dt.Lcto'
-            Width = 64
+            Width = 56
             FieldName = 'dtlancamento'
           end        
           item
             Title.Caption = 'Valor'
-            Width = 49
+            Width = 44
             FieldName = 'valor'
           end        
           item
             Title.Caption = 'Vencimento'
-            Width = 95
+            Width = 83
             FieldName = 'dtvencimento'
           end        
           item
             Title.Caption = 'Valor Recebido'
-            Width = 112
+            Width = 99
             FieldName = 'valorrecebido'
           end        
           item
             Title.Caption = 'Situacao'
-            Width = 72
+            Width = 62
             FieldName = 'situacao'
           end        
           item
             Title.Caption = 'Plano'
-            Width = 52
+            Width = 45
             FieldName = 'plano'
           end>
         DataSource = dsPESQ
@@ -110,8 +108,6 @@ inherited frmcad_receber: Tfrmcad_receber
       end
     end
     inherited tsCADASTRO: TTabSheet
-      ClientHeight = 309
-      ClientWidth = 598
       inherited pnpRODAPE: TPanel
         Top = 259
         Width = 598
