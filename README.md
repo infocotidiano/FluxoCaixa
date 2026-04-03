@@ -101,7 +101,7 @@ sudo apt install ttf-mscorefonts-installer
 
 **Aviso importante:**
 
-- Os fontes disponibilizados são dos videos da playlist do youtube, para fim aprendizagem.
+- Os fontes disponibilizados são dos videos da playlist do youtube para fim aprendizagem.
 - Testado no Windows e Linux (Ubuntu e Pop!_OS).
 - Não há qualquer tipo de garantia de funcionamento ou suporte do autor.
 - O autor não se responsabiliza por perdas, danos ou qualquer tipo problema/ bugs ou falhas de comportamento.  
