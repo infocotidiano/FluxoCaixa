@@ -53,6 +53,8 @@ O projeto esta configurado para usar MariaDB/MySQL via Zeos.
 - Cliente nativo no Windows: `libmariadb.dll`
 - Arquivos de exemplo: `fluxocaixa.ini`, `fluxocaixa_linux.ini`
 
+No diretório `dump` existe um backup do esquema do banco sem dados (somente estruturas), que deve ser restaurado em uma base chamada `fluxo_caixa`.
+
 Os dados de conexao nao ficam fixos no sistema. Servidor, porta, usuario, senha e banco podem ser informados pelo usuario na tela de configuracao da conexao com o banco de dados, conforme o ambiente utilizado.
 
 No Windows, a DLL cliente do MariaDB precisa estar acessivel. O repositorio ja possui copias em:
@@ -96,3 +98,10 @@ sudo apt install ttf-mscorefonts-installer
 - O projeto referencia `ACBr_OFX`, portanto nao basta somente instalar um pacote generico do ACBr: o modulo de OFX precisa estar disponivel.
 - O relatorio principal usa `RLReport`, entao somente `LazReport` nao cobre todas as dependencias de relatorio deste projeto.
 - Se algum formulario abrir com componente faltando, confira primeiro se todos os pacotes listados em `fluxocaixa.lpi` foram instalados na IDE.
+
+**Aviso importante:**
+
+- Os fontes disponibilizados são dos videos da playlist do youtube, para fim aprendizagem.
+- Testado no Windows e Linux (Ubuntu e Pop!_OS).
+- Não há qualquer tipo de garantia de funcionamento ou suporte do autor.
+- O autor não se responsabiliza por perdas, danos ou qualquer tipo problema/ bugs ou falhas de comportamento.  
