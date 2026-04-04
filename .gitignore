@@ -12,6 +12,9 @@
 
 backup/
 classe/backup/
+view/backup/
+relatorios/backup/
+conexao/backup/
 
 # ===== Binários =====
 

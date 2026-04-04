@@ -1,43 +1,36 @@
-# fluxoCaixa
+# FluxoCaixa
 
 Projeto Fluxo de Caixa.
 
-Sistema desktop de controle de fluxo de caixa desenvolvido em Lazarus/Free Pascal, com persistencia em MariaDB.
+Sistema desktop de controle de fluxo de caixa desenvolvido em Lazarus/Free Pascal, com bando de dados MariaDB.
 
 Criado em Lazarus FPC (Free Pascal Compiler).
 
-## Fontes do projeto
+## 📺 Fontes do projeto
 
-Fontes dos videos da playlist do YouTube:
+Playlist completa no YouTube:
 
 - https://www.youtube.com/playlist?list=PLiLrXujC4CW2lGeq1YeDbIcxbUP1W94QL
 
-## Dependencias externas
+<img src="imagem/fluxocaixa.png" width="50%" alt="Fluxo Caixa">
 
-Os componentes abaixo aparecem no projeto e precisam estar instalados no Lazarus para abrir os formularios e compilar sem erros.
+## Dependências externas
 
-| Componente | Pacote no projeto | Onde e usado | Instalacao |
+Os componentes abaixo aparecem no projeto e precisam estar instalados no Lazarus para abrir os formulários e compilar sem erros.
+
+| Componente | Pacote no projeto | Onde é usado | Instalação |
 | --- | --- | --- | --- |
-| ZeosLib | `zcomponent`, `zcomponentdesign`, `lr_zeosdb` | Conexao com banco via `TZConnection` e consultas `TZQuery` | Instalar separadamente ou pelo Online Package Manager |
+| ZeosLib | `zcomponent`, `zcomponentdesign`, `lr_zeosdb` | Conexão com banco via `TZConnection` e consultas `TZQuery` | Instalar separadamente ou pelo Online Package Manager |
 | RxLib / Rx New | `rxnew` | `TRxMemoryData`, `TRxDBGrid`, `TCurrencyEdit`, `rxtooledit` | Instalar separadamente ou pelo Online Package Manager |
-| ACBr | `ACBr_OFX`, `ACBrDiversos` | Importacao OFX (`TACBrOFX`), `TACBrEnterTab` e funcoes utilitarias `ACBrUtil` | Instalar separadamente |
-| LazReport | `lazreport` | Estrutura de relatorios com `LR_Class` e `LR_DBSet` | Normalmente disponivel no Lazarus, mas pode exigir instalacao do pacote |
-| Integracao LazReport + Zeos | `lr_zeosdb` | Suporte a datasets Zeos em relatorios | Instalar junto com Zeos/LazReport |
-| Fortes Report / RLReport | `frce` | Relatorio em `relatorios/urel_movimento.*` com componentes `TRLReport` | Instalar separadamente |
-| PowerPDF | `pack_powerpdf` | Dependencia do ecossistema de relatorio usado pelo projeto | Instalar separadamente quando o pacote nao vier junto |
+| ACBr | `ACBr_OFX`, `ACBrDiversos` | Importação OFX (`TACBrOFX`), `TACBrEnterTab` e funções utilitárias `ACBrUtil` | Instalar separadamente |
+| LazReport | `lazreport` | Estrutura de relatórios com `LR_Class` e `LR_DBSet` | Normalmente disponível no Lazarus, mas pode exigir instalação do pacote |
+| Integração LazReport + Zeos | `lr_zeosdb` | Suporte a datasets Zeos em relatórios | Instalar junto com Zeos/LazReport |
+| Fortes Report / RLReport | `frce` | Relatório em `relatorios/urel_movimento.*` com componentes `TRLReport` | Instalar separadamente https://github.com/fortesinformatica/fortesreport-ce |
+| PowerPDF | `pack_powerpdf` | Dependência do ecossistema de relatórios usado pelo projeto | Instalar separadamente quando o pacote não vier junto |
 
-## Pacotes nativos do Lazarus/FPC
+## Evidências no projeto
 
-Estes pacotes tambem aparecem no arquivo do projeto, mas normalmente ja fazem parte da instalacao padrao do Lazarus/FPC:
-
-- `LCL`
-- `FCL`
-- `DateTimeCtrls`
-- `DateTimeCtrlsDsgn`
-
-## Evidencias no projeto
-
-Alguns pontos onde as dependencias externas sao usadas:
+Alguns pontos onde as dependências externas são utilizadas:
 
 - `view/importa.pas`: usa `ACBrOFX`, `ACBrEnterTab`, `rxmemds` e `RxDBGrid`.
 - `conexao/utabela.pas`: usa `ZConnection` (`TZConnection`).
@@ -47,61 +40,92 @@ Alguns pontos onde as dependencias externas sao usadas:
 
 ## Banco de dados
 
-O projeto esta configurado para usar MariaDB/MySQL via Zeos.
+O projeto está configurado para usar MariaDB/MySQL via Zeos.
 
 - Protocolo configurado: `mariadb`
 - Cliente nativo no Windows: `libmariadb.dll`
 - Arquivos de exemplo: `fluxocaixa.ini`, `fluxocaixa_linux.ini`
 
-No diretório `dump` existe um backup do esquema do banco sem dados (somente estruturas), que deve ser restaurado em uma base chamada `fluxo_caixa`.
+No diretório `dump` existe um backup do esquema do banco.
 
-Os dados de conexao nao ficam fixos no sistema. Servidor, porta, usuario, senha e banco podem ser informados pelo usuario na tela de configuracao da conexao com o banco de dados, conforme o ambiente utilizado.
+### ⚠️ Atenção ao restaurar o banco
 
-No Windows, a DLL cliente do MariaDB precisa estar acessivel. O repositorio ja possui copias em:
+**Cuidado ao restaurar o arquivo `fluxo_caixa.sql`:**
 
-- `MariaDbDLL/x32/libmariadb.dll`
-- `MariaDbDLL/x64/libmariadb.dll`
+- Você **perderá todos os dados já cadastrados**
+- O script irá **sobrescrever sua base atual com dados de teste**
+
+### Como restaurar com segurança
+
+Se desejar utilizar a base de testes sem afetar seus dados atuais:
+
+create database fluxo_caixa;
+
+Depois execute:
+
+mysql -uroot -p fluxo_caixa < fluxo_caixa.sql
+
+O arquivo está na pasta:
+
+dump/
+
+## Configuração no Linux
+
+No Linux, é necessário ter o MariaDB e o cliente instalados.
+
+Instale com:
+
+sudo apt update && sudo apt install mariadb-client
+
+### 🎥 Tutorial de instalação MariaDB (Linux)
+
+https://www.youtube.com/watch?v=KKosoq157_Y
+
+## Cliente MariaDB no Windows
+
+No Windows, a DLL cliente do MariaDB precisa estar acessível. O repositório já possui cópias em:
+
+- MariaDbDLL/x32/libmariadb.dll
+- MariaDbDLL/x64/libmariadb.dll
 
 ## Como instalar os componentes
 
-Opcao 1: Online Package Manager do Lazarus
+### Opção 1: Online Package Manager do Lazarus
 
-1. Abrir o Lazarus.
-2. Ir em `Package -> Online Package Manager`.
-3. Procurar e instalar os pacotes disponiveis, especialmente:
-   `Zeos`, `Rx`, `LazReport` e pacotes relacionados.
-4. Recompilar a IDE quando solicitado.
+1. Abrir o Lazarus  
+2. Ir em Package -> Online Package Manager  
+3. Instalar:
+   - Zeos  
+   - Rx  
+   - LazReport  
+4. Recompilar a IDE  
 
-Opcao 2: Instalacao manual
+### Opção 2: Instalação manual
 
-1. Baixar os fontes dos projetos externos.
-2. Abrir os arquivos `.lpk` correspondentes no Lazarus.
-3. Escolher `Use -> Install`.
-4. Recompilar a IDE.
+1. Baixar os fontes dos projetos externos  
+2. Abrir os .lpk no Lazarus  
+3. Use -> Install  
+4. Recompilar a IDE  
 
-## Instalacao do ACBr
+## Instalação do ACBr
 
-Referencia em video para instalacao do ACBr:
+Referência em vídeo:
 
-- https://youtu.be/aiytLfagvXU?si=HoIQ9IDFRpfCSMIj
+https://youtu.be/aiytLfagvXU?si=HoIQ9IDFRpfCSMIj
 
-## Instalacao de fontes no Debian e derivados
+## Instalação de fontes no Debian e derivados
 
-Para evitar problemas com fontes usadas em relatorios e formularios, instalar:
-
-```bash
 sudo apt install ttf-mscorefonts-installer
-```
 
-## Observacoes
+## Observações
 
-- O projeto referencia `ACBr_OFX`, portanto nao basta somente instalar um pacote generico do ACBr: o modulo de OFX precisa estar disponivel.
-- O relatorio principal usa `RLReport`, entao somente `LazReport` nao cobre todas as dependencias de relatorio deste projeto.
-- Se algum formulario abrir com componente faltando, confira primeiro se todos os pacotes listados em `fluxocaixa.lpi` foram instalados na IDE.
+- O projeto utiliza ACBr_OFX, portanto esse módulo deve estar disponível  
+- O relatório principal usa RLReport, então apenas o LazReport não cobre tudo  
+- Se houver erro de componente, verifique os pacotes do fluxocaixa.lpi  
 
-**Aviso importante:**
+## Aviso importante
 
-- Os fontes disponibilizados são dos videos da playlist do youtube para fim aprendizagem.
-- Testado no Windows e Linux (Ubuntu e Pop!_OS).
-- Não há qualquer tipo de garantia de funcionamento ou suporte do autor.
-- O autor não se responsabiliza por perdas, danos ou qualquer tipo problema/ bugs ou falhas de comportamento.  
+- Projeto com fins educacionais (baseado na playlist)  
+- Testado no Windows e Linux  
+- Sem garantia de funcionamento ou suporte  
+- O autor não se responsabiliza por perdas de dados ou problemas

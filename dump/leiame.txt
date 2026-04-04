@@ -4,4 +4,4 @@ de testes.
 Se desejar restaurar minha base basta criar um novo banco (schema)
 exemplo:
 create database fluxo_caixa
-mysql -uroot -p fluxo_caixa < fluxo.caixa.sql
+mysql -uroot -p fluxo_caixa < fluxo_caixa.sql
