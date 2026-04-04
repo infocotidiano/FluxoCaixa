@@ -11,10 +11,8 @@
 # ===== Backup específico =====
 
 backup/
-classe/backup/
-view/backup/
-relatorios/backup/
-conexao/backup/
+backup/
+**/backup/
 
 # ===== Binários =====
 
