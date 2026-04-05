@@ -89,6 +89,7 @@ type
     FPlano: Tplano;
     FConta: Tconta;
     procedure ExibePainelPagar(lFlag: boolean);
+    procedure AlimentaCamposFormulario(AIdLancamento:Integer);
   public
 
   end;
@@ -187,6 +188,7 @@ end;
 procedure Tfrmcad_pagar.btnRecOKClick(Sender: TObject);
 var
   LLancamento: Tlancamento;
+  LIdLancamento : Integer;
 begin
   LLancamento := Tlancamento.Create;
   try
@@ -207,6 +209,10 @@ begin
     FreeAndNil(LLancamento);
   end;
   ExibePainelPagar(False);
+
+  LIdLancamento := StrToIntDef(edtIdLcto.text,0);
+  AlimentaCamposFormulario(LIdLancamento);
+
   if qrPESQ.Active then
     qrPESQ.Refresh;
 end;
@@ -237,34 +243,9 @@ end;
 
 procedure Tfrmcad_pagar.DBGrid1DblClick(Sender: TObject);
 begin
-  if FContaPagar.localiza(qrPESQid_pagar.Value) then
-  begin
-    PageControl1.PageIndex := 1;
-    edtIdLcto.Text := IntToStr(FContaPagar.Id_Registro);
-    edtDesc.Text := FContaPagar.descricao;
-    edtCodPlano.Text := IntToStr(FContaPagar.Plano);
-    edtDataLcto.Date := FContaPagar.DtLancamento;
-    edtValor.Value := FContaPagar.Valor;
-    edtDataVencimento.Date := FContaPagar.DtVencimento;
-    edtValorPago.Value := FContaPagar.ValorPago;
-    edtDataPagamento.Date := FContaPagar.DtPagamento;
-    edtSituacao.Text := FContaPagar.Situacao;
-    if StrToIntDef(edtCodPlano.Text, 0) > 0 then
-    begin
-      if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
-      begin
-        edtDescPlano.Text := FPlano.descricao;
-        edtTipo.Text := FPlano.tipo;
-        if StrToInt(edtCodPlano.Text) = 99990 then
-        begin
-          ShowMessage('Plano inválido !');
-          abort;
-        end;
 
-      end;
-    end;
+  AlimentaCamposFormulario(qrPESQid_pagar.Value);
 
-  end;
 end;
 
 procedure Tfrmcad_pagar.btnALTERAClick(Sender: TObject);
@@ -391,6 +372,43 @@ begin
     pnpPAGAR.Left := 0
   else
     pnpPAGAR.Left := 750;
+end;
+
+procedure Tfrmcad_pagar.AlimentaCamposFormulario(AIdLancamento: Integer);
+begin
+  if AIdLancamento <= 0 then
+     raise Exception.Create('Id Lançamento não informado');
+
+  if FContaPagar.localiza(AIdLancamento) then
+  begin
+    PageControl1.PageIndex := 1;
+    edtIdLcto.Text := IntToStr(FContaPagar.Id_Registro);
+    edtDesc.Text := FContaPagar.descricao;
+    edtCodPlano.Text := IntToStr(FContaPagar.Plano);
+    edtDataLcto.Date := FContaPagar.DtLancamento;
+    edtValor.Value := FContaPagar.Valor;
+    edtDataVencimento.Date := FContaPagar.DtVencimento;
+    edtValorPago.Value := FContaPagar.ValorPago;
+    edtDataPagamento.Date := FContaPagar.DtPagamento;
+    edtSituacao.Text := FContaPagar.Situacao;
+    if StrToIntDef(edtCodPlano.Text, 0) > 0 then
+    begin
+      if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
+      begin
+        edtDescPlano.Text := FPlano.descricao;
+        edtTipo.Text := FPlano.tipo;
+        if StrToInt(edtCodPlano.Text) = 99990 then
+        begin
+          ShowMessage('Plano inválido !');
+          abort;
+        end;
+
+      end;
+    end;
+
+  end;
+
+
 end;
 
 end.

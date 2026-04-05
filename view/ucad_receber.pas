@@ -89,6 +89,7 @@ type
     FPlano: Tplano;
     FConta: Tconta;
     procedure ExibePainelReceber(lFlag: boolean);
+    procedure AlimentaCamposFormulario(AIdLancamento:Integer);
   public
 
   end;
@@ -154,6 +155,7 @@ end;
 procedure Tfrmcad_receber.btnRecOKClick(Sender: TObject);
 var
   LLancamento: Tlancamento;
+  LIdLancamento : Integer;
 begin
   LLancamento := Tlancamento.Create;
   try
@@ -174,6 +176,10 @@ begin
     FreeAndNil(LLancamento);
   end;
   ExibePainelReceber(False);
+
+  LIdLancamento := StrToIntDef(edtIdLcto.text,0);
+  AlimentaCamposFormulario(LIdLancamento);
+
   if qrPESQ.Active then
     qrPESQ.Refresh;
 end;
@@ -203,34 +209,9 @@ end;
 
 procedure Tfrmcad_receber.DBGrid1DblClick(Sender: TObject);
 begin
-  if FContaReceber.localiza(qrPESQid_receber.Value) then
-  begin
-    PageControl1.PageIndex := 1;
-    edtIdLcto.Text := IntToStr(FContaReceber.Id_Registro);
-    edtDesc.Text := FContaReceber.descricao;
-    edtCodPlano.Text := IntToStr(FContaReceber.Plano);
-    edtDataLcto.Date := FContaReceber.DtLancamento;
-    edtValor.Value := FContaReceber.Valor;
-    edtDataVencimento.Date := FContaReceber.DtVencimento;
-    edtDataRecebimento.Date := FContaReceber.DtPagamento;
-    edtValorRecebido.Value := FContaReceber.ValorPago;
-    edtSituacao.Text := FContaReceber.Situacao;
-    if StrToIntDef(edtCodPlano.Text, 0) > 0 then
-    begin
-      if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
-      begin
-        edtDescPlano.Text := FPlano.descricao;
-        edtTipo.Text := FPlano.tipo;
-        if StrToInt(edtCodPlano.Text) = 99990 then
-        begin
-          ShowMessage('Plano inválido !');
-          abort;
-        end;
 
-      end;
-    end;
+  AlimentaCamposFormulario(qrPESQid_receber.Value);
 
-  end;
 end;
 
 procedure Tfrmcad_receber.edtCodPlanoExit(Sender: TObject);
@@ -354,6 +335,44 @@ begin
     pnpRECEBER.Left := 0
   else
     pnpRECEBER.Left := 750;
+
+end;
+
+procedure Tfrmcad_receber.AlimentaCamposFormulario(AIdLancamento: Integer);
+begin
+
+  if AIdLancamento <= 0 then
+     raise Exception.Create('Id Lançamento não informado');
+
+  if FContaReceber.localiza(AIdLancamento) then
+  begin
+    PageControl1.PageIndex := 1;
+    edtIdLcto.Text := IntToStr(FContaReceber.Id_Registro);
+    edtDesc.Text := FContaReceber.descricao;
+    edtCodPlano.Text := IntToStr(FContaReceber.Plano);
+    edtDataLcto.Date := FContaReceber.DtLancamento;
+    edtValor.Value := FContaReceber.Valor;
+    edtDataVencimento.Date := FContaReceber.DtVencimento;
+    edtDataRecebimento.Date := FContaReceber.DtPagamento;
+    edtValorRecebido.Value := FContaReceber.ValorPago;
+    edtSituacao.Text := FContaReceber.Situacao;
+    if StrToIntDef(edtCodPlano.Text, 0) > 0 then
+    begin
+      if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
+      begin
+        edtDescPlano.Text := FPlano.descricao;
+        edtTipo.Text := FPlano.tipo;
+        if StrToInt(edtCodPlano.Text) = 99990 then
+        begin
+          ShowMessage('Plano inválido !');
+          abort;
+        end;
+
+      end;
+    end;
+
+  end;
+
 
 end;
 
