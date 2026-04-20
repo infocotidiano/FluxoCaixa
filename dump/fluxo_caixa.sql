@@ -90,6 +90,7 @@ CREATE TABLE `pagar` (
   `plano` int(11) DEFAULT NULL,
   `dtrecebimento` date DEFAULT NULL,
   `codconta` int(11) DEFAULT NULL,
+  `entidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pagar`),
   KEY `plano` (`plano`),
   CONSTRAINT `pagar_ibfk_1` FOREIGN KEY (`plano`) REFERENCES `planos` (`id_plano`)
@@ -130,6 +131,7 @@ CREATE TABLE `receber` (
   `plano` int(11) DEFAULT NULL,
   `dtrecebimento` date DEFAULT NULL,
   `codconta` int(11) DEFAULT NULL,
+  `entidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_receber`),
   KEY `plano` (`plano`),
   CONSTRAINT `receber_ibfk_1` FOREIGN KEY (`plano`) REFERENCES `planos` (`id_plano`)
@@ -172,4 +174,4 @@ CREATE TABLE `usuarios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-05  9:20:39
+-- Dump completed on 2026-04-20  8:59:23

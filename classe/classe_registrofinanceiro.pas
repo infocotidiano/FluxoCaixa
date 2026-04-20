@@ -23,6 +23,7 @@ type
     FDtVencimento: TDate;
     FDtPagamento: TDate;
     FCodConta : integer;
+    FEntidade: integer;
 
     procedure SetDescricao(AValue: string);
     procedure SetSituacao(AValue: string);
@@ -59,6 +60,7 @@ type
     property Plano : integer read GetPlano write SetPlano;
     property DtPagamento: TDate read getDtpagamento write setDtPagamento;
     property CodConta: integer read FCodConta write FCodConta;
+    property Entidade: integer read FEntidade write FEntidade;
   end;
 
 implementation

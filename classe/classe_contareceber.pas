@@ -47,10 +47,10 @@ var
 begin
   cSQL:= 'insert into receber'+
           '  (id_receber, descricao, dtlancamento, valor, ' +
-              'dtvencimento, valorrecebido, situacao, plano, dtrecebimento, codconta) '+
+              'dtvencimento, valorrecebido, situacao, plano, dtrecebimento, codconta, entidade) '+
           'values '+
           '  (:id_registro, :descricao, :dtlancamento, :valor, '+
-             ':dtvencimento, :valorpago, :situacao, :plano, :dtpagamento, :codconta)';
+             ':dtvencimento, :valorpago, :situacao, :plano, :dtpagamento, :codconta, :entidade)';
   qrINC := TZQuery.Create(nil);
   qrINC.Connection := TabGlobal.conexao;
   qrINC.sql.Text:=cSQL;
@@ -64,6 +64,7 @@ begin
   qrINC.ParamByName('plano').AsInteger       := Plano;
   qrINC.ParamByName('dtpagamento').AsDate    := DtPagamento;
   qrINC.ParamByName('codconta').AsInteger    := CodConta;
+  qrINC.ParamByName('entidade').AsInteger    := Entidade;
   try
     qrINC.ExecSQL;
     Result := true;
@@ -102,6 +103,7 @@ begin
        Self.Plano        := qrPESQUISA.FieldByName('plano').AsInteger;
        Self.DtPagamento  := qrPESQUISA.FieldByName('dtrecebimento').AsDateTime;
        Self.CodConta     := qrPESQUISA.FieldByName('codconta').AsInteger;
+       Self.Entidade     := qrPESQUISA.FieldByName('entidade').AsInteger;
        Result := true;
      end
   else
@@ -127,7 +129,8 @@ begin
           'situacao=:situacao, '+
           'plano=:plano, '+
           'dtrecebimento=:dtpagamento, '+
-          'codconta=:codconta '+
+          'codconta=:codconta, '+
+          'entidade=:entidade '+
           'where '+
           'id_receber = :id_registro';
 
@@ -144,6 +147,7 @@ begin
   qrALT.ParamByName('plano').AsInteger       := Plano;
   qrALT.ParamByName('dtpagamento').AsDate    := DtPagamento;
   qrALT.ParamByName('codconta').AsInteger    := CodConta;
+  qrALT.ParamByName('entidade').AsInteger    := Entidade;
   try
     qrALT.ExecSQL;
     Result := true;
