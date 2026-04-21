@@ -189,7 +189,7 @@ inherited frmcad_receber: Tfrmcad_receber
         MonthNames = 'Long'
       end
       object Label3: TLabel[7]
-        Left = 115
+        Left = 109
         Height = 15
         Top = 56
         Width = 30
@@ -197,7 +197,7 @@ inherited frmcad_receber: Tfrmcad_receber
         ParentColor = False
       end
       object edtCodPlano: TEdit[8]
-        Left = 114
+        Left = 108
         Height = 23
         Top = 73
         Width = 57
@@ -207,7 +207,7 @@ inherited frmcad_receber: Tfrmcad_receber
         OnKeyDown = edtCodPlanoKeyDown
       end
       object Label4: TLabel[9]
-        Left = 180
+        Left = 174
         Height = 15
         Top = 56
         Width = 84
@@ -215,7 +215,7 @@ inherited frmcad_receber: Tfrmcad_receber
         ParentColor = False
       end
       object edtDescPlano: TEdit[10]
-        Left = 178
+        Left = 172
         Height = 23
         Top = 73
         Width = 216
@@ -294,7 +294,7 @@ inherited frmcad_receber: Tfrmcad_receber
         Caption = 'Recebimento'
         ClientHeight = 96
         ClientWidth = 319
-        TabOrder = 9
+        TabOrder = 11
         object edtDataRecebimento: TDateTimePicker
           Tag = 99
           Left = 120
@@ -386,7 +386,7 @@ inherited frmcad_receber: Tfrmcad_receber
         Color = 16379334
         ParentBackground = False
         ParentColor = False
-        TabOrder = 10
+        TabOrder = 12
         object Panel3: TPanel
           Left = 0
           Height = 26
@@ -509,6 +509,41 @@ inherited frmcad_receber: Tfrmcad_receber
           Alignment = taRightJustify
           TabOrder = 6
         end
+      end
+      object Label16: TLabel[19]
+        Left = 19
+        Height = 15
+        Top = 152
+        Width = 46
+        Caption = 'Entidade'
+        ParentColor = False
+      end
+      object edtCodEntidade: TEdit[20]
+        Left = 18
+        Height = 23
+        Top = 169
+        Width = 57
+        NumbersOnly = True
+        TabOrder = 9
+        OnExit = edtCodEntidadeExit
+        OnKeyDown = edtCodEntidadeKeyDown
+      end
+      object Label17: TLabel[21]
+        Left = 84
+        Height = 15
+        Top = 152
+        Width = 33
+        Caption = 'Nome'
+        ParentColor = False
+      end
+      object edtDescEntidade: TEdit[22]
+        Left = 82
+        Height = 23
+        Top = 169
+        Width = 168
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 10
       end
     end
   end

@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
   DateTimePicker, ACBrEnterTab, rxtooledit, rxcurredit, DB, ZDataset,
   ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit, ExtCtrls,
-  upesquisa, classe_conta, classe_lancamento;
+  upesquisa, classe_conta, classe_lancamento, classe_entidade;
 
 type
 
@@ -20,6 +20,10 @@ type
     btnRecOK: TButton;
     btnRecCancel: TButton;
     cbxFiltroStatus: TComboBox;
+    edtCodEntidade: TEdit;
+    edtDescEntidade: TEdit;
+    Label16: TLabel;
+    Label17: TLabel;
     nValREC: TCurrencyEdit;
     DatREC: TDateTimePicker;
     edtCodPlano: TEdit;
@@ -75,6 +79,9 @@ type
     procedure btnRecOKClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
+    procedure edtCodEntidadeExit(Sender: TObject);
+    procedure edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure edtCodPlanoExit(Sender: TObject);
     procedure edtCodPlanoKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
@@ -88,6 +95,7 @@ type
     FContaReceber: TContaReceber;
     FPlano: Tplano;
     FConta: Tconta;
+    FEntidade : TEntidade;
     procedure ExibePainelReceber(lFlag: boolean);
     procedure AlimentaCamposFormulario(AIdLancamento:Integer);
   public
@@ -193,6 +201,7 @@ begin
   FContaReceber.DtLancamento := edtDataLcto.Date;
   FContaReceber.Valor := edtValor.Value;
   FContaReceber.DtVencimento := edtDataVencimento.Date;
+  FContaReceber.Entidade:= StrToIntDef(edtCodEntidade.Text,0);
   if cliqueBotao = cbAlterar then
     FContaReceber.altera(FContaReceber.Id_Registro)
   else if cliqueBotao = cbIncluir then
@@ -211,6 +220,44 @@ procedure Tfrmcad_receber.DBGrid1DblClick(Sender: TObject);
 begin
 
   AlimentaCamposFormulario(qrPESQid_receber.Value);
+
+end;
+
+procedure Tfrmcad_receber.edtCodEntidadeExit(Sender: TObject);
+begin
+  if StrToIntDef(edtCodEntidade.Text, 0) > 0 then
+  begin
+    if FEntidade.localiza(StrToIntDef(edtCodEntidade.Text, 0)) then
+      edtDescEntidade.Text := FEntidade.Nome
+    else
+    begin
+      edtDescEntidade.Text := '';
+      ShowMessage('Entidade não Localizada.');
+    end;
+  end
+  else
+  begin
+    edtDescEntidade.Text := '';
+    ShowMessage('Entidade invalida !');
+  end;
+
+end;
+
+procedure Tfrmcad_receber.edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_F4 then
+  begin
+    frmPesquisa := TfrmPesquisa.Create(self, ['id_entidade', 'nome', 'telefone'],
+      'entidades', 'id_entidade');
+    try
+      frmPesquisa.ShowModal;
+      edtCodEntidade.Text := frmPesquisa.edtResultado.Text;
+    finally
+      if Assigned(frmPesquisa) then
+        FreeAndNil(frmPesquisa);
+    end;
+  end;
 
 end;
 
@@ -306,6 +353,10 @@ begin
   if Assigned(FConta) then
     FreeAndNil(FConta);
 
+  if Assigned(FEntidade) then
+    FreeAndNil(FEntidade);
+
+
   if qrPESQ.Active then
     qrPESQ.Close;
 
@@ -317,6 +368,7 @@ begin
   FContaReceber := TContaReceber.Create;
   FPlano := Tplano.Create;
   FConta := Tconta.Create;
+  FEntidade := TEntidade.Create;
   ExibePainelReceber(False);
 end;
 
@@ -356,6 +408,8 @@ begin
     edtDataRecebimento.Date := FContaReceber.DtPagamento;
     edtValorRecebido.Value := FContaReceber.ValorPago;
     edtSituacao.Text := FContaReceber.Situacao;
+    edtCodEntidade.Text := IntToStr(FContaReceber.Entidade);
+    // localiza descricao plano
     if StrToIntDef(edtCodPlano.Text, 0) > 0 then
     begin
       if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
@@ -370,6 +424,16 @@ begin
 
       end;
     end;
+    //localiza descricao entidade
+    if StrToIntDef(edtCodEntidade.Text, 0) > 0 then
+    begin
+      if FEntidade.localiza(StrToIntDef(edtCodEntidade.Text, 0)) then
+        edtDescEntidade.Text := FEntidade.Nome
+      else
+        edtDescEntidade.Text :='Entidade inválida';
+    end
+    else
+      edtDescEntidade.Text := EmptyStr;
 
   end;
 
