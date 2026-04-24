@@ -14,8 +14,6 @@ inherited frmcad_pagar: Tfrmcad_pagar
   inherited PageControl1: TPageControl
     Height = 341
     Width = 605
-    ActivePage = tsPESQUISA
-    TabIndex = 0
     inherited tsPESQUISA: TTabSheet
       ClientHeight = 313
       ClientWidth = 597
@@ -297,7 +295,7 @@ inherited frmcad_pagar: Tfrmcad_pagar
         Caption = 'Pagamento'
         ClientHeight = 96
         ClientWidth = 319
-        TabOrder = 9
+        TabOrder = 11
         object edtDataPagamento: TDateTimePicker
           Tag = 99
           Left = 120
@@ -389,7 +387,7 @@ inherited frmcad_pagar: Tfrmcad_pagar
         Color = 16379334
         ParentBackground = False
         ParentColor = False
-        TabOrder = 10
+        TabOrder = 12
         object Panel3: TPanel
           Left = 0
           Height = 26
@@ -512,6 +510,41 @@ inherited frmcad_pagar: Tfrmcad_pagar
           Alignment = taRightJustify
           TabOrder = 6
         end
+      end
+      object edtDescEntidade: TEdit[19]
+        Left = 82
+        Height = 23
+        Top = 169
+        Width = 168
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 10
+      end
+      object edtCodEntidade: TEdit[20]
+        Left = 18
+        Height = 23
+        Top = 169
+        Width = 57
+        NumbersOnly = True
+        TabOrder = 9
+        OnExit = edtCodEntidadeExit
+        OnKeyDown = edtCodEntidadeKeyDown
+      end
+      object Label16: TLabel[21]
+        Left = 19
+        Height = 15
+        Top = 152
+        Width = 46
+        Caption = 'Entidade'
+        ParentColor = False
+      end
+      object Label17: TLabel[22]
+        Left = 84
+        Height = 15
+        Top = 152
+        Width = 33
+        Caption = 'Nome'
+        ParentColor = False
       end
     end
   end

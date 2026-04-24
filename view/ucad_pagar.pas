@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
   DateTimePicker, ucad_padrao, ACBrEnterTab, rxcurredit, DB, ZDataset,
   ZAbstractRODataset, classe_conta, classe_plano, classe_contapagar,
-  classe_lancamento, upesquisa, LCLType, ExtCtrls;
+  classe_lancamento, upesquisa, LCLType, ExtCtrls, classe_entidade;
 
 type
 
@@ -23,6 +23,7 @@ type
     DatPAG: TDateTimePicker;
     DBGrid1: TDBGrid;
     dsPESQ: TDataSource;
+    edtCodEntidade: TEdit;
     edtCodPlano: TEdit;
     edtContaDestinoREC: TEdit;
     edtDataLcto: TDateTimePicker;
@@ -30,6 +31,7 @@ type
     edtDataVencimento: TDateTimePicker;
     edtDesc: TEdit;
     edtDescDestinoREC: TEdit;
+    edtDescEntidade: TEdit;
     edtDescPlano: TEdit;
     edtIdLcto: TEdit;
     edtSituacao: TEdit;
@@ -44,6 +46,8 @@ type
     Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -75,6 +79,9 @@ type
     procedure btnRecOKClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
+    procedure edtCodEntidadeExit(Sender: TObject);
+    procedure edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure edtCodPlanoExit(Sender: TObject);
     procedure edtCodPlanoKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
@@ -88,6 +95,7 @@ type
     FContaPagar: TContapagar;
     FPlano: Tplano;
     FConta: Tconta;
+    FEntidade : TEntidade;
     procedure ExibePainelPagar(lFlag: boolean);
     procedure AlimentaCamposFormulario(AIdLancamento:Integer);
   public
@@ -226,6 +234,8 @@ begin
   FContaPagar.DtLancamento := edtDataLcto.Date;
   FContaPagar.Valor := edtValor.Value;
   FContaPagar.DtVencimento := edtDataVencimento.Date;
+  FContaPagar.Entidade:= StrToIntDef(edtCodEntidade.Text,0);
+
   if cliqueBotao = cbAlterar then
     FContaPagar.altera(FContaPagar.Id_Registro)
   else if cliqueBotao = cbIncluir then
@@ -245,6 +255,44 @@ procedure Tfrmcad_pagar.DBGrid1DblClick(Sender: TObject);
 begin
 
   AlimentaCamposFormulario(qrPESQid_pagar.Value);
+
+end;
+
+procedure Tfrmcad_pagar.edtCodEntidadeExit(Sender: TObject);
+begin
+  if StrToIntDef(edtCodEntidade.Text, 0) > 0 then
+  begin
+    if FEntidade.localiza(StrToIntDef(edtCodEntidade.Text, 0)) then
+      edtDescEntidade.Text := FEntidade.Nome
+    else
+    begin
+      edtDescEntidade.Text := '';
+      ShowMessage('Entidade não Localizada.');
+    end;
+  end
+  else
+  begin
+    edtDescEntidade.Text := '';
+    ShowMessage('Entidade invalida !');
+  end;
+
+end;
+
+procedure Tfrmcad_pagar.edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_F4 then
+  begin
+    frmPesquisa := TfrmPesquisa.Create(self, ['id_entidade', 'nome', 'telefone'],
+      'entidades', 'id_entidade');
+    try
+      frmPesquisa.ShowModal;
+      edtCodEntidade.Text := frmPesquisa.edtResultado.Text;
+    finally
+      if Assigned(frmPesquisa) then
+        FreeAndNil(frmPesquisa);
+    end;
+  end;
 
 end;
 
@@ -345,6 +393,9 @@ begin
   if Assigned(FConta) then
     FreeAndNil(FConta);
 
+  if Assigned(FEntidade) then
+    FreeAndNil(FEntidade);
+
   if qrPESQ.Active then
     qrPESQ.Close;
 
@@ -355,6 +406,7 @@ begin
   FContaPagar := TContapagar.Create;
   FPlano := Tplano.Create;
   FConta := Tconta.Create;
+  FEntidade := TEntidade.Create;
   ExibePainelPagar(False);
 end;
 
@@ -391,6 +443,8 @@ begin
     edtValorPago.Value := FContaPagar.ValorPago;
     edtDataPagamento.Date := FContaPagar.DtPagamento;
     edtSituacao.Text := FContaPagar.Situacao;
+    edtCodEntidade.Text:= inttostr( FContaPagar.Entidade);
+    //localiza plano
     if StrToIntDef(edtCodPlano.Text, 0) > 0 then
     begin
       if FPlano.localiza(StrToIntDef(edtCodPlano.Text, 0)) then
@@ -405,6 +459,17 @@ begin
 
       end;
     end;
+    //localiza descricao entidade
+    if StrToIntDef(edtCodEntidade.Text, 0) > 0 then
+    begin
+      if FEntidade.localiza(StrToIntDef(edtCodEntidade.Text, 0)) then
+        edtDescEntidade.Text := FEntidade.Nome
+      else
+        edtDescEntidade.Text :='Entidade inválida';
+    end
+    else
+      edtDescEntidade.Text := EmptyStr;
+
 
   end;
 
