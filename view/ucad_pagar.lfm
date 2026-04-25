@@ -15,8 +15,6 @@ inherited frmcad_pagar: Tfrmcad_pagar
     Height = 341
     Width = 605
     inherited tsPESQUISA: TTabSheet
-      ClientHeight = 313
-      ClientWidth = 597
       inherited Panel1: TPanel
         Width = 597
         ClientWidth = 597
@@ -106,8 +104,6 @@ inherited frmcad_pagar: Tfrmcad_pagar
       end
     end
     inherited tsCADASTRO: TTabSheet
-      ClientHeight = 313
-      ClientWidth = 597
       inherited pnpRODAPE: TPanel
         Top = 263
         Width = 597

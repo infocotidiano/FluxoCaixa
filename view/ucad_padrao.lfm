@@ -6,9 +6,9 @@ object frmcad_padrao: Tfrmcad_padrao
   Caption = 'Cadastro Padrao'
   ClientHeight = 404
   ClientWidth = 609
-  OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '4.4.0.0'
+  OnShow = FormShow
   object pnpTITULO: TPanel
     Left = 0
     Height = 50

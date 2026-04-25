@@ -11,7 +11,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos Y="31"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\uprincipal.pas"/>
@@ -19,9 +19,11 @@
         <ComponentName Value="frmprincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="117"/>
-        <CursorPos X="34" Y="120"/>
-        <UsageCount Value="99"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="55"/>
+        <CursorPos X="68" Y="79"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,9 +34,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="79"/>
-        <CursorPos X="56" Y="14"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="conexao\utabela.pas"/>
@@ -42,12 +43,9 @@
         <ComponentName Value="TabGlobal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="15"/>
-        <CursorPos X="58" Y="31"/>
-        <UsageCount Value="99"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_padrao.pas"/>
@@ -56,33 +54,31 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="81" Y="9"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_plano.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_conta.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="104"/>
-        <CursorPos X="42" Y="114"/>
-        <UsageCount Value="99"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="71" Y="17"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_lancamento.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
-        <CursorPos X="5" Y="14"/>
-        <UsageCount Value="99"/>
+        <CursorPos X="42" Y="31"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_planoconta.pas"/>
@@ -91,9 +87,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="110"/>
-        <CursorPos X="74" Y="16"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_conta.pas"/>
@@ -101,10 +96,8 @@
         <ComponentName Value="frmcad_conta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="89"/>
-        <CursorPos X="35" Y="95"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -115,9 +108,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="262"/>
-        <CursorPos X="8" Y="221"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\umovimento.pas"/>
@@ -126,9 +118,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="121"/>
-        <CursorPos X="61" Y="16"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\upesquisa.pas"/>
@@ -137,8 +128,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="84"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\uestatistica_despesa.pas"/>
@@ -148,8 +140,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uEstatistica_Despesa"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="41"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="relatorios\urel_movimento.pas"/>
@@ -158,9 +151,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="70" Y="18"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\upesquisa_lcto.pas"/>
@@ -169,8 +161,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="85" Y="16"/>
-        <UsageCount Value="99"/>
+        <CursorPos X="52" Y="18"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\importa.pas"/>
@@ -179,9 +171,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="75" Y="15"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_entidade.pas"/>
@@ -190,38 +181,34 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
-        <CursorPos X="76" Y="13"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_registrofinanceiro.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="26"/>
         <CursorPos X="3" Y="14"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_contareceber.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="60"/>
-        <CursorPos Y="68"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="59"/>
+        <CursorPos X="38" Y="53"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_entidade.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="46"/>
-        <CursorPos X="4" Y="13"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\uenumerator.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_receber.pas"/>
@@ -230,17 +217,15 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="435"/>
-        <CursorPos Y="437"/>
-        <UsageCount Value="99"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="classe\classe_contapagar.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="123"/>
-        <CursorPos X="57" Y="150"/>
-        <UsageCount Value="93"/>
+        <CursorPos X="23" Y="32"/>
+        <UsageCount Value="95"/>
       </Unit>
       <Unit>
         <Filename Value="view\ucad_pagar.pas"/>
@@ -249,9 +234,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="438"/>
-        <CursorPos X="22" Y="441"/>
-        <UsageCount Value="92"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -322,46 +306,14 @@
     <Debugger>
       <Backend Value="{452614DB-032E-4734-A2C6-A5C50AA8784A}"/>
     </Debugger>
-    <JumpHistory HistoryIndex="9">
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="25" Column="20" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="62" Column="3" TopLine="57"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="25" Column="16" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="57" Column="22" TopLine="49"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="83" Column="17" TopLine="69"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="57" Column="23" TopLine="56"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="25" Column="32" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="classe\classe_conta.pas"/>
-        <Caret Line="57" Column="30" TopLine="45"/>
-      </Position>
+    <JumpHistory HistoryIndex="1">
       <Position>
         <Filename Value="view\ucad_conta.pas"/>
-        <Caret Line="139" Column="3" TopLine="100"/>
+        <Caret Line="95" Column="35" TopLine="80"/>
       </Position>
       <Position>
-        <Filename Value="view\ucad_conta.pas"/>
-        <Caret Line="97" Column="24" TopLine="86"/>
+        <Filename Value="view\uprincipal.pas"/>
+        <Caret Line="24"/>
       </Position>
     </JumpHistory>
     <RunParams>

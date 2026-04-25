@@ -1,4 +1,27 @@
 unit classe_entidade;
+{***************************************************************************}
+{                                                                           }
+{   Autor:        Daniel de Morais                                          }
+{   Projeto:      Fluxo de Caixa                                            }
+{                                                                           }
+{   Informações:  Código Fonte da Playlist do YouTube sobre aprendizagem    }
+{                 de como criar um Fluxo de Caixa.                          }
+{                                                                           }
+{   Aviso Legal:  Este código é fornecido exclusivamente para fins de       }
+{                 estudo e aprendizagem. Não há qualquer garantia,          }
+{                 explícita ou implícita, de funcionamento, adequação       }
+{                 ou ausência de erros.                                     }
+{                                                                           }
+{                 O autor não se responsabiliza por danos diretos,          }
+{                 indiretos, incidentais ou consequenciais decorrentes      }
+{                 do uso deste código em ambientes de produção.             }
+{                                                                           }
+{                 Ao utilizar este código, você concorda que qualquer       }
+{                 modificação, adaptação ou uso será de sua inteira         }
+{                 responsabilidade.                                         }
+{                                                                           }
+{***************************************************************************}
+
 
 {$mode ObjFPC}{$H+}
 
@@ -21,10 +44,10 @@ type
        property Nome        : String  read FNome        write FNome;
        property Telefone    : String  read FTelefone    write FTelefone;
      public
-       function incluir:Boolean;
+       procedure incluir;
        function localiza(codigo:Integer):Boolean;
-       function altera(codigo:integer):Boolean;
-       function exclui(codigo:integer):Boolean;
+       procedure altera(codigo:integer);
+       procedure exclui(codigo:integer);
    end;
 
 implementation
@@ -36,16 +59,18 @@ var
   qrAI : TZQuery;
 begin
   qrAI := TZQuery.Create(nil);
-  qrAI.Connection := TabGlobal.conexao;
-  qrAI.sql.Add('select coalesce(max(id_entidade),0)+1 codigo ');
-  qrAI.sql.Add('from entidades');
-  qrAI.Open;
-  result := qrAI.FieldByName('codigo').Value;
-  if Assigned(qrAI) then
-     FreeAndNil(qrAI);
+  try
+    qrAI.Connection := TabGlobal.conexao;
+    qrAI.sql.Add('select coalesce(max(id_entidade),0)+1 codigo ');
+    qrAI.sql.Add('from entidades');
+    qrAI.Open;
+    result := qrAI.FieldByName('codigo').Value;
+  finally
+    FreeAndNil(qrAI);
+  end;
 end;
 
-function TEntidade.incluir: Boolean;
+procedure TEntidade.incluir;
 var
   qrINC : TZQuery;
   cSQL : string;
@@ -55,26 +80,27 @@ begin
           'values '+
           '  (:id_entidade, :nome, :telefone)';
   qrINC := TZQuery.Create(nil);
-  qrINC.Connection := TabGlobal.conexao;
-  qrINC.sql.Text:=cSQL;
-  qrINC.ParamByName('id_entidade').AsInteger :=retornaAI;
-  qrINC.ParamByName('nome').AsString         :=Nome;
-  qrINC.ParamByName('telefone').AsString     :=Telefone;
   try
-    qrINC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao incluir a entidade'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrINC.Connection := TabGlobal.conexao;
+    qrINC.sql.Text:=cSQL;
+    qrINC.ParamByName('id_entidade').AsInteger := retornaAI;
+    qrINC.ParamByName('nome').AsString         := Nome;
+    qrINC.ParamByName('telefone').AsString     := Telefone;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrINC.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao incluir a entidade' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrINC);
   end;
-
-  if Assigned(qrINC) then
-     FreeAndNil(qrINC);
-
 end;
 
 function TEntidade.localiza(codigo: Integer): Boolean;
@@ -82,26 +108,27 @@ var
   qrPESQUISA : TZQuery;
 begin
   qrPESQUISA := TZQuery.Create(nil);
-  qrPESQUISA.Connection := TabGlobal.conexao;
-  qrPESQUISA.sql.Add('select * from entidades ');
-  qrPESQUISA.sql.Add('where id_entidade = :ncodigo');
-  qrPESQUISA.ParamByName('ncodigo').AsInteger:=codigo;
-  qrPESQUISA.Open;
-  if qrPESQUISA.RecordCount >= 1 then
-     begin
-       self.id_entidade  := qrPESQUISA.FieldByName('id_entidade').AsInteger;
-       self.nome         := qrPESQUISA.FieldByName('nome').AsString;
-       self.telefone     := qrPESQUISA.FieldByName('telefone').AsString;
-       Result := true;
-     end
-  else
-     result := false;
-
-  if Assigned(qrPESQUISA) then
-     FreeAndNil(qrPESQUISA);
+  try
+    qrPESQUISA.Connection := TabGlobal.conexao;
+    qrPESQUISA.sql.Add('select * from entidades ');
+    qrPESQUISA.sql.Add('where id_entidade = :ncodigo');
+    qrPESQUISA.ParamByName('ncodigo').AsInteger:=codigo;
+    qrPESQUISA.Open;
+    if qrPESQUISA.RecordCount >= 1 then
+       begin
+         self.id_entidade  := qrPESQUISA.FieldByName('id_entidade').AsInteger;
+         self.nome         := qrPESQUISA.FieldByName('nome').AsString;
+         self.telefone     := qrPESQUISA.FieldByName('telefone').AsString;
+         Result := true;
+       end
+    else
+       result := false;
+  finally
+    FreeAndNil(qrPESQUISA);
+  end;
 end;
 
-function TEntidade.altera(codigo: integer): Boolean;
+procedure TEntidade.altera(codigo: integer);
 var
   qrALT : TZQuery;
   cSQL : string;
@@ -112,30 +139,30 @@ begin
           'where '+
           '  entidades.id_entidade = :old_id_entidade';
   qrALT := TZQuery.Create(nil);
-  qrALT.Connection := TabGlobal.conexao;
-  qrALT.sql.Text:=cSQL;
-  qrALT.ParamByName('old_id_entidade').AsInteger:=codigo;
-  qrALT.ParamByName('nome').AsString            :=Nome;
-  qrALT.ParamByName('telefone').AsString        :=Telefone;
-
   try
-    qrALT.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao atualizar a entidade'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrALT.Connection := TabGlobal.conexao;
+    qrALT.sql.Text:=cSQL;
+    qrALT.ParamByName('old_id_entidade').AsInteger:=codigo;
+    qrALT.ParamByName('nome').AsString            :=Nome;
+    qrALT.ParamByName('telefone').AsString        :=Telefone;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrALT.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao atualizar a entidade' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrALT);
   end;
-
-  if Assigned(qrALT) then
-     FreeAndNil(qrALT);
-
 end;
 
-function TEntidade.exclui(codigo: integer): Boolean;
+procedure TEntidade.exclui(codigo: integer);
 var
   qrEXC : TZQuery;
   cSQL : string;
@@ -144,24 +171,25 @@ begin
           'where '+
           '  entidades.id_entidade = :old_id_entidade';
   qrEXC := TZQuery.Create(nil);
-  qrEXC.Connection := TabGlobal.conexao;
-  qrEXC.sql.Text:=cSQL;
-  qrEXC.ParamByName('old_id_entidade').AsInteger:=codigo;
   try
-    qrEXC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao excluir a entidade'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrEXC.Connection := TabGlobal.conexao;
+    qrEXC.sql.Text:=cSQL;
+    qrEXC.ParamByName('old_id_entidade').AsInteger:=codigo;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrEXC.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao excluir a entidade' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrEXC);
   end;
-
-  if Assigned(qrEXC) then
-     FreeAndNil(qrEXC);
-
 end;
 
 end.

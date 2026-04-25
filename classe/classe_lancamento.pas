@@ -1,11 +1,34 @@
 unit classe_lancamento;
+{***************************************************************************}
+{                                                                           }
+{   Autor:        Daniel de Morais                                          }
+{   Projeto:      Fluxo de Caixa                                            }
+{                                                                           }
+{   Informações:  Código Fonte da Playlist do YouTube sobre aprendizagem    }
+{                 de como criar um Fluxo de Caixa.                          }
+{                                                                           }
+{   Aviso Legal:  Este código é fornecido exclusivamente para fins de       }
+{                 estudo e aprendizagem. Não há qualquer garantia,          }
+{                 explícita ou implícita, de funcionamento, adequação       }
+{                 ou ausência de erros.                                     }
+{                                                                           }
+{                 O autor não se responsabiliza por danos diretos,          }
+{                 indiretos, incidentais ou consequenciais decorrentes      }
+{                 do uso deste código em ambientes de produção.             }
+{                                                                           }
+{                 Ao utilizar este código, você concorda que qualquer       }
+{                 modificação, adaptação ou uso será de sua inteira         }
+{                 responsabilidade.                                         }
+{                                                                           }
+{***************************************************************************}
+
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, Controls, ExtCtrls, Dialogs, utabela, ZDataset;
+  Classes, SysUtils, Controls, ExtCtrls, utabela, ZDataset;
 
   type
 
@@ -50,32 +73,34 @@ begin
          'values ' +
          '(:conta, :id_lcto, :data_mvto, :plano, :descricao, :valor, :idbanco)';
   qrINC := TZQuery.Create(nil);
-  qrINC.Connection := TabGlobal.conexao;
-  self.id_lcto := autoinc(conta);
-  qrINC.sql.Text:=cSQL;
-  qrINC.ParamByName('conta').AsInteger     :=conta;
-  qrINC.ParamByName('id_lcto').AsInteger   :=id_lcto;
-  qrINC.ParamByName('data_mvto').AsDate    :=data_mvto;
-  qrINC.ParamByName('plano').AsInteger     :=cod_plano;
-  qrINC.ParamByName('descricao').AsString  :=copy(descricao,0,79);
-  qrINC.ParamByName('valor').AsFloat       :=valor;
-  qrINC.ParamByName('idbanco').AsString    :=idbanco;
   try
-    qrINC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao incluir o lancaçamento'+sLineBreak+
-         'Conta '+IntToStr(conta)+' Lcto '+inttostr(id_lcto)+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrINC.Connection := TabGlobal.conexao;
+    self.id_lcto := autoinc(conta);
+    qrINC.sql.Text:=cSQL;
+    qrINC.ParamByName('conta').AsInteger     :=conta;
+    qrINC.ParamByName('id_lcto').AsInteger   :=id_lcto;
+    qrINC.ParamByName('data_mvto').AsDate    :=data_mvto;
+    qrINC.ParamByName('plano').AsInteger     :=cod_plano;
+    qrINC.ParamByName('descricao').AsString  :=copy(descricao,0,79);
+    qrINC.ParamByName('valor').AsFloat       :=valor;
+    qrINC.ParamByName('idbanco').AsString    :=idbanco;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrINC.ExecSQL;
+      TabGlobal.conexao.Commit;
+      Result := true;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao incluir o lançamento' + sLineBreak +
+          'Conta ' + IntToStr(conta) + ' Lcto ' + IntToStr(id_lcto) + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrINC);
   end;
-
-  if Assigned(qrINC) then
-     FreeAndNil(qrINC);
-
 end;
 
 function Tlancamento.autoinc(nCONTA: integer): integer;
@@ -86,14 +111,15 @@ begin
   cSQL:='select coalesce(max(id_lcto),0)+1 idlcto '+
         'from lancamentos where conta = :nCOD';
   qrAI := TZQuery.Create(nil);
-  qrAI.Connection := TabGlobal.conexao;
-  qrAI.sql.Text:=cSQL;
-  qrAI.ParamByName('nCOD').AsInteger:=nCONTA;
-  qrAI.Open;
-  result := qrAI.FieldByName('idlcto').AsInteger;
-  qrAI.Close;
-  if Assigned(qrAI) then
-     FreeAndNil(qrAI);
+  try
+    qrAI.Connection := TabGlobal.conexao;
+    qrAI.sql.Text:=cSQL;
+    qrAI.ParamByName('nCOD').AsInteger:=nCONTA;
+    qrAI.Open;
+    result := qrAI.FieldByName('idlcto').AsInteger;
+  finally
+    FreeAndNil(qrAI);
+  end;
 end;
 
 function Tlancamento.SaldoAnterior(nCONTA: integer; dINICIO: TDate): real;
@@ -106,15 +132,16 @@ begin
          'where l.conta = :nCOD '+
          'and l.data_mvto < :dINICIO';
   qrSaldoAnterior := TZQuery.Create(nil);
-  qrSaldoAnterior.Connection := TabGlobal.conexao;
-  qrSaldoAnterior.sql.Text:=cSQL;
-  qrSaldoAnterior.ParamByName('nCOD').AsInteger:=nCONTA;
-  qrSaldoAnterior.ParamByName('dINICIO').AsDate:=dINICIO;
-  qrSaldoAnterior.Open;
-  result := qrSaldoAnterior.FieldByName('saldo_anterior').AsFloat;
-  qrSaldoAnterior.Close;
-  if Assigned(qrSaldoAnterior) then
-     FreeAndNil(qrSaldoAnterior);
+  try
+    qrSaldoAnterior.Connection := TabGlobal.conexao;
+    qrSaldoAnterior.sql.Text:=cSQL;
+    qrSaldoAnterior.ParamByName('nCOD').AsInteger:=nCONTA;
+    qrSaldoAnterior.ParamByName('dINICIO').AsDate:=dINICIO;
+    qrSaldoAnterior.Open;
+    result := qrSaldoAnterior.FieldByName('saldo_anterior').AsFloat;
+  finally
+    FreeAndNil(qrSaldoAnterior);
+  end;
 end;
 
 function Tlancamento.SaldoFuturo(nCONTA: integer; dINICIO: TDate): real;
@@ -127,15 +154,16 @@ begin
          'where l.conta = :nCOD '+
          'and l.data_mvto > :dINICIO';
   qrSaldoFuturo := TZQuery.Create(nil);
-  qrSaldoFuturo.Connection := TabGlobal.conexao;
-  qrSaldoFuturo.sql.Text:=cSQL;
-  qrSaldoFuturo.ParamByName('nCOD').AsInteger:=nCONTA;
-  qrSaldoFuturo.ParamByName('dINICIO').AsDate:=dINICIO;
-  qrSaldoFuturo.Open;
-  result := qrSaldoFuturo.FieldByName('saldo_futuro').AsFloat;
-  qrSaldoFuturo.Close;
-  if Assigned(qrSaldoFuturo) then
-     FreeAndNil(qrSaldoFuturo);
+  try
+    qrSaldoFuturo.Connection := TabGlobal.conexao;
+    qrSaldoFuturo.sql.Text:=cSQL;
+    qrSaldoFuturo.ParamByName('nCOD').AsInteger:=nCONTA;
+    qrSaldoFuturo.ParamByName('dINICIO').AsDate:=dINICIO;
+    qrSaldoFuturo.Open;
+    result := qrSaldoFuturo.FieldByName('saldo_futuro').AsFloat;
+  finally
+    FreeAndNil(qrSaldoFuturo);
+  end;
 end;
 
 
@@ -150,16 +178,17 @@ begin
          'where l.conta = :nCOD '+
          'and l.data_mvto between :dInicio and :dFinal';
   qrSaldoAnterior := TZQuery.Create(nil);
-  qrSaldoAnterior.Connection := TabGlobal.conexao;
-  qrSaldoAnterior.sql.Text:=cSQL;
-  qrSaldoAnterior.ParamByName('nCOD').AsInteger:=nCONTA;
-  qrSaldoAnterior.ParamByName('dInicio').AsDate:=dINICIO;
-  qrSaldoAnterior.ParamByName('dFinal').AsDate:=dFINAL;
-  qrSaldoAnterior.Open;
-  result := qrSaldoAnterior.FieldByName('saldo_periodo').AsFloat;
-  qrSaldoAnterior.Close;
-  if Assigned(qrSaldoAnterior) then
-     FreeAndNil(qrSaldoAnterior);
+  try
+    qrSaldoAnterior.Connection := TabGlobal.conexao;
+    qrSaldoAnterior.sql.Text:=cSQL;
+    qrSaldoAnterior.ParamByName('nCOD').AsInteger:=nCONTA;
+    qrSaldoAnterior.ParamByName('dInicio').AsDate:=dINICIO;
+    qrSaldoAnterior.ParamByName('dFinal').AsDate:=dFINAL;
+    qrSaldoAnterior.Open;
+    result := qrSaldoAnterior.FieldByName('saldo_periodo').AsFloat;
+  finally
+    FreeAndNil(qrSaldoAnterior);
+  end;
 end;
 
 

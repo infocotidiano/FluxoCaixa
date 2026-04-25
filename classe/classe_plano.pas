@@ -1,11 +1,34 @@
 unit classe_plano;
+{***************************************************************************}
+{                                                                           }
+{   Autor:        Daniel de Morais                                          }
+{   Projeto:      Fluxo de Caixa                                            }
+{                                                                           }
+{   Informações:  Código Fonte da Playlist do YouTube sobre aprendizagem    }
+{                 de como criar um Fluxo de Caixa.                          }
+{                                                                           }
+{   Aviso Legal:  Este código é fornecido exclusivamente para fins de       }
+{                 estudo e aprendizagem. Não há qualquer garantia,          }
+{                 explícita ou implícita, de funcionamento, adequação       }
+{                 ou ausência de erros.                                     }
+{                                                                           }
+{                 O autor não se responsabiliza por danos diretos,          }
+{                 indiretos, incidentais ou consequenciais decorrentes      }
+{                 do uso deste código em ambientes de produção.             }
+{                                                                           }
+{                 Ao utilizar este código, você concorda que qualquer       }
+{                 modificação, adaptação ou uso será de sua inteira         }
+{                 responsabilidade.                                         }
+{                                                                           }
+{***************************************************************************}
+
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, Controls, ExtCtrls, Dialogs,utabela ,ZDataset;
+  Classes, SysUtils, Controls, ExtCtrls, utabela ,ZDataset;
 
   type
 
@@ -19,10 +42,10 @@ uses
       Ftipo: string;
       function retornaAI:integer;
     public
-      function incluir:Boolean;
+      procedure incluir;
       function localiza(codigo:Integer):Boolean;
-      function altera(codigo:integer):Boolean;
-      function exclui(codigo:integer):Boolean;
+      procedure altera(codigo:integer);
+      procedure exclui(codigo:integer);
       function fixacodigoCredito:Boolean;
       function fixacodigoDebito: Boolean;
     published
@@ -41,21 +64,22 @@ var
   qrAI : TZQuery;
 begin
   qrAI := TZQuery.Create(nil);
-  qrAI.Connection := TabGlobal.conexao;
-  qrAI.sql.Add('select coalesce(max(id_plano),0)+1 codigo ');
-  qrAI.sql.Add('from planos');
-  qrAI.sql.Add('where id_plano not in(99990,99991)');
-  qrAI.Open;
-  if qrAI.FieldByName('codigo').Value = 99989 then
-     result := 99995
-  else
-     result := qrAI.FieldByName('codigo').Value;
-  if Assigned(qrAI) then
-     FreeAndNil(qrAI);
-
+  try
+    qrAI.Connection := TabGlobal.conexao;
+    qrAI.sql.Add('select coalesce(max(id_plano),0)+1 codigo ');
+    qrAI.sql.Add('from planos');
+    qrAI.sql.Add('where id_plano not in(99990,99991)');
+    qrAI.Open;
+    if qrAI.FieldByName('codigo').Value = 99989 then
+      result := 99995
+    else
+      result := qrAI.FieldByName('codigo').Value;
+  finally
+    FreeAndNil(qrAI);
+  end;
 end;
 
-function Tplano.incluir: Boolean;
+procedure Tplano.incluir;
 var
   qrINC : TZQuery;
   cSQL : string;
@@ -65,26 +89,27 @@ begin
           'values '+
           '  (:id_plano, :descricao, :tipo)';
   qrINC := TZQuery.Create(nil);
-  qrINC.Connection := TabGlobal.conexao;
-  qrINC.sql.Text:=cSQL;
-  qrINC.ParamByName('id_plano').AsInteger:=retornaAI;
-  qrINC.ParamByName('descricao').AsString:=descricao;
-  qrINC.ParamByName('tipo').AsString     :=tipo;
   try
-    qrINC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao incluir o plano'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrINC.Connection := TabGlobal.conexao;
+    qrINC.sql.Text:=cSQL;
+    qrINC.ParamByName('id_plano').AsInteger:=retornaAI;
+    qrINC.ParamByName('descricao').AsString:=descricao;
+    qrINC.ParamByName('tipo').AsString     :=tipo;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrINC.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao incluir o plano' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrINC);
   end;
-
-  if Assigned(qrINC) then
-     FreeAndNil(qrINC);
-
 end;
 
 function Tplano.localiza(codigo: Integer): Boolean;
@@ -92,26 +117,27 @@ var
   qrPESQUISA : TZQuery;
 begin
   qrPESQUISA := TZQuery.Create(nil);
-  qrPESQUISA.Connection := TabGlobal.conexao;
-  qrPESQUISA.sql.Add('select * from planos ');
-  qrPESQUISA.sql.Add('where id_plano = :ncodigo');
-  qrPESQUISA.ParamByName('ncodigo').AsInteger:=codigo;
-  qrPESQUISA.Open;
-  if qrPESQUISA.RecordCount >= 1 then
-     begin
-       self.id_plano  := qrPESQUISA.FieldByName('id_plano').AsInteger;
-       self.descricao := qrPESQUISA.FieldByName('descricao').AsString;
-       self.tipo      := qrPESQUISA.FieldByName('tipo').AsString;
-       Result := true;
-     end
-  else
-     result := false;
-
-  if Assigned(qrPESQUISA) then
-     FreeAndNil(qrPESQUISA);
+  try
+    qrPESQUISA.Connection := TabGlobal.conexao;
+    qrPESQUISA.sql.Add('select * from planos ');
+    qrPESQUISA.sql.Add('where id_plano = :ncodigo');
+    qrPESQUISA.ParamByName('ncodigo').AsInteger:=codigo;
+    qrPESQUISA.Open;
+    if qrPESQUISA.RecordCount >= 1 then
+       begin
+         self.id_plano  := qrPESQUISA.FieldByName('id_plano').AsInteger;
+         self.descricao := qrPESQUISA.FieldByName('descricao').AsString;
+         self.tipo      := qrPESQUISA.FieldByName('tipo').AsString;
+         Result := true;
+       end
+    else
+       result := false;
+  finally
+    FreeAndNil(qrPESQUISA);
+  end;
 end;
 
-function Tplano.altera(codigo: integer): Boolean;
+procedure Tplano.altera(codigo: integer);
 var
   qrALT : TZQuery;
   cSQL : string;
@@ -122,29 +148,30 @@ begin
           'where '+
           '  planos.id_plano = :old_id_plano';
   qrALT := TZQuery.Create(nil);
-  qrALT.Connection := TabGlobal.conexao;
-  qrALT.sql.Text:=cSQL;
-  qrALT.ParamByName('old_id_plano').AsInteger:=codigo;
-  qrALT.ParamByName('descricao').AsString    :=descricao;
-  qrALT.ParamByName('tipo').AsString         :=tipo;
   try
-    qrALT.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao atualizar o plano'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrALT.Connection := TabGlobal.conexao;
+    qrALT.sql.Text:=cSQL;
+    qrALT.ParamByName('old_id_plano').AsInteger:=codigo;
+    qrALT.ParamByName('descricao').AsString    :=descricao;
+    qrALT.ParamByName('tipo').AsString         :=tipo;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrALT.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao atualizar o plano' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrALT);
   end;
-
-  if Assigned(qrALT) then
-     FreeAndNil(qrALT);
-
 end;
 
-function Tplano.exclui(codigo: integer): Boolean;
+procedure Tplano.exclui(codigo: integer);
 var
   qrEXC : TZQuery;
   cSQL : string;
@@ -153,24 +180,25 @@ begin
           'where '+
           '  planos.id_plano = :old_id_plano';
   qrEXC := TZQuery.Create(nil);
-  qrEXC.Connection := TabGlobal.conexao;
-  qrEXC.sql.Text:=cSQL;
-  qrEXC.ParamByName('old_id_plano').AsInteger:=codigo;
   try
-    qrEXC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao excluir o plano'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrEXC.Connection := TabGlobal.conexao;
+    qrEXC.sql.Text:=cSQL;
+    qrEXC.ParamByName('old_id_plano').AsInteger:=codigo;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrEXC.ExecSQL;
+      TabGlobal.conexao.Commit;
+    except
+      on e: Exception do
+      begin
+        TabGlobal.conexao.Rollback;
+        raise Exception.Create('Erro ao excluir o plano' + sLineBreak +
+          e.ClassName + sLineBreak + e.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(qrEXC);
   end;
-
-  if Assigned(qrEXC) then
-     FreeAndNil(qrEXC);
-
 end;
 
 function Tplano.fixacodigoCredito: Boolean;
@@ -185,22 +213,28 @@ begin
   'descricao='+QuotedStr('TRANSFERENCIA RECEBIDA')+', '+
   'tipo='+QuotedStr('C')+' ';
   qrFIXA := TZQuery.Create(nil);
-  qrFIXA.Connection := TabGlobal.conexao;
-  qrFIXA.sql.Text:=cSQL;
   try
-    qrFIXA.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao fixar código 9991'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrFIXA.Connection := TabGlobal.conexao;
+    qrFIXA.sql.Text:=cSQL;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrFIXA.ExecSQL;
+      TabGlobal.conexao.Commit;
+      Result := true;
+    Except
+      on e: exception do
+         begin
+           result := false;
+           TabGlobal.conexao.Commit;
+           raise exception.Create('Erro ao fixar código 9991'+sLineBreak+
+           e.ClassName+sLineBreak+e.Message);
+         end;
+    end;
+
+  finally
+    FreeAndNil(qrFIXA);
   end;
 
-  if Assigned(qrFIXA) then
-     FreeAndNil(qrFIXA);
 end;
 
 function Tplano.fixacodigoDebito: Boolean;
@@ -215,22 +249,28 @@ begin
   'descricao='+QuotedStr('TRANSFERENCIA DEBITADA')+', '+
   'tipo='+QuotedStr('D')+' ';
   qrFIXA := TZQuery.Create(nil);
-  qrFIXA.Connection := TabGlobal.conexao;
-  qrFIXA.sql.Text:=cSQL;
   try
-    qrFIXA.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao fixar código 9990'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
+    qrFIXA.Connection := TabGlobal.conexao;
+    qrFIXA.sql.Text:=cSQL;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrFIXA.ExecSQL;
+      TabGlobal.conexao.Commit;
+      Result := true;
+    Except
+      on e: exception do
+         begin
+           TabGlobal.conexao.Rollback;
+           Raise exception.Create('Erro ao fixar código 9990'+sLineBreak+
+           e.ClassName+sLineBreak+e.Message);
+         end;
+    end;
+  finally
+    FreeAndNil(qrFIXA);
   end;
 
-  if Assigned(qrFIXA) then
-     FreeAndNil(qrFIXA);
+
+
 end;
 
 

@@ -1,4 +1,27 @@
 unit classe_registrofinanceiro;
+{***************************************************************************}
+{                                                                           }
+{   Autor:        Daniel de Morais                                          }
+{   Projeto:      Fluxo de Caixa                                            }
+{                                                                           }
+{   Informações:  Código Fonte da Playlist do YouTube sobre aprendizagem    }
+{                 de como criar um Fluxo de Caixa.                          }
+{                                                                           }
+{   Aviso Legal:  Este código é fornecido exclusivamente para fins de       }
+{                 estudo e aprendizagem. Não há qualquer garantia,          }
+{                 explícita ou implícita, de funcionamento, adequação       }
+{                 ou ausência de erros.                                     }
+{                                                                           }
+{                 O autor não se responsabiliza por danos diretos,          }
+{                 indiretos, incidentais ou consequenciais decorrentes      }
+{                 do uso deste código em ambientes de produção.             }
+{                                                                           }
+{                 Ao utilizar este código, você concorda que qualquer       }
+{                 modificação, adaptação ou uso será de sua inteira         }
+{                 responsabilidade.                                         }
+{                                                                           }
+{***************************************************************************}
+
 
 {$mode ObjFPC}{$H+}
 
@@ -43,10 +66,10 @@ type
 
 
   public
-    function incluir:Boolean; virtual;
+    procedure incluir; virtual;
     function localiza(codigo:Integer):Boolean;  virtual;
-    function altera(codigo:integer):Boolean;  virtual;
-    function exclui(codigo:integer):Boolean; virtual;
+    procedure altera(codigo:integer);  virtual;
+    procedure exclui(codigo:integer); virtual;
     function fixacodigoCredito:Boolean; virtual;
     function fixacodigoDebito: Boolean; virtual;
   published
@@ -99,7 +122,7 @@ begin
   FValorPago:=AValue;
 end;
 
-function TRegistroFinanceiro.incluir: Boolean;
+procedure TRegistroFinanceiro.incluir;
 begin
   // realizado nas classes de receber a pagar
 end;
@@ -109,12 +132,12 @@ begin
    // realizado nas classes de receber a pagar
 end;
 
-function TRegistroFinanceiro.altera(codigo: integer): Boolean;
+procedure TRegistroFinanceiro.altera(codigo: integer);
 begin
    // realizado nas classes de receber a pagar
 end;
 
-function TRegistroFinanceiro.exclui(codigo: integer): Boolean;
+procedure TRegistroFinanceiro.exclui(codigo: integer);
 begin
     // realizado nas classes de receber a pagar
 end;

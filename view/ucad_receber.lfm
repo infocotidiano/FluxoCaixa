@@ -16,8 +16,6 @@ inherited frmcad_receber: Tfrmcad_receber
     ActivePage = tsPESQUISA
     TabIndex = 0
     inherited tsPESQUISA: TTabSheet
-      ClientHeight = 312
-      ClientWidth = 600
       inherited Panel1: TPanel
         Width = 600
         ClientWidth = 600
@@ -107,8 +105,6 @@ inherited frmcad_receber: Tfrmcad_receber
       end
     end
     inherited tsCADASTRO: TTabSheet
-      ClientHeight = 312
-      ClientWidth = 600
       inherited pnpRODAPE: TPanel
         Top = 262
         Width = 600
