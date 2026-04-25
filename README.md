@@ -1,18 +1,26 @@
-# FluxoCaixa
-
-Projeto Fluxo de Caixa.
+# Fontes do projeto Fluxo de Caixa em Lazarus FPC
 
 Sistema desktop de controle de fluxo de caixa desenvolvido em Lazarus/Free Pascal, com bando de dados MariaDB.
 
 Criado em Lazarus FPC (Free Pascal Compiler).
+  
+## 🚀 Este projeto te ajudou?
 
-## 📺 Fontes do projeto
+Se esse conteúdo foi útil pra você, considere apoiar o canal 💛  
 
-Playlist completa no YouTube:
+Isso ajuda a continuar produzindo mais conteúdos gratuitos e projetos como este.
+
+### ☕ Apoie com um PIX (qualquer valor já ajuda!)
+<p align="center">
+<br>
+  <img src="https://raw.githubusercontent.com/infocotidiano/infocotidiano/main/images/pixdane.jpeg" width="180"/>
+</p>  
+
+## 📺 Playlist completa no YouTube:
 
 - https://www.youtube.com/playlist?list=PLiLrXujC4CW2lGeq1YeDbIcxbUP1W94QL
 
-<img src="imagem/fluxocaixa.png" width="50%" alt="Fluxo Caixa">
+<img src="imagem/fluxocaixa.png" width="50%" alt="Fluxo Caixa">  
 
 ## Dependências externas
 
