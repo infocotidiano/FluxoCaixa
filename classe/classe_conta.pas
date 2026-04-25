@@ -22,7 +22,7 @@ uses
 
       function retornaAI:integer;
     public
-      function incluir:Boolean;
+      procedure incluir;
       function localiza(codigo:Integer):Boolean;
       function altera(codigo:integer):Boolean;
       function exclui(codigo:integer):Boolean;
@@ -54,7 +54,7 @@ begin
 
 end;
 
-function Tconta.incluir: Boolean;
+procedure Tconta.incluir;
 var
   qrINC : TZQuery;
   cSQL : string;
@@ -64,27 +64,31 @@ begin
           'values '+
           '  (:id_conta, :descricao, :banco, :agencia, :conta)';
   qrINC := TZQuery.Create(nil);
-  qrINC.Connection := TabGlobal.conexao;
-  qrINC.sql.Text:=cSQL;
-  qrINC.ParamByName('id_conta').AsInteger :=retornaAI;
-  qrINC.ParamByName('descricao').AsString :=descricao;
-  qrINC.ParamByName('banco').AsString     :=banco;
-  qrINC.ParamByName('agencia').AsString   :=agencia;
-  qrINC.ParamByName('conta').AsString     :=conta;
   try
-    qrINC.ExecSQL;
-    Result := true;
-  Except
-    on e: exception do
-       begin
-         result := false;
-         ShowMessage('Erro ao incluir a conta'+sLineBreak+
-         e.ClassName+sLineBreak+e.Message);
-       end;
-  end;
 
-  if Assigned(qrINC) then
-     FreeAndNil(qrINC);
+    qrINC.Connection := TabGlobal.conexao;
+    qrINC.sql.Text:=cSQL;
+    qrINC.ParamByName('id_conta').AsInteger :=retornaAI;
+    qrINC.ParamByName('descricao').AsString :=descricao;
+    qrINC.ParamByName('banco').AsString     :=banco;
+    qrINC.ParamByName('agencia').AsString   :=agencia;
+    qrINC.ParamByName('conta').AsString     :=conta;
+    try
+      TabGlobal.conexao.StartTransaction;
+      qrINC.ExecSQL;
+      TabGlobal.conexao.Commit;
+    Except
+      on e: exception do
+         begin
+           TabGlobal.conexao.Rollback;
+           raise Exception.Create('Erro ao incluir a conta'+sLineBreak+
+           e.ClassName+sLineBreak+e.Message);
+         end;
+    end;
+
+  finally
+    FreeAndNil(qrINC);
+  end;
 
 end;
 

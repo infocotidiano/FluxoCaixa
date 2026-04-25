@@ -10,6 +10,7 @@ object TabGlobal: TTabGlobal
       'controls_cp=CP_UTF8'
       'RawStringEncoding=DB_CP'
     )
+    AutoCommit = False
     BeforeConnect = conexaoBeforeConnect
     DisableSavepoints = False
     HostName = 'localhost'

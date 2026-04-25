@@ -94,7 +94,7 @@ begin
   if cliqueBotao = cbAlterar then
     conta.altera(conta.id_conta)
   else if cliqueBotao = cbIncluir then
-    conta.incluir;
+      conta.incluir;
   cliqueBotao := cbNone;
   qrPESQ.Refresh;
   PageControl1.PageIndex := 0;
