@@ -98,6 +98,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="jujiboutils"/>
+      </Item>
+      <Item>
         <PackageName Value="zcomponentdesign"/>
       </Item>
       <Item>

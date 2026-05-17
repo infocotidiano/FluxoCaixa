@@ -1,25 +1,25 @@
 unit ucad_receber;
 {***************************************************************************}
-{                                                                           }
+
 {   Autor:        Daniel de Morais (InfoCotidiano)                          }
 {   Fontes:       Fluxo Caixa - https://github.com/infocotidiano/FluxoCaixa }
-{                                                                           }
+
 {   Informações:  Código Fonte da Playlist do YouTube sobre aprendizagem    }
 {                 de como criar um Fluxo de Caixa.                          }
-{                                                                           }
+
 {   Aviso Legal:  Este código é fornecido exclusivamente para fins de       }
 {                 estudo e aprendizagem. Não há qualquer garantia,          }
 {                 explícita ou implícita, de funcionamento, adequação       }
 {                 ou ausência de erros.                                     }
-{                                                                           }
+
 {                 O autor não se responsabiliza por danos diretos,          }
 {                 indiretos, incidentais ou consequenciais decorrentes      }
 {                 do uso deste código em ambientes de produção.             }
-{                                                                           }
+
 {                 Ao utilizar este código, você concorda que qualquer       }
 {                 modificação, adaptação ou uso será de sua inteira         }
 {                 responsabilidade.                                         }
-{                                                                           }
+
 {***************************************************************************}
 
 
@@ -29,9 +29,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, StdCtrls,
-  DateTimePicker, ACBrEnterTab, rxtooledit, rxcurredit, DB, ZDataset,
-  ucad_padrao, classe_plano, classe_contareceber, LCLType, MaskEdit, ExtCtrls,
-  upesquisa, classe_conta, classe_lancamento, classe_entidade;
+  DateTimePicker, ACBrEnterTab, rxtooledit, rxcurredit, JDateEdit, DB, ZDataset,
+  ZAbstractRODataset, ucad_padrao, classe_plano, classe_contareceber, LCLType,
+  MaskEdit, ExtCtrls, ComCtrls, Buttons, upesquisa, classe_conta,
+  classe_lancamento, classe_entidade;
 
 type
 
@@ -43,10 +44,20 @@ type
     btnRecOK: TButton;
     btnRecCancel: TButton;
     cbxFiltroStatus: TComboBox;
+    chkFiltrarEntidade: TCheckBox;
+    chkFiltrarPeriodo: TCheckBox;
+    DBGrid2: TDBGrid;
+    dsImpressao: TDataSource;
     edtCodEntidade: TEdit;
+    edtCodEntidadeImpressao: TEdit;
     edtDescEntidade: TEdit;
+    edtDescEntidadeImpressao: TEdit;
     Label16: TLabel;
     Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
     nValREC: TCurrencyEdit;
     DatREC: TDateTimePicker;
     edtCodPlano: TEdit;
@@ -84,6 +95,17 @@ type
     Label9: TLabel;
     pnpRECEBER: TPanel;
     Panel3: TPanel;
+    qrImpressaocodconta: TZIntegerField;
+    qrImpressaodescricao_conta: TZRawStringField;
+    qrImpressaodescricao_receber: TZRawStringField;
+    qrImpressaodtrecebimento: TZDateField;
+    qrImpressaodtvencimento: TZDateField;
+    qrImpressaoentidade: TZIntegerField;
+    qrImpressaoid_receber: TZIntegerField;
+    qrImpressaonome: TZRawStringField;
+    qrImpressaosituacao: TZRawStringField;
+    qrImpressaovalor: TZBCDField;
+    qrImpressaovalorrecebido: TZBCDField;
     qrPESQ: TZQuery;
     qrPESQdescricao: TStringField;
     qrPESQdtlancamento: TDateField;
@@ -93,6 +115,12 @@ type
     qrPESQsituacao: TStringField;
     qrPESQvalor: TFloatField;
     qrPESQvalorrecebido: TFloatField;
+    btn_imprimir: TSpeedButton;
+    rgTipo: TRadioGroup;
+    dtInicial: TRxDateEdit;
+    dtFinal: TRxDateEdit;
+    TabSheet1: TTabSheet;
+    qrImpressao: TZQuery;
     procedure btnALTERAClick(Sender: TObject);
     procedure btnAPAGAClick(Sender: TObject);
     procedure btnINCLUIClick(Sender: TObject);
@@ -101,9 +129,13 @@ type
     procedure btnRECEBERClick(Sender: TObject);
     procedure btnRecOKClick(Sender: TObject);
     procedure btnSALVAClick(Sender: TObject);
+    procedure btn_imprimirClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure edtCodEntidadeExit(Sender: TObject);
-    procedure edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
+    procedure edtCodEntidadeImpressaoExit(Sender: TObject);
+    procedure edtCodEntidadeImpressaoKeyDown(Sender: TObject;
+      var Key: word; Shift: TShiftState);
+    procedure edtCodEntidadeKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure edtCodPlanoExit(Sender: TObject);
     procedure edtCodPlanoKeyDown(Sender: TObject; var Key: word;
@@ -118,9 +150,9 @@ type
     FContaReceber: TContaReceber;
     FPlano: Tplano;
     FConta: Tconta;
-    FEntidade : TEntidade;
+    FEntidade: TEntidade;
     procedure ExibePainelReceber(lFlag: boolean);
-    procedure AlimentaCamposFormulario(AIdLancamento:Integer);
+    procedure AlimentaCamposFormulario(AIdLancamento: integer);
   public
 
   end;
@@ -186,7 +218,7 @@ end;
 procedure Tfrmcad_receber.btnRecOKClick(Sender: TObject);
 var
   LLancamento: Tlancamento;
-  LIdLancamento : Integer;
+  LIdLancamento: integer;
 begin
   LLancamento := Tlancamento.Create;
   try
@@ -208,7 +240,7 @@ begin
   end;
   ExibePainelReceber(False);
 
-  LIdLancamento := StrToIntDef(edtIdLcto.text,0);
+  LIdLancamento := StrToIntDef(edtIdLcto.Text, 0);
   AlimentaCamposFormulario(LIdLancamento);
 
   if qrPESQ.Active then
@@ -224,7 +256,7 @@ begin
   FContaReceber.DtLancamento := edtDataLcto.Date;
   FContaReceber.Valor := edtValor.Value;
   FContaReceber.DtVencimento := edtDataVencimento.Date;
-  FContaReceber.Entidade:= StrToIntDef(edtCodEntidade.Text,0);
+  FContaReceber.Entidade := StrToIntDef(edtCodEntidade.Text, 0);
   if cliqueBotao = cbAlterar then
     FContaReceber.altera(FContaReceber.Id_Registro)
   else if cliqueBotao = cbIncluir then
@@ -237,6 +269,63 @@ begin
   if qrPESQ.Active then
     qrPESQ.Refresh;
   PageControl1.PageIndex := 0;
+end;
+
+procedure Tfrmcad_receber.btn_imprimirClick(Sender: TObject);
+var
+  LCondicao, LTipoRelatorio: string;
+  LEntidade: integer;
+begin
+  if qrImpressao.Active then
+    qrImpressao.Close;
+  qrImpressao.sql.Clear;
+  // tipo de relatorio
+  if rgTipo.ItemIndex = 0 then
+  begin
+    qrImpressao.SQL.Add('select * from vw_receber_pendentes');
+    LTipoRelatorio := 'dtvencimento';
+  end
+  else
+  begin
+    qrImpressao.SQL.Add('select * from vw_receber_baixadas');
+    LTipoRelatorio := 'dtrecebimento';
+  end;
+
+  // filtrar por periodo
+  if chkFiltrarPeriodo.Checked then
+  begin
+    if dtInicial.Date > dtFinal.Date then
+      raise Exception.Create('Erro Data Final menor que a Data Inicial ');
+
+    qrImpressao.sql.Add('where dtvencimento between :dInicio and :dFim');
+    qrImpressao.ParamByName('dInicio').AsDate := dtInicial.Date;
+    qrImpressao.ParamByName('dFim').AsDate := dtFinal.Date;
+  end;
+
+  // filtrar por entidade
+  if chkFiltrarEntidade.Checked then
+  begin
+    LEntidade := StrToIntDef(edtCodEntidadeImpressao.Text, 0);
+    if LEntidade < 1 then
+      raise Exception.Create('Codigo da entidade deve ser maior que 0');
+
+    if chkFiltrarPeriodo.Checked then
+      LCondicao := 'and '
+    else
+      LCondicao := 'where ';
+    qrImpressao.sql.Add(LCondicao + 'entidade in(:CodigoEntidade)');
+    qrImpressao.ParamByName('CodigoEntidade').AsInteger := LEntidade;
+  end;
+
+  // ordenar
+  qrImpressao.SQL.Add('order by ' + LTipoRelatorio);
+
+
+  try
+    qrImpressao.Open;
+  except
+    raise Exception.Create('Erro ao executar a consulta receber');
+  end;
 end;
 
 procedure Tfrmcad_receber.DBGrid1DblClick(Sender: TObject);
@@ -266,8 +355,45 @@ begin
 
 end;
 
-procedure Tfrmcad_receber.edtCodEntidadeKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure Tfrmcad_receber.edtCodEntidadeImpressaoExit(Sender: TObject);
+begin
+  if StrToIntDef(edtCodEntidadeImpressao.Text, 0) > 0 then
+  begin
+    if FEntidade.localiza(StrToIntDef(edtCodEntidadeImpressao.Text, 0)) then
+      edtDescEntidadeImpressao.Text := FEntidade.Nome
+    else
+    begin
+      edtDescEntidadeImpressao.Text := '';
+      ShowMessage('Entidade não Localizada.');
+    end;
+  end
+  else
+  begin
+    edtDescEntidadeImpressao.Text := '';
+    ShowMessage('Entidade invalida !');
+  end;
+
+end;
+
+procedure Tfrmcad_receber.edtCodEntidadeImpressaoKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
+begin
+  if key = VK_F4 then
+  begin
+    frmPesquisa := TfrmPesquisa.Create(self, ['id_entidade', 'nome', 'telefone'],
+      'entidades', 'id_entidade');
+    try
+      frmPesquisa.ShowModal;
+      edtCodEntidadeImpressao.Text := frmPesquisa.edtResultado.Text;
+    finally
+      if Assigned(frmPesquisa) then
+        FreeAndNil(frmPesquisa);
+    end;
+  end;
+end;
+
+procedure Tfrmcad_receber.edtCodEntidadeKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
 begin
   if key = VK_F4 then
   begin
@@ -393,6 +519,8 @@ begin
   FConta := Tconta.Create;
   FEntidade := TEntidade.Create;
   ExibePainelReceber(False);
+  dtInicial.Date := date();
+  dtFinal.Date := date();
 end;
 
 procedure Tfrmcad_receber.FormShow(Sender: TObject);
@@ -413,11 +541,11 @@ begin
 
 end;
 
-procedure Tfrmcad_receber.AlimentaCamposFormulario(AIdLancamento: Integer);
+procedure Tfrmcad_receber.AlimentaCamposFormulario(AIdLancamento: integer);
 begin
 
   if AIdLancamento <= 0 then
-     raise Exception.Create('Id Lançamento não informado');
+    raise Exception.Create('Id Lançamento não informado');
 
   if FContaReceber.localiza(AIdLancamento) then
   begin
@@ -453,13 +581,12 @@ begin
       if FEntidade.localiza(StrToIntDef(edtCodEntidade.Text, 0)) then
         edtDescEntidade.Text := FEntidade.Nome
       else
-        edtDescEntidade.Text :='Entidade inválida';
+        edtDescEntidade.Text := 'Entidade inválida';
     end
     else
       edtDescEntidade.Text := EmptyStr;
 
   end;
-
 
 end;
 
